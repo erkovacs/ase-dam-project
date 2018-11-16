@@ -1,4 +1,26 @@
 # ASE DAM Project
+
+## App Concept
+### Conference booking app
+#### Activities
+- Users can search for conferences by search terms, date, category etc.
+- Users can book tickets for conferences
+- Users can provide feedback through checkboxes and comments
+
+#### Views
+- Main view - list of conferences
+- 4 forms to enter data:
+  - New Conference
+  - Feedback
+  - Book conference
+  - Subscribe to newsletter
+- User profile view
+- My conferences
+- Settings
+- Contact
+- About
+- Help
+
 ## Barem
 ### Faza 1: (2.5 p)
 1. Definirea a minim patru activități/membru echipă; (0.5 p.)
@@ -35,3 +57,4 @@ denumire arhivă, structură arhivă, neștergerea directoarelor build).
 structurii
 - toate șirurile de caractere utilizate la nivelul interfeței trebuie preluate din resurse. Lipsa
 acestora duce la o penalizare de 0.5 din fiecare faza.
+
