@@ -2,7 +2,7 @@
 
 ## App Concept
 ### Conference booking app
-#### Activities
+#### Possible actions
 - Users can search for conferences by search terms, date, category etc.
 - Users can book tickets for conferences
 - Users can provide feedback through checkboxes and comments
