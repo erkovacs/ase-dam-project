@@ -2,6 +2,14 @@
 
 ## App Concept
 ### Conference booking app
+
+#### How to get this Project
+Make sure you have Git installed and, in a folder of your preference, run the following:
+```bash
+git clone https://github.com/codepadawan93/ase-dam-project.git
+```
+Afterwards open the folder with Andrtoid Studio, Cheers!
+
 #### Possible actions
 - Users can search for conferences by search terms, date, category etc.
 - Users can book tickets for conferences
