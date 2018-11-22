@@ -10,20 +10,25 @@ git clone https://github.com/codepadawan93/ase-dam-project.git
 ```
 Afterwards open the folder with Andrtoid Studio, Cheers!
 
+#### User roles
+- Professor (provider)
+- Student (consumer)
+
 #### Possible actions
-- Users can search for conferences by search terms, date, category etc.
-- Users can book tickets for conferences
-- Users can provide feedback through checkboxes and comments
+- User/Professor can create own account
+- Only one account per device
+- Create Questionnaire with multiple Questions having multiple Answers each
+- Question can have one or multiple Answers, and also a max response time, display current score, display feedback if wrong answer was provided, and an attached picture from URL 
+- A student will be able to acces a Questionaire on basis of a Code given by Professor
+- A Professor will be able to generate a Code providing the Questionnaire he wants to become public and the interval in which itt can be filled out. 
+- A flag will control whether a Questionnaire will be traversable at will (a user can go back to previous questions) or only in one way
+- Student user can log in to any test if he has the proper code provided by Professor
+- Questions are associated to a Category
+- Professor must be able to view all instances of a Questionnaire and the Student that participated
+- Each Student can be part of a Team
 
 #### Views
-- Main view - list of conferences
-- 4 forms to enter data:
-  - New Conference
-  - Feedback
-  - Book conference
-  - Subscribe to newsletter
-- User profile view
-- My conferences
+- Main view
 - Settings
 - Contact
 - About
@@ -62,9 +67,7 @@ modificați fontul, culorile componentelor vizuale) (0.5 p)
 - Aplicație mobilă pentru platformele Android - faza I
 - Bază de date pentru stocarea datelor utilizatorilor, a testelor și a rezultatelor/rapoartelor - faza
 II
-- Rest API pentru a permite fluxul de date între baza de date și clienții mobili - faza II
-- Client Web care să includă funcțiile clientului mobil, la care se adaugă alte instrumente - faza
-III
+
 ### Cerințe funcționale
 1. Platforma trebuie să fie cât mai ușor de folosit - număr minim de click-uri și input pentru a
 participa la teste
@@ -83,10 +86,10 @@ dezvoltat)
   e. imagine sau video atașat (din sursă locală sau URL)
 7. Platforma trebuie să permită evaluarea în timp real a răspunsurilor - cu feedback imediat
 pentru profesor și student participant
-  8. Platforma trebuie să permită profesorilor să controleze când testul devine activ/inactiv
+ 8. Platforma trebuie să permită profesorilor să controleze când testul devine activ/inactiv
   a. perioada de vizibilitate a testului
   b. cod de acces la test
-### V1.0/20181007
+V1.0/20181007
 9. Platforma trebuie să permită definirea de teste publice (liber accesibile pe platformă) dar și
 private (accesul este controlat de profesor). Alte caracteristici pentru un test
   a. amestecarea întrebărilor și a răspunsurilor
@@ -99,9 +102,7 @@ private (accesul este controlat de profesor). Alte caracteristici pentru un test
 10. Platforma trebuie să permită studenților să se înscrie/să participe la un test activ - soluție
 recomandată pe baza unui cod dat de profesor
 11. Platforma trebuie să permită gestiunea testelor existente
-  a. fiecare profesor are un portofoliu de teste și un portofoliu de întrebări ce pot fi
-  clasificate pe diferite categorii (într-o prima fază se poate merge pe o soluție în care
-  întrebările sunt asociate direct unui test)
+  a. fiecare profesor are un portofoliu de teste și un portofoliu de întrebări ce pot fi clasificate pe diferite categorii (într-o prima fază se poate merge pe o soluție în care întrebările sunt asociate direct unui test)
   b. profesorii pot partaja teste între ei cu diferite drepturi (utilizare și/sau editare)
 12. Platforma trebuie să permită gestiunea istoricului unui student: când a dat un test și ce punctaj a obținut
 13. Platforma trebuie să genereze rapoarte pentru profesor
