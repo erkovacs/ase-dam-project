@@ -25,7 +25,8 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
 - Student user can log in to any test if he has the proper code provided by Professor
 - Questions are associated to a Category
 - Professor must be able to view all instances of a Questionnaire and the Student that participated
-- Each Student can be part of a Team
+- Professor can create a Team
+- Each Student can be assigned by a Professor to be part of a Team
 
 #### Views
 - Main view
