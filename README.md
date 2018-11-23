@@ -45,7 +45,7 @@ Menu with
 -	Contact
 -	About
 -	Help
- Activities :                       
+ -Activities :                       
  - create questionnaire + assign it to a category 
 -	Activity for setting the max response time, display the score and feedback for each questionnaire 
 -	Enter test :  field for the code (if student) 
