@@ -35,6 +35,25 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
 - About
 - Help
 
+### Ideas - Adela
+MainActivity:
+Menu with 
+– create account
+-	Log in
+-	History ( questionnaire and scores for each student) 
+-	Settings
+-	Contact
+-	About
+-	Help
+ Activities :                       
+ - create questionnaire + assign it to a category 
+-	Activity for setting the max response time, display the score and feedback for each questionnaire 
+-	Enter test :  field for the code (if student) 
+-	??? how and where do we generate the codes
+-	??? we need a new activity for each question of a questionnaire or better  use fragments 
+-	Create teams 
+
+
 ## Barem
 ### Faza 1: (2.5 p)
 1. Definirea a minim patru activități/membru echipă; (0.5 p.)
