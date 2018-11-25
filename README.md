@@ -45,13 +45,16 @@ Menu with
 -	Contact
 -	About
 -	Help
- -Activities :                       
+
+-Activities :                       
  - create questionnaire + assign it to a category 
--	Activity for setting the max response time, display the score and feedback for each questionnaire 
--	Enter test :  field for the code (if student) 
--	??? how and where do we generate the codes
--	??? we need a new activity for each question of a questionnaire or better  use fragments 
--	Create teams 
+ -	Activity for setting the max response time, display the score and feedback for each questionnaire 
+ -	Enter test :  field for the code (if student) 
+ -	??? how and where do we generate the codes
+  -- [EK] A user of type Professor will receive a hash specific to a questionnaire once he has created it. It will be bound to that specific instance of the questionnaire - if he changes anything, a new code will be generated. In the view where he can edit the questionnaire there will be a field with this code and he can get it from there if he needs it after he created the questionnaire;
+ -	??? we need a new activity for each question of a questionnaire or better  use fragments 
+  -- [EK] There will only ever be one view, and it will be populated dynamically with different data for each question. We will not create them manually, only the logic behind the display of each field. I am not sure how can this be achieved in Android though, needs more investigation;
+ -	Create teams 
 
 
 ## Barem
