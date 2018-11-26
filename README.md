@@ -16,12 +16,12 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
 
 #### Entities
 - User - create account, edit/view/delete account, list view account
- - user_id
- - user_name
- - password
- - firstname
- - lastname
- - role
+  - user_id
+  - user_name
+  - password
+  - firstname
+  - lastname
+  - role
  
 - Questionnaire - Professor create/edit/view/delete Questionnaire, list view own questionnaires
 
