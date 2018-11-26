@@ -17,10 +17,28 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
 #### Entities
 - User - create account, edit/view/delete account, list view account
 - Questionnaire - Professor create/edit/view/delete Questionnaire, list view own questionnaires
-- Question - Created by professor when creating Questionnaire
+- Question - Professor create/edit/view/delete by professor when creating Questionnaire
+- Response - created when a Questionnaire is submitted
+
+#### Views
+- Sign up
+- Sign in
+- Main view
+- Edit/View/Delete User Account form
+- List view User Accounts - only Professor can see
+- Add/Edit/View/Delete Questionnaire form - only for Professor
+- List view all Questionnaires - only for Professor
+- Add/Edit/View/Delete Question form - only Professor can see
+- List view all unassigned Questions (all questions that are not associated to a parent Questionnaire) - only for Profssor
+- History - for Student a list of his responses, for Professor a list of all responses grouped by Questionnaire
+- Question View - only for Student
+- Settings
+- Contact
+- About
+- Help
 
 #### Possible actions
-- User/Professor can create own account
+- Student/Professor can create own account
 - Only one account per device
 - Create Questionnaire with multiple Questions having multiple Answers each
 - Question can have one or multiple Answers, and also a max response time, display current score, display feedback if wrong answer was provided, and an attached picture from URL 
@@ -33,17 +51,10 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
 - Professor can create a Team
 - Each Student can be assigned by a Professor to be part of a Team
 
-#### Views
-- Main view
-- Settings
-- Contact
-- About
-- Help
-
 ### Ideas - Adela
 MainActivity:
 Menu with 
-– create account
+– Create Account
 -	Log in
 -	History ( questionnaire and scores for each student) 
 -	Settings
