@@ -14,6 +14,11 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
 - Professor (provider)
 - Student (consumer)
 
+#### Entities
+- User - create account, edit/view/delete account, list view account
+- Questionnaire - Professor create/edit/view/delete Questionnaire, list view own questionnaires
+- Question - Created by professor when creating Questionnaire
+
 #### Possible actions
 - User/Professor can create own account
 - Only one account per device
