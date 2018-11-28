@@ -24,10 +24,17 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
   - role
  
 - Questionnaire - Professor create/edit/view/delete Questionnaire, list view own questionnaires
+    - title
+    - q_id
+    - nr_of_ouestions ?  
+    
 
 - Question - Professor create/edit/view/delete by professor when creating Questionnaire
+     - question_id
+     - nu stiu ce caracteristici ar putea sa aiba in mod deosebt pentru ca practic in questionnaire vom avea un arraylist de intrebari 
 
 - Response - created when a Questionnaire is submitted
+       
 
 #### Views
 - Sign up
