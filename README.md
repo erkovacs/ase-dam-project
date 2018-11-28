@@ -49,6 +49,7 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
      //[AF] ?? acesta  va fi folosit pentru history 
        
 #### Database
+![Database](https://codepadawan93.github.io/assets/dam-ase/database-schema.jpg)
 
 #### Views
 - Sign up
