@@ -24,20 +24,29 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
   - role
  
 - Questionnaire - Professor create/edit/view/delete Questionnaire, list view own questionnaires
+    - questionnaire_id
     - title
-    - q_id
-    - nr_of_ouestions ?  
-    
+    - nr_of_questions [EK] 
+    - date_start
+    - date_end (if they are empty it's always available)
+    - hash_code (unique code through which users can access questionnaire)
 
 - Question - Professor create/edit/view/delete by professor when creating Questionnaire
      - question_id
-     - nu stiu ce caracteristici ar putea sa aiba in mod deosebt pentru ca practic in questionnaire vom avea un arraylist de intrebari 
+     - title
+     - text
+     - type (single answer / multiple answer / freeform answer)
+     - [EK] remains to be established: will Questions be bound to a Questionnaire, or will we make a m2m table?
+     - [AF] nu stiu ce caracteristici ar putea sa aiba in mod deosebt pentru ca practic in questionnaire vom avea un arraylist de intrebari 
 
 - Response - created when a Questionnaire is submitted
-     - q_id 
-     - nr_of_correct_answ
-     - user_id
-     // ?? acesta  va fi folosit pentru history 
+     - response_id
+     - questionnaire_id
+     - completed_on
+     - nr_of_correct_answ [EK] not sufficient to remeber the score, we should remember the whole playthrough
+     - answers (a LONGTEXT field cotaining a JSON with the playthrough data)
+     - user_id 
+     //[AF] ?? acesta  va fi folosit pentru history 
        
 
 #### Views
