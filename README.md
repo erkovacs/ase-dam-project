@@ -34,8 +34,9 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
      - nu stiu ce caracteristici ar putea sa aiba in mod deosebt pentru ca practic in questionnaire vom avea un arraylist de intrebari 
 
 - Response - created when a Questionnaire is submitted
-     - q-id 
+     - q_id 
      - nr_of_correct_answ
+     - user_id
      // ?? acesta  va fi folosit pentru history 
        
 
