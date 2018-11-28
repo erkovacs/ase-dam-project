@@ -30,6 +30,7 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
     - date_start
     - date_end (if they are empty it's always available)
     - hash_code (unique code through which users can access questionnaire)
+    - public (true/false)
 
 - Question - Professor create/edit/view/delete by professor when creating Questionnaire
      - question_id
@@ -52,21 +53,21 @@ Afterwards open the folder with Andrtoid Studio, Cheers!
 ![Database](https://codepadawan93.github.io/assets/dam-ase/database-schema.jpg)
 
 #### Views
-- Sign up
-- Sign in
-- Main view
-- Edit/View/Delete User Account form
-- List view User Accounts - only Professor can see
-- Add/Edit/View/Delete Questionnaire form - only for Professor
-- List view all Questionnaires - only for Professor
-- Add/Edit/View/Delete Question form - only Professor can see
-- List view all unassigned Questions (all questions that are not associated to a parent Questionnaire) - only for Profssor
-- History - for Student a list of his responses, for Professor a list of all responses grouped by Questionnaire
-- Question View - only for Student
-- Settings
-- Contact
-- About
-- Help
+- Sign up -[AF]
+- Sign in -[AF]
+- Main view -[EK]
+- Edit/View/Delete User Account form -[AF]
+- List view User Accounts - only Professor can see -[EK]
+- Add/Edit/View/Delete Questionnaire form - only for Professor -[EK]
+- List view all Questionnaires - only for Professor - [EK]
+- Add/Edit/View/Delete Question form - only Professor can see -[RG]
+- List view all unassigned Questions (all questions that are not associated to a parent Questionnaire) - only for Professor -[RG]
+- History - for Student a list of his responses, for Professor a list of all responses grouped by Questionnaire -[RG]
+- Question View - only for Student (main game loop)
+- Settings -[AG]
+- Contact -[AG]
+- About -[AG]
+- Help [AG]
 
 #### Possible actions
 - Student/Professor can create own account
