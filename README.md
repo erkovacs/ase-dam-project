@@ -4,11 +4,13 @@
 ### Conference booking app
 
 #### How to get this Project
-Make sure you have Git installed and, in a folder of your preference, run the following:
+Make sure you have Git installed and, in a folder of your preference, run the following in Git Bash:
 ```bash
 git clone https://github.com/codepadawan93/ase-dam-project.git
 ```
-Afterwards open the folder with Andrtoid Studio, Cheers!
+Afterwards open the folder with Android Studio. Remotes should be already set up for you. You can commit and push using the AS built-in functionality in the toolbar: VCS -> Git -> Commit and Push buttons if you don't want to use the CLI. 
+
+If your push is rejected, pull latest changes first and try to push again. If you find conflicts, make a backup of your code in a separate file (just in case) and accept the incoming changes. Test if project compiles and take a note of the latest commit before pushing.
 
 #### User roles
 - Professor (provider)
