@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">ase-dam-project</string>
+    <string name="app_name">DAM Project</string>
+    <string name="title_input_placeholder">Title</string>
+    <string name="date_start_input_placeholder">Starting date</string>
+    <string name="date_end_input_placeholder">End date</string>
+    <string name="type_label">Questionnaire Type</string>
+    <string name="public_label">Public?</string>
+    <string name="questionnaire_form_title">Questionnaire</string>
 </resources>
