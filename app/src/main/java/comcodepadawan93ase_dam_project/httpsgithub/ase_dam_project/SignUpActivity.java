@@ -67,7 +67,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
                 if(validUser) {
                     user = new User(user_id, userNames, Passwords, FirstNames, LastNames, chosenRole);
                 }
-                
+
 
                toast.makeText(getApplicationContext(), "Account created!", toast.LENGTH_SHORT).show();
             }
