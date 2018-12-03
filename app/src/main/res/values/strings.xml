@@ -6,4 +6,12 @@
     <string name="type_label">Questionnaire Type</string>
     <string name="public_label">Public?</string>
     <string name="questionnaire_form_title">Questionnaire</string>
+    <string name="users_menu_item">Users</string>
+    <string name="questionnaires_menu_item">Questionnaires</string>
+    <string name="questions_menu_item">Questions</string>
+    <string name="history_menu_item">History</string>
+    <string name="settings_menu_item">Settings</string>
+    <string name="contact_menu_item">Contact</string>
+    <string name="about_menu_item">About</string>
+    <string name="help_menu_item">Help</string>
 </resources>

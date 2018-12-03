@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/users_menu_item"
+        android:title="@string/users_menu_item"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/questionnaires_menu_item"
+        android:title="@string/questionnaires_menu_item"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/questions_menu_item"
+        android:title="@string/questions_menu_item"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/history_menu_item"
+        android:title="@string/history_menu_item"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/settings_menu_item"
+        android:title="@string/settings_menu_item"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/contact_menu_item"
+        android:title="@string/contact_menu_item"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/about_menu_item"
+        android:title="@string/about_menu_item"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/help_menu_item"
+        android:title="@string/help_menu_item"
+        app:showAsAction="never"/>
 </menu>

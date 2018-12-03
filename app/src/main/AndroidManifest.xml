@@ -16,8 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuestionnaireActivity" />
-        <activity android:name=".QuestionnaireListActivity"></activity>
+        <activity android:name=".QuestionnaireActivity" android:parentActivityName=".QuestionnaireListActivity"/>
+        <activity android:name=".QuestionnaireListActivity" android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>
