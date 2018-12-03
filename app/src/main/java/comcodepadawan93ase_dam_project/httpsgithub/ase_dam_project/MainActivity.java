@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = null;
         switch(item.getItemId()) {
             case R.id.users_menu_item:
-                intent = new Intent(this, null);
+                intent = new Intent(this, UserListActivity.class);
                 retval = true;
                 break;
             case R.id.questionnaires_menu_item:
