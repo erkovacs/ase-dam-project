@@ -29,6 +29,10 @@
             android:name=".QuestionListActivity"
             android:parentActivityName=".MainActivity" >
         </activity>
+        <activity
+            android:name=".QuestionFormProfActivity"
+            android:parentActivityName=".QuestionListActivity" >
+        </activity>
     </application>
 
 </manifest>

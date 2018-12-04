@@ -23,6 +23,10 @@ public class QuestionFormProfActivity extends AppCompatActivity {
         setContentView(R.layout.activity_question_form_prof);
     }
 
+    public QuestionFormProfActivity(){
+
+    }
+
     public QuestionFormProfActivity(String question, String answear1, String answear2, String answear3, String answear4) {
         this.question = question;
         this.answear1 = answear1;
