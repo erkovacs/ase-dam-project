@@ -1,7 +1,6 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
 import android.content.Intent;
-import android.location.Location;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

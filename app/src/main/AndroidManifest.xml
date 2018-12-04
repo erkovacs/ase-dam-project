@@ -24,7 +24,11 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UserListActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".QuestionListActivity"
+            android:parentActivityName=".MainActivity" >
+        </activity>
     </application>
 
 </manifest>

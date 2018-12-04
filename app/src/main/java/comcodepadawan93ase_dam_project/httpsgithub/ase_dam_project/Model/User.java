@@ -1,4 +1,4 @@
-package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
+package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model;
 
 public class User {
     private  int user_id;

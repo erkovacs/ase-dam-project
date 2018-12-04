@@ -5,26 +5,24 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.R;
+public class QuestionListActivity extends AppCompatActivity {
 
-public class UserListActivity extends AppCompatActivity {
-
-    private ListView userList;
+    private ListView questionList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_list);
+        setContentView(R.layout.activity_question_list);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Get existing questionnaires (hardcoded for now...)
-        String[] users = {"User1", "User2", "User3" };
+        // Get existing questions (hardcoded for now...)
+        String[] questions = {"Question 1", "Question 2", "Question 3" };
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, users);
+                R.layout.activity_listview, questions);
 
         // Populate list with existing questionnaires
-        userList = (ListView)findViewById(R.id.user_list);
-        userList.setAdapter(adapter);
+        questionList = (ListView)findViewById(R.id.question_list);
+        questionList.setAdapter(adapter);
     }
 }

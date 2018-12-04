@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Question;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 retval = true;
                 break;
             case R.id.questions_menu_item:
-                intent = new Intent(this, null);
+                intent = new Intent(this, QuestionListActivity.class);
                 retval = true;
                 break;
             case R.id.history_menu_item:
