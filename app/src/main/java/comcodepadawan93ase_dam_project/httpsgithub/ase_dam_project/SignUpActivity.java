@@ -16,11 +16,11 @@ import java.text.BreakIterator;
 import static android.widget.Toast.*;
 
 public class SignUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-   Button b;
-   Toast toast;
-   User user = new User();
-   boolean validUser;
- private String chosenRole;
+    Button b;
+    Toast toast;
+    User user = new User();
+    boolean validUser;
+    private String chosenRole;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
