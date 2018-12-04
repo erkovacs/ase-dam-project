@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1037533565717",
+    "firebase_url": "https://ase-dam-project.firebaseio.com",
+    "project_id": "ase-dam-project",
+    "storage_bucket": "ase-dam-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037533565717:android:6683446fd2a23b38",
+        "android_client_info": {
+          "package_name": "comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037533565717-3qontg12fu57mssqbqjep6tfi9lc6ms0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFDzW4jwykrM1wLaReE4Wwk37049Ywt_E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
