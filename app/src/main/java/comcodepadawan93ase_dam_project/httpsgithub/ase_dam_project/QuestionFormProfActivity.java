@@ -1,14 +1,11 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
 import android.content.Intent;
-import android.location.Location;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-
-import java.io.Serializable;
 
 public class QuestionFormProfActivity extends AppCompatActivity {
     public String question;
@@ -22,6 +19,10 @@ public class QuestionFormProfActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_form_prof);
+    }
+
+    public QuestionFormProfActivity(){
+
     }
 
     public QuestionFormProfActivity(String question, String answear1, String answear2, String answear3, String answear4) {
@@ -54,33 +55,45 @@ public class QuestionFormProfActivity extends AppCompatActivity {
 
 
     public void AddQuestion(View view){
-        EditText questionet = (EditText)findViewById(R.id.questionet);
-        EditText firstet=(EditText)findViewById(R.id.firstet);
-        EditText secondet=(EditText)findViewById(R.id.secondet);
-        EditText thirdet=(EditText)findViewById(R.id.thirdet);
-        EditText fourthet=(EditText)findViewById(R.id.fourthet);
+        final EditText questionet = (EditText)findViewById(R.id.questionet);
+        final EditText firstet=(EditText)findViewById(R.id.firstet);
+        final EditText secondet=(EditText)findViewById(R.id.secondet);
+        final EditText thirdet=(EditText)findViewById(R.id.thirdet);
+        final EditText fourthet=(EditText)findViewById(R.id.fourthet);
+        Button addquestionbtn=(Button)findViewById(R.id.addquestionbtn);
 
-        if(questionet != null && firstet !=null && secondet != null){
-            if("".equals(questionet.getText().toString()) || "".equals(firstet.getText().toString()) || "".equals(secondet.getText().toString())){
-                AlertDialog.Builder builder =
-                        new AlertDialog.Builder(this);
-                builder.setTitle("Error");
-                builder.setMessage("Both fields are mandatory!");
-                builder.setPositiveButton("OK", null);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+        final String Questionet = questionet.getText().toString();
+        final String Firstet = firstet.getText().toString();
+        final String Secondet=secondet.getText().toString();
+        final String Thirdet=thirdet.getText().toString();
+        final String Fourthet=fourthet.getText().toString();
+
+        addquestionbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              if(Questionet.isEmpty() || Questionet==null){
+                  questionet.setError("You need to insert a question!");
+                  firstet.setError("You need to insert at least an answer");
+                  secondet.setError("You need to insert at least two answers");
+              }
+              else{
+                  Bundle b = new Bundle();
+
+                  b.putString("question",Questionet);
+                  b.putString("first answer", Firstet);
+                  b.putString("second answer",Secondet);
+                  b.putString("third answer", Thirdet);
+                  b.putString("fourth answer", Fourthet);
+
+                  Intent in = new Intent(QuestionFormProfActivity.this, QuestionnaireListActivity.class);
+                  in.putExtras(b);
+                  startActivity(in);
+              }
             }
-        }
-        else{
 
-            QuestionFormProfActivity questionFormProfActivity = new QuestionFormProfActivity(questionet.getText().toString(),
-                    firstet.getText().toString(),secondet.getText().toString(),thirdet.getText().toString(),fourthet.getText().toString());
+        });
 
-            Intent intent = new Intent();
-            intent.putExtra("ques", (Serializable) questionFormProfActivity);
-            setResult(RESULT_OK, intent);
-            finish();
-        }
+
 
 
 

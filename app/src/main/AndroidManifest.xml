@@ -24,6 +24,24 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UserListActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".QuestionListActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".QuestionFormProfActivity"
+            android:parentActivityName=".QuestionListActivity" />
+        <activity
+            android:name=".AboutActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ContactActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".HelpActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".SettingsActivity"
             android:parentActivityName=".MainActivity"></activity>
     </application>
 

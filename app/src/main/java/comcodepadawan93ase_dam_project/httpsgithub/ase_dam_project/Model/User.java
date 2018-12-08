@@ -1,7 +1,7 @@
-package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
+package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model;
 
 public class User {
-  private  int user_id;
+    private  int user_id;
     private String userName;
     private String password;
     private String firstName;
@@ -9,8 +9,12 @@ public class User {
     private String role;
 
     public User(){
-
     }
+
+    public User(int id){
+        this.user_id = id;
+    }
+
     public User(int user_id, String userName, String password, String firstName, String lastName, String role) {
         this.user_id = user_id;
         this.userName = userName;
