@@ -15,4 +15,5 @@
     <string name="about_menu_item">About</string>
     <string name="help_menu_item">Help</string>
     <string name="questionnaire_button">Save</string>
+    <string name="what_is_the_question">What is the question?</string>
 </resources>
