@@ -22,7 +22,7 @@ public class UserProfile extends AppCompatActivity {
         Button button_DeleteUserProfile = (Button)findViewById(R.id.button_DeleteUserProfile);
 
         // in text view trebuie preluata informatia din bd
-        
+
 
     }
 }
