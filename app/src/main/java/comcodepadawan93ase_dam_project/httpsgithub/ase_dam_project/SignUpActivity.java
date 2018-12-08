@@ -1,5 +1,6 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     User user = new User();
     boolean validUser;
     private String chosenRole;
+    Button login;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         final String Passwords = etPassword.getText().toString();
         final String FirstNames = etFirstName.getText().toString();
         final String LastNames = etLastName.getText().toString();
-
+   login =(Button) findViewById(R.id.button_logIn);
         Button b = (Button) findViewById(R.id.button_CreateUser);
         b.setOnClickListener(new View.OnClickListener(){
                   @Override
@@ -69,6 +71,12 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
 
                toast.makeText(getApplicationContext(), "Account created!", toast.LENGTH_SHORT).show();
+            }
+        });
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openLogIn();
             }
         });
 
@@ -92,6 +100,10 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         }
         // return validUser;
 
+    }
+    public void openLogIn(){
+        Intent intent = new Intent(this, SignIn.class);
+        startActivity(intent);
     }
 
 
