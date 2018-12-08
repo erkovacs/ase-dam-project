@@ -20,7 +20,7 @@
         android:layout_marginBottom="442dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Full Name:" />
+        android:hint="Full Name:" />
 
     <EditText
         android:id="@+id/Email"
@@ -34,7 +34,7 @@
         android:layout_marginEnd="151dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="Email:" />
+        android:hint="Email:" />
 
     <EditText
         android:id="@+id/Phone"
@@ -46,7 +46,7 @@
         android:layout_marginTop="6dp"
         android:ems="10"
         android:inputType="phone"
-        android:text="Phone:" />
+        android:hint="Phone:" />
 
     <EditText
         android:id="@+id/Subject"
@@ -58,7 +58,7 @@
         android:layout_marginTop="180dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Subject:" />
+        android:hint="Subject:" />
 
     <EditText
         android:id="@+id/Question"
@@ -68,7 +68,7 @@
         android:layout_centerVertical="true"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Your question:" />
+        android:hint="Your question:" />
 
     <Button
         android:id="@+id/btnSend"
@@ -78,5 +78,5 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="19dp"
         android:layout_marginBottom="57dp"
-        android:text="Send" />
+        android:hint="Send" />
 </RelativeLayout>
