@@ -82,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
          validUser = true;
         if (user.getUserName().isEmpty() || user.getUserName().length() > 30) {
-            etUserName.setError("Please eter a valid user name!");
+            etUserName.setError("Please enter a valid user name!");
             validUser = false;
         }
         if (user.getPassword().length() < 6 || user.getPassword().isEmpty()) {
