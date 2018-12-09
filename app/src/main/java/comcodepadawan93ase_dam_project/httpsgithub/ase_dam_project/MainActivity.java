@@ -47,15 +47,19 @@ public class MainActivity extends AppCompatActivity {
                 retval = true;
                 break;
             case R.id.settings_menu_item:
-                intent = new Intent(this, null);
+                intent = new Intent(this, SettingsActivity.class);
                 retval = true;
                 break;
             case R.id.contact_menu_item:
-                intent = new Intent(this, null);
+                intent = new Intent(this, ContactActivity.class);
                 retval = true;
                 break;
             case R.id.about_menu_item:
-                intent = new Intent(this, null);
+                intent = new Intent(this, AboutActivity.class);
+                retval = true;
+                break;
+            case R.id.help_menu_item:
+                intent = new Intent(this, HelpActivity.class);
                 retval = true;
                 break;
             default:

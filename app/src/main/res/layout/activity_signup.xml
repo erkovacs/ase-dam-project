@@ -118,7 +118,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="88dp"
         android:onClick="onClick"
         android:text="CREATE"
         android:textStyle="bold"
@@ -192,4 +192,18 @@
         app:layout_constraintHorizontal_bias="0.716"
         app:layout_constraintStart_toEndOf="@+id/tvRole"
         app:layout_constraintTop_toBottomOf="@+id/etLastName"></Spinner>
+
+    <Button
+        android:id="@+id/button_logIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="24dp"
+        android:text="LOG IN"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
