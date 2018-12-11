@@ -1,13 +1,11 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
-import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Question;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,15 +45,19 @@ public class MainActivity extends AppCompatActivity {
                 retval = true;
                 break;
             case R.id.settings_menu_item:
-                intent = new Intent(this, null);
+                intent = new Intent(this, SettingsActivity.class);
                 retval = true;
                 break;
             case R.id.contact_menu_item:
-                intent = new Intent(this, null);
+                intent = new Intent(this, ContactActivity.class);
                 retval = true;
                 break;
             case R.id.about_menu_item:
-                intent = new Intent(this, null);
+                intent = new Intent(this, AboutActivity.class);
+                retval = true;
+                break;
+            case R.id.help_menu_item:
+                intent = new Intent(this, HelpActivity.class);
                 retval = true;
                 break;
             default:
