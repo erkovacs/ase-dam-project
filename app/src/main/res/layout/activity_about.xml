@@ -50,12 +50,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="388dp"
-        android:layout_height="345dp"
-        android:layout_marginBottom="41dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:layout_width="389dp"
+        android:layout_height="325dp"
+        app:srcCompat="@drawable/logo" />
+
 </android.support.constraint.ConstraintLayout>
