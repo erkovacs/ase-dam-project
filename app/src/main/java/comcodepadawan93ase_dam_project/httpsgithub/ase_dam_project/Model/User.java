@@ -9,6 +9,11 @@ public class User {
     private String role;
 
     public User(){
+        this.userName = "";
+        this.password = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.role = "";
     }
 
     public User(int id){
@@ -39,7 +44,6 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
-
     }
 
     public String getPassword() {
