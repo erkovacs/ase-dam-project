@@ -41,5 +41,13 @@ public class QuestionnaireListActivity extends AppCompatActivity {
             }
         });
 
+        // Set the event listener when clicking on an item
+        questionnaireList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter , View view, int position, long id) {
+                Intent intent = new Intent(context, QuestionnaireActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
