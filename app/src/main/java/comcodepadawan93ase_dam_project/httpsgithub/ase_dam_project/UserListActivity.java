@@ -9,8 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.google.android.gms.common.oob.SignUp;
-
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.R;
 
 public class UserListActivity extends AppCompatActivity {
