@@ -10,7 +10,7 @@ package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model;
  */
 public class Response {
     private int response_id;
-    private int questionnaire_id;
+    private String questionnaire_id;
     private Questionnaire questionnaire;
     private int completed_on;
     private String answers;
@@ -21,7 +21,7 @@ public class Response {
         response_id = id;
     }
 
-    public Response(int questionnaireId, int completedOn, String answers, int userId){
+    public Response(String questionnaireId, int completedOn, String answers, int userId){
          // response_id ;
          this.questionnaire_id = questionnaireId;
          this.questionnaire = new Questionnaire(questionnaireId);

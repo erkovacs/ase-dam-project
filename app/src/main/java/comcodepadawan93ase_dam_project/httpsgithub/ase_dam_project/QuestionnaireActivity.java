@@ -1,19 +1,34 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
+
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Exceptions.InvalidModelExeption;
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Question;
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Questionnaire;
+
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+
 
 public class QuestionnaireActivity extends AppCompatActivity {
     private Spinner questionnaireTypePicker;
@@ -21,14 +36,28 @@ public class QuestionnaireActivity extends AppCompatActivity {
     private AlertDialog.Builder builder;
     private EditText dateStart;
     private EditText dateEnd;
+    private boolean isPublic = false;
+
+    private EditText title;
+    private String type;
+    private String _hashCode;
+    private Switch isPublicSwitch;
+    private Questionnaire newQuestionnaire;
 
     private DatePickerDialog.OnDateSetListener dateStartSetListener;
     private DatePickerDialog.OnDateSetListener dateEndSetListener;
+
+    private Button submit;
+
+    protected DatabaseReference databaseQuestionnaire;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
+
+        // Get Firebase ref
+        databaseQuestionnaire = FirebaseDatabase.getInstance().getReference(Questionnaire.TYPE_TAG);
 
         final QuestionnaireActivity context = this;
 
@@ -133,6 +162,46 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+        // Handle switch value
+        isPublicSwitch = (Switch) findViewById(R.id.switch1);
+        isPublicSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isPublic = isChecked;
+            }
+        });
+
+        // Handle submission of instanbce
+        submit = (Button) findViewById(R.id.save_questionnaire);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addQuestionnaire();
+            }
+        });
+    }
+
+    private String generateHashCode(int length){
+        return "TEST"; // Apparently harder to generate random code than expected... hardcode for now
+    }
+
+    private void addQuestionnaire(){
+        // Gather all the needed data
+        title = (EditText) findViewById(R.id.title);
+        String titleString = title.getText().toString().trim();
+        String dateStartString = dateStart.getText().toString().trim();
+        String dateEndString = dateEnd.getText().toString().trim();
+        type = questionnaireTypePicker.getSelectedItem().toString();
+        _hashCode = generateHashCode(4);
+        ArrayList<Question> questions = new ArrayList<>();
+        try {
+            newQuestionnaire = new Questionnaire(titleString, dateStartString, dateEndString, type, _hashCode, isPublic, questions);
+            newQuestionnaire.save(databaseQuestionnaire);
+            Intent intent = new Intent(this, QuestionnaireListActivity.class);
+            startActivity(intent);
+        } catch (InvalidModelExeption ime){
+            Toast.makeText(this, ime.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 }
 
