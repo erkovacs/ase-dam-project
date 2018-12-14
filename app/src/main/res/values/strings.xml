@@ -1,4 +1,4 @@
-<resources tools:ignore="ExtraTranslation" xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
     <string name="app_name">DAM Project</string>
     <string name="title_input_placeholder">Title</string>
     <string name="date_start_input_placeholder">Starting date</string>
@@ -16,4 +16,5 @@
     <string name="help_menu_item">Help</string>
     <string name="questionnaire_button">Save</string>
     <string name="play_game_button">Play game!</string>
+    <string name="what_is_the_question">the fucking question! Tell me dammit!!!</string>
 </resources>

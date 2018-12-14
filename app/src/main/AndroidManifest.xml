@@ -33,22 +33,23 @@
             android:parentActivityName=".QuestionListActivity" />
         <activity
             android:name=".AboutActivity"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ContactActivity"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".HelpActivity"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SignUpActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SignIn"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".SingleAnswerActivity"></activity>
     </application>
 
 </manifest>
