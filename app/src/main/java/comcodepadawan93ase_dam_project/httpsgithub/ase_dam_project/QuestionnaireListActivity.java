@@ -46,7 +46,7 @@ public class QuestionnaireListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapter , View view, int position, long id) {
                 Intent intent = new Intent(context, QuestionnaireActivity.class);
-         int question_id = 1; //setare id 
+         int question_id = 1; //setare id
                 for( int i= 0; i< questionnaires.length ; i++) {
                     intent.putExtra("question_id", question_id);
                     question_id++;
