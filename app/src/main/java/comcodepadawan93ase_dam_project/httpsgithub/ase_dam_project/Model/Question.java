@@ -9,13 +9,16 @@ type (single answer / multiple answer / freeform answer)
 [AF] nu stiu ce caracteristici ar putea sa aiba in mod deosebt pentru ca practic in questionnaire vom avea un arraylist de intrebari
  */
 public class Question {
-    private int question_id;
+    private String question_id;
     private String title;
     private String text;
     private String type;
 
-    public Question(int id){
+    public Question(String id){
         question_id = id;
+        this.title = "";
+        this.text = "";
+        this.type = "";
     }
 
     public Question(String title, String text, String type){
