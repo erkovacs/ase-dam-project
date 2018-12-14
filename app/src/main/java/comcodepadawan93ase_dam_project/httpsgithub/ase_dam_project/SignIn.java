@@ -12,6 +12,8 @@ public class SignIn extends AppCompatActivity {
     EditText etSIUserName;
     EditText etSIPassword;
     Button  button_login;
+
+    public static final String TYPE_TAG = "SIgnInActivity";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

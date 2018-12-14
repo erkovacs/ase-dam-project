@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class UserProfile extends AppCompatActivity {
+    public static final String TYPE_TAG = "UserProfileActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

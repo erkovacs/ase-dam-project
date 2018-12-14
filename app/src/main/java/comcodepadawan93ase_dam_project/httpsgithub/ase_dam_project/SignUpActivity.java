@@ -23,6 +23,8 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     private String chosenRole;
     Button login;
 
+    public static final String TYPE_TAG = "SignUpActivity";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
