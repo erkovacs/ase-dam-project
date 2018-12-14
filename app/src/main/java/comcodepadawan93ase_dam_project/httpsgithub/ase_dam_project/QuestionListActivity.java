@@ -22,7 +22,7 @@ public class QuestionListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Get existing questions (hardcoded for now...)
-        String[] questions = {"Question 1", "Question 2", "Question 3" };
+        final String[] questions = {"Question 1", "Question 2", "Question 3" };
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, questions);
 
@@ -45,7 +45,9 @@ public class QuestionListActivity extends AppCompatActivity {
         questionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter , View view, int position, long id) {
+
                 Intent intent = new Intent(context, QuestionFormProfActivity.class);
+
                 startActivity(intent);
             }
         });

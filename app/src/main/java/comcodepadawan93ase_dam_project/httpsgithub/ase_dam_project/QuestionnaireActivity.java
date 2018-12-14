@@ -55,6 +55,10 @@ public class QuestionnaireActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
+        //Adela- transfer id din questionListActivity c
+        Intent intent = getIntent();
+        Bundle getId =  intent.getExtras(); // momentan id ul este in getId dar nu stiu cum sa verific asta sau ce s afac cu el
+
 
         // Get Firebase ref
         databaseQuestionnaire = FirebaseDatabase.getInstance().getReference(Questionnaire.TYPE_TAG);

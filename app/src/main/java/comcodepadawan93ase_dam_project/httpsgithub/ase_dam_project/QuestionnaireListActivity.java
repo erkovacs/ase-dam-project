@@ -22,7 +22,7 @@ public class QuestionnaireListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Get existing questionnaires (hardcoded for now...)
-        String[] questionnaires = {"Questionnaire1", "Questionnaire2", "Questionnaire3" };
+        final String[] questionnaires = {"Questionnaire1", "Questionnaire2", "Questionnaire3" };
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, questionnaires);
 
@@ -46,6 +46,11 @@ public class QuestionnaireListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapter , View view, int position, long id) {
                 Intent intent = new Intent(context, QuestionnaireActivity.class);
+         int question_id = 1; //setare id 
+                for( int i= 0; i< questionnaires.length ; i++) {
+                    intent.putExtra("question_id", question_id);
+                    question_id++;
+                }
                 startActivity(intent);
             }
         });
