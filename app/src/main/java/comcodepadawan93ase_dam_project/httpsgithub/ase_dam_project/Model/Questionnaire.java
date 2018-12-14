@@ -15,13 +15,14 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Exceptions.InvalidModelExeption;
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.DateTimeParser;
 
 public class Questionnaire {
     final public static String TYPE_TAG = "questionnaire";
     private String questionnaire_id;
     private String title;
-    private int date_start;
-    private int date_end;
+    private long date_start;
+    private long date_end;
     private String type;
     private String hash_code;
     private boolean is_public;
@@ -31,6 +32,34 @@ public class Questionnaire {
 
     public Questionnaire(String id){
         this.questionnaire_id = id;
+    }
+
+    public void setQuestionnaire_id(String questionnaire_id) {
+        this.questionnaire_id = questionnaire_id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDate_start(long date_start) {
+        this.date_start = date_start;
+    }
+
+    public void setDate_end(long date_end) {
+        this.date_end = date_end;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setHash_code(String hash_code) {
+        this.hash_code = hash_code;
+    }
+
+    public void setIs_public(boolean is_public) {
+        this.is_public = is_public;
     }
 
     public Questionnaire(String title, String dateStart, String dateEnd, String type, String hashCode, boolean isPublic, ArrayList<Question> questions)
@@ -51,8 +80,12 @@ public class Questionnaire {
         if(valid) {
             //this.questionnaire_id = questionnaireId;
             this.title = title;
-            this.date_start = 100; // dateStart;
-            this.date_end = 100; // dateEnd;
+            try {
+                this.date_start = DateTimeParser.parseDate(dateStart);
+                this.date_end = DateTimeParser.parseDate(dateEnd);
+            } catch (Exception e){
+                throw new InvalidModelExeption("Invalid data was supplied: " + e.getMessage());
+            }
             this.hash_code = hashCode;
             this.is_public = isPublic;
         } else {
@@ -80,11 +113,11 @@ public class Questionnaire {
         return title;
     }
 
-    public int getDate_start() {
+    public long getDate_start() {
         return date_start;
     }
 
-    public int getDate_end() {
+    public long getDate_end() {
         return date_end;
     }
 
