@@ -49,7 +49,8 @@
         <activity
             android:name=".SignIn"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".SingleAnswerActivity"></activity>
+        <activity android:name=".SingleAnswerActivity"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

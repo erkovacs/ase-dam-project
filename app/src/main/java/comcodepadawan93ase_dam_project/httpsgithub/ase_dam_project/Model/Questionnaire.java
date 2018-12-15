@@ -26,6 +26,7 @@ public class Questionnaire {
     private String type;
     private String hash_code;
     private boolean is_public;
+    private ArrayList<String> questions;
 
     public Questionnaire(){
     }
@@ -62,7 +63,15 @@ public class Questionnaire {
         this.is_public = is_public;
     }
 
-    public Questionnaire(String title, String dateStart, String dateEnd, String type, String hashCode, boolean isPublic, ArrayList<Question> questions)
+    public ArrayList<String> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(ArrayList<String> questions) {
+        this.questions = questions;
+    }
+
+    public Questionnaire(String title, String dateStart, String dateEnd, String type, String hashCode, boolean isPublic, ArrayList<String> questions)
     throws InvalidModelExeption {
         boolean valid = true;
         if(title == null || "".equals(title)){
@@ -88,6 +97,8 @@ public class Questionnaire {
             }
             this.hash_code = hashCode;
             this.is_public = isPublic;
+            this.questions = questions;
+
         } else {
             throw new InvalidModelExeption("Invalid data was supplied, please check your input and try again.");
         }

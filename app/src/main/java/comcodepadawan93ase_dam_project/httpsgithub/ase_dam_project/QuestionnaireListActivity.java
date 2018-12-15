@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Question;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Questionnaire;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.ProjectIdentifier;
 
@@ -43,7 +44,7 @@ public class QuestionnaireListActivity extends AppCompatActivity {
         final QuestionnaireListActivity context = this;
 
         // Get Quesstionnaires from firebase
-        db = FirebaseDatabase.getInstance().getReference("questionnaire");
+        db = FirebaseDatabase.getInstance().getReference(Questionnaire.TYPE_TAG);
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
