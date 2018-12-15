@@ -21,7 +21,7 @@
         android:layout_marginRight="152dp"
         android:layout_marginBottom="442dp"
         android:ems="10"
-        android:hint="Full Name:"
+        android:hint="@string/placeholder_contact_fullname"
         android:inputType="textPersonName" />
 
     <EditText
@@ -41,7 +41,7 @@
         android:layout_marginRight="151dp"
         android:layout_marginBottom="388dp"
         android:ems="10"
-        android:hint="Email:"
+        android:hint="@string/placeholder_contact_email"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -73,7 +73,7 @@
         android:layout_marginRight="151dp"
         android:layout_marginBottom="335dp"
         android:ems="10"
-        android:hint="Subject:"
+        android:hint="@string/placeholder_contact_subject"
         android:inputType="textPersonName" />
 
     <EditText
@@ -93,7 +93,7 @@
         android:layout_marginRight="150dp"
         android:layout_marginBottom="285dp"
         android:ems="10"
-        android:hint="Your question:"
+        android:hint="@string/placeholder_contact_your_question"
         android:inputType="textPersonName" />
 
     <Button
