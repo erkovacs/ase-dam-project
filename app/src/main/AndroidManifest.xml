@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project">
-
+<permission android:name="android.permission.INTERNET"></permission>
+    <permission android:name="android.permission.ACCESS_NETWORK_STATE"></permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
