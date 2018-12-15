@@ -22,7 +22,9 @@
         android:layout_marginBottom="442dp"
         android:ems="10"
         android:hint="Full Name:"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="17dp" />
 
     <EditText
         android:id="@+id/Email"
@@ -105,4 +107,15 @@
         android:layout_marginEnd="19dp"
         android:layout_marginBottom="57dp"
         android:hint="Send" />
+
+    <Button
+        android:id="@+id/button_json"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnSend"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="Contact history" />
 </RelativeLayout>
