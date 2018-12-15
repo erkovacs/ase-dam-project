@@ -16,26 +16,25 @@ import java.util.ArrayList;
 public class SettingsActivity extends AppCompatActivity {
 
     ArrayList<DataModelSettings> dataModels;
-    ListView listView;
-    private static CustomAdapter adapter;
+    private ListView listView;
+    private CustomAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_settings);
 
-        listView=(ListView)findViewById(R.id.list);
+        listView = (ListView)findViewById(R.id.settings_list);
 
-        dataModels= new ArrayList<>();
+        dataModels = new ArrayList<>();
 
-        dataModels.add(new DataModelSettings("Sound Effects", "Surround", "Can't change Sound Effects"));
-        dataModels.add(new DataModelSettings("In-Game Music", "ON", "Default music"));
-        dataModels.add(new DataModelSettings("Profile", "Student", "This is your student profile"));
-        dataModels.add(new DataModelSettings("Privacy","Terms&Conditions","September 15, 2009"));
-        dataModels.add(new DataModelSettings("Log Out", "SignOut", "Can't log out, you are forever stuck in this game"));
+        dataModels.add(new DataModelSettings("Sound Effects:", "Surround", "Can't change Sound Effects"));
+        dataModels.add(new DataModelSettings("In-Game Music:", "ON", "Default music"));
+        dataModels.add(new DataModelSettings("Profile:", "Student", "This is your student profile"));
+        dataModels.add(new DataModelSettings("Privacy:","Terms&Conditions","September 15, 2009"));
+        dataModels.add(new DataModelSettings("Log Out:", "SignOut", "Can't log out, you are forever stuck in this game"));
 
-        adapter= new CustomAdapter(dataModels,getApplicationContext());
-
+        adapter = new CustomAdapter(dataModels, getApplicationContext());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

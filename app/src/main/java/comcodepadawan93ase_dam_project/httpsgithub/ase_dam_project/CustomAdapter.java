@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends ArrayAdapter<DataModelSettings> implements View.OnClickListener{
 
     private ArrayList<DataModelSettings> dataSet;
-    Context mContext;
+    public Context mContext;
 
     // View lookup cache
     private static class ViewHolder {
@@ -28,8 +28,7 @@ public class CustomAdapter extends ArrayAdapter<DataModelSettings> implements Vi
     public CustomAdapter(ArrayList<DataModelSettings> data, Context context) {
         super(context, R.layout.row_item, data);
         this.dataSet = data;
-        this.mContext=context;
-
+        this.mContext = context;
     }
 
     @Override
@@ -39,13 +38,6 @@ public class CustomAdapter extends ArrayAdapter<DataModelSettings> implements Vi
         Object object= getItem(position);
         DataModelSettings dataModel=(DataModelSettings) object;
 
-        switch (v.getId())
-        {
-            case R.id.item_info:
-                Snackbar.make(v, "Release date " +dataModel.getFeature(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
-                break;
-        }
     }
 
     private int lastPosition = -1;
@@ -64,23 +56,22 @@ public class CustomAdapter extends ArrayAdapter<DataModelSettings> implements Vi
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.row_item, parent, false);
-            viewHolder.txtName = (TextView) convertView.findViewById(R.id.name);
-            viewHolder.txtType = (TextView) convertView.findViewById(R.id.type);
-            viewHolder.info = (ImageView) convertView.findViewById(R.id.item_info);
+            viewHolder.txtName = (TextView) convertView.findViewById(R.id.row_item_name);
+            viewHolder.txtType = (TextView) convertView.findViewById(R.id.row_item_type);
 
-            result=convertView;
+            result = convertView;
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            result=convertView;
+            result = convertView;
         }
 
         viewHolder.txtName.setText(dataModel.getName());
         viewHolder.txtType.setText(dataModel.getType());
-        viewHolder.info.setOnClickListener(this);
-        viewHolder.info.setTag(position);
+        // viewHolder.info.setOnClickListener(this);
+        // viewHolder.info.setTag(position);
         // Return the completed view to render on screen
-        return convertView;
+        return result;
     }
 }
