@@ -26,15 +26,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class JSONContactHistoryActivity extends ListActivity {
-private ProgressDialog dialog;
-private static String url = "https://api.myjson.com/bins/k8838";
-private static  final String TAG_CONTACT = "contact";
-private static final String TAG_NAME = "name";
-private static final String TAG_EMAIL = "email";
-private static final String TAG_SUBJECT = "subject";
-private static final String TAG_QUESTION ="question";
-JSONArray contacts = null ;
-ArrayList<HashMap<String, String>> contactList;
+    private ProgressDialog dialog;
+    private static String url = "https://api.myjson.com/bins/k8838";
+    private static  final String TAG_CONTACT = "contact";
+    private static final String TAG_NAME = "name";
+    private static final String TAG_EMAIL = "email";
+    private static final String TAG_SUBJECT = "subject";
+    private static final String TAG_QUESTION ="question";
+    JSONArray contacts = null ;
+    ArrayList<HashMap<String, String>> contactList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
