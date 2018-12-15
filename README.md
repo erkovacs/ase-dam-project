@@ -219,13 +219,13 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 
 ### Faza 2: (2.5 p)
 1. Implementarea unui adaptor personalizat (cel puțin trei controale vizuale);
-- [ ] pending (Gherghe)
+- [ ] pending (Gherghe and Erik)
 2. Implementarea și utilizarea unor operații asincrone; (1 p.)
-- [ ] pending (Adela)
+- [x] done by Adela
 3. Utilizarea claselor pentru accesul la resurse externe (din rețea); (0.5 p.)
-- [ ] on hold
+- [x] done by Adela
 4. Prelucrarea de fișiere JSON sau XML. Fișierele trebuie să conțină cel puțin 3 noduri dispuse pe niveluri diferite. Fiecare nod trebuie sa aibă cel puțin 3 atribute; (0.5 p.)
-- [ ] pending (Adela)
+- [x] done by Adela
 
 ### Faza 3: (2.5 p)
 1. Utilizarea fișierelor de preferințe; (0.5 p.)
@@ -241,11 +241,11 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 
 ### Final: (2.5 p)
 1. Utilizarea bazelor de date la distanță (Firebase) (salvare/restaurare); Afișarea informațiilor din Firebase să se realizeze prin intermediul componentelor vizuale (se pot folosi activitățile deja prezentate în fazele anterioare) (0.75 p.)
-- [ ] pending (Erik)
+- [x] pending (Erik), done for question and questionnaire, will also be done for user and response
 2. Utilizarea de elemente de grafică bidimensională, cu valori preluate din baza de date (locală sau la distanță); (0.5 p.)
 - [ ] pending (Erik)
 3. Prelucrarea elementelor de tip imagine din diferite surse (imagini statice, preluate prin rețea, încărcate din galeria dispozitivului mobil, preluate din baze de date locală sau la distanță); Imaginile trebuie preluate din minim două surse. (0.5 p.)
-- [ ] on hold
+- [ ] pending (Erik and Gherghe)
 4. Stilizarea aplicației mobile (de exemplu, se creează o temă nouă în fișierul styles.xml sau
 modificați fontul, culorile componentelor vizuale) (0.5 p)
 - [ ] pending (Erik)
@@ -255,7 +255,7 @@ modificați fontul, culorile componentelor vizuale) (0.5 p)
 ### Misc tasks
 1. Toate șirurile de caractere utilizate la nivelul interfeței trebuie preluate din resurse. Lipsa
 acestora duce la o penalizare de 0.5 din fiecare faza.
-- [ ] pending (Erik)
+- [ ] pending (Erik), mostly done
 2. Game should be actally playable
 - [ ] on hold
 
