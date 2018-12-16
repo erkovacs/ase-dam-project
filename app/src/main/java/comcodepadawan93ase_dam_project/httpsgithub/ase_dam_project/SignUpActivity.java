@@ -1,6 +1,8 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +26,14 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     String logInCondition = "@stud.ase.ro";
     public static final String TYPE_TAG = "SignUpActivity";
 
+    EditText etUserName = (EditText)findViewById(R.id.etUserName);
+    EditText etPassword =(EditText) findViewById(R.id.etPassword);
+    EditText etName =(EditText) findViewById(R.id.etName);
+    EditText etEmail = (EditText) findViewById(R.id.etEmail);
+    final String userNames = etUserName.getText().toString();
+    final String Passwords = etPassword.getText().toString();
+    final String signUpName = etName.getText().toString();
+    final String Emails = etEmail.getText().toString();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,14 +62,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
          });
 
 
-       EditText etUserName = (EditText)findViewById(R.id.etUserName);
-        EditText etPassword =(EditText) findViewById(R.id.etPassword);
-        EditText etName =(EditText) findViewById(R.id.etName);
-        EditText etEmail = (EditText) findViewById(R.id.etEmail);
-       final String userNames = etUserName.getText().toString();
-        final String Passwords = etPassword.getText().toString();
-        final String FirstNames = etName.getText().toString();
-        final String LastNames = etEmail.getText().toString();
+
    login =(Button) findViewById(R.id.button_logIn);
         Button b = (Button) findViewById(R.id.button_CreateUser);
         b.setOnClickListener(new View.OnClickListener(){
@@ -67,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
                  public void onClick(View v) {
                int user_id = userNames.hashCode();
                 if(validUser) {
-                    user = new User(user_id, userNames, Passwords, FirstNames, LastNames, chosenRole);
+                    user = new User(user_id, userNames, Passwords, signUpName, Emails, chosenRole);
                 }
 
 
@@ -108,7 +111,17 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         startActivity(intent);
     }
 
-
+    public void saveInfo(View view){
+        SharedPreferences sharedPref = getSharedPreferences("userSignUpInfo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("username", userNames );
+        editor.putString("password", Passwords);
+        editor.putString("signUpNname", signUpName);
+        editor.putString("email", Emails);
+        editor.putString("role", chosenRole);
+        editor.apply();
+        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+    }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
