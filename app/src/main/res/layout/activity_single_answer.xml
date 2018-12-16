@@ -65,25 +65,25 @@
         app:layout_constraintVertical_bias="0.669">
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/question_answer_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_option_placeholder" />
 
         <RadioButton
-            android:id="@+id/radioButton6"
+            android:id="@+id/question_answer_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_option_placeholder" />
 
         <RadioButton
-            android:id="@+id/radioButton7"
+            android:id="@+id/question_answer_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_option_placeholder" />
 
         <RadioButton
-            android:id="@+id/radioButton8"
+            android:id="@+id/question_answer_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_option_placeholder" />

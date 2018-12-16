@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project">
-<permission android:name="android.permission.INTERNET"></permission>
-    <permission android:name="android.permission.ACCESS_NETWORK_STATE"></permission>
+
+    <permission android:name="android.permission.INTERNET" />
+    <permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -54,9 +56,13 @@
         <activity
             android:name=".SignIn"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".SingleAnswerActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".JSONContactHistoryActivity" android:parentActivityName=".ContactActivity"></activity>
+        <activity
+            android:name=".SingleAnswerActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".JSONContactHistoryActivity"
+            android:parentActivityName=".ContactActivity" />
+        <activity android:name=".StatsActivity"></activity>
     </application>
 
 </manifest>

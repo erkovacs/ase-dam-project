@@ -242,9 +242,8 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 newQuestionnaire.setQuestionnaire_id(questionnaireId);
                 newQuestionnaire.update(databaseQuestionnaire);
             }
-            Intent intent = new Intent(this, QuestionnaireListActivity.class);
             Toast.makeText(this, "Questionnaire " + (isNew ? "created" : "updated") + " successfully!", Toast.LENGTH_LONG).show();
-            startActivity(intent);
+            finish();
         } catch (InvalidModelExeption ime){
             Toast.makeText(this, ime.getMessage(), Toast.LENGTH_LONG).show();
         }

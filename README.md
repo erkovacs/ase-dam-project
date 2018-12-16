@@ -259,6 +259,12 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 2. Game should be actally playable
 - [ ] pending (Erik)
 
+### QA Checklist
+- [ ][15:53, 12/16/2018] Erik: 1. scos stringuri hardcodate
+- [ ][15:53, 12/16/2018] Erik: 2. fara crashuri
+- [ ][15:53, 12/16/2018] Erik: 3. fara scame, injuraturi etc
+- [ ][15:54, 12/16/2018] Erik: 4. cu date de test in el
+
 ## Authors
 - Frentescu Adela
 - Ganea Raluca

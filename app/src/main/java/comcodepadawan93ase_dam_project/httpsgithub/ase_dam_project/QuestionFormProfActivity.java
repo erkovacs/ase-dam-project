@@ -133,8 +133,8 @@ public class QuestionFormProfActivity extends AppCompatActivity {
                     question.setQuestion_id(questionId);
                     question.update(databaseQuestion);
                 }
-                Intent in = new Intent(context, QuestionListActivity.class);
-                startActivity(in);
+                Toast.makeText(this, "Question " + (isNew ? "created" : "updated") + " successfully!", Toast.LENGTH_LONG).show();
+                finish();
             } catch (InvalidModelExeption ime){
                 Toast.makeText(context, ime.getMessage(), Toast.LENGTH_LONG).show();
             }
