@@ -22,6 +22,7 @@ public class Question {
     public String answear2;
     public String answear3;
     public String answear4;
+    public int correct_answer;
 
     public String getQuestion_id() {
         return question_id;
@@ -55,7 +56,13 @@ public class Question {
         this.type = type;
     }
 
-    public int correct_answer;
+    public int getCorrect_answer() {
+        return correct_answer;
+    }
+
+    public void setCorrect_answer(int correct_answer) {
+        this.correct_answer = correct_answer;
+    }
 
     public Question(){
         this.title = "";
@@ -71,7 +78,7 @@ public class Question {
         this.type = "";
     }
 
-    public Question(String title, String text, String type, String answear1, String answear2,  String answear3,  String answear4,  int correct_answer) throws InvalidModelExeption {
+    public Question(String title, String text, String type, String answear1, String answear2, String answear3, String answear4, int correct_answer) throws InvalidModelExeption {
         this.title = title;
         this.text = text;
         this.type = type;
@@ -79,20 +86,21 @@ public class Question {
         this.answear2 = answear2;
         this.answear3 = answear3;
         this.answear4 = answear4;
-        if(correct_answer > 0 && correct_answer < 5) {
+        if(correct_answer > -1 && correct_answer < 4) {
             this.correct_answer = correct_answer;
         } else {
             throw new InvalidModelExeption("Invalid correct answer provided. Should be 1 through 4 as there are 4 questions.");
         }
     }
 
-    // Save an existing instance to firebase
+    // Save a new instance to firebase
     public String save(DatabaseReference db){
         String id = db.push().getKey();
         db.child(id).setValue(this);
         return id;
     }
 
+    // Update an existing instance in firebase
     public String update(DatabaseReference db){
         db.child(this.question_id).setValue(this);
         return this.question_id;

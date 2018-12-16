@@ -62,7 +62,8 @@
         <activity
             android:name=".JSONContactHistoryActivity"
             android:parentActivityName=".ContactActivity" />
-        <activity android:name=".StatsActivity"></activity>
+        <activity android:name=".StatsActivity" />
+        <activity android:name=".ResponseActivity" android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

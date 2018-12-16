@@ -46,4 +46,6 @@
     <string name="about_developed_by">Developed by: </string>
     <string name="about_team_name">Adela, Alex, Erik, Raluca</string>
     <string name="about_copyright_notice">2018 DAMProject Co - All rights reserved</string>
+    <string name="show_code_text">Show Code</string>
+    <string name="text_is_correct">Correct</string>
 </resources>

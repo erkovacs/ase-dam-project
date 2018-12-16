@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Questionnaire;
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Response;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.DateTimeParser;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.ProjectIdentifier;
 
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
     private void startQuiz(){
         Intent intent = new Intent(MainActivity.this, SingleAnswerActivity.class);
         intent.putStringArrayListExtra(ProjectIdentifier.BUNDLE_PREFIX + ".question_ids", questionIds);
+        intent.putExtra(ProjectIdentifier.BUNDLE_PREFIX + ".questionnaire_id", currentQuestionnaire.getQuestionnaire_id());
         startActivity(intent);
     }
 
@@ -147,8 +149,10 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, QuestionListActivity.class);
                 retval = true;
                 break;
+            // This was initially referred to as History but the model is called Response so there's
+            // the souurce of the mismatch
             case R.id.history_menu_item:
-                intent = new Intent(this, null);
+                intent = new Intent(this, ResponseActivity.class);
                 retval = true;
                 break;
             case R.id.settings_menu_item:
