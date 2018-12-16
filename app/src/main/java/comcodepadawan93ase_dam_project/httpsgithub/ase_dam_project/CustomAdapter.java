@@ -38,6 +38,13 @@ public class CustomAdapter extends ArrayAdapter<DataModelSettings> implements Vi
         Object object= getItem(position);
         DataModelSettings dataModel=(DataModelSettings) object;
 
+        switch (v.getId())
+        {
+            case R.id.item_info:
+                Snackbar.make(v, "Release date " +dataModel.getFeature(), Snackbar.LENGTH_LONG)
+                        .setAction("No action", null).show();
+                break;
+        }
     }
 
     private int lastPosition = -1;

@@ -1,6 +1,8 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.User;
-import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.R;
 
 public class SignUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button b;
@@ -22,9 +23,17 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     boolean validUser;
     private String chosenRole;
     Button login;
-
+    String logInCondition = "@stud.ase.ro";
     public static final String TYPE_TAG = "SignUpActivity";
 
+    EditText etUserName = (EditText)findViewById(R.id.etUserName);
+    EditText etPassword =(EditText) findViewById(R.id.etPassword);
+    EditText etName =(EditText) findViewById(R.id.etName);
+    EditText etEmail = (EditText) findViewById(R.id.etEmail);
+    final String userNames = etUserName.getText().toString();
+    final String Passwords = etPassword.getText().toString();
+    final String signUpName = etName.getText().toString();
+    final String Emails = etEmail.getText().toString();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,14 +62,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
          });
 
 
-       EditText etUserName = (EditText)findViewById(R.id.etUserName);
-        EditText etPassword =(EditText) findViewById(R.id.etPassword);
-        EditText etFirstName =(EditText) findViewById(R.id.etFirstName);
-        EditText etLastName = (EditText) findViewById(R.id.etLastName);
-       final String userNames = etUserName.getText().toString();
-        final String Passwords = etPassword.getText().toString();
-        final String FirstNames = etFirstName.getText().toString();
-        final String LastNames = etLastName.getText().toString();
+
    login =(Button) findViewById(R.id.button_logIn);
         Button b = (Button) findViewById(R.id.button_CreateUser);
         b.setOnClickListener(new View.OnClickListener(){
@@ -68,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
                  public void onClick(View v) {
                int user_id = userNames.hashCode();
                 if(validUser) {
-                    user = new User(user_id, userNames, Passwords, FirstNames, LastNames, chosenRole);
+                    user = new User(user_id, userNames, Passwords, signUpName, Emails, chosenRole);
                 }
 
 
@@ -92,12 +94,13 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             validUser = false;
 
         }
-        if (user.getFirstName().isEmpty() || user.getFirstName().length() > 30) {
-            etFirstName.setError("Please enter a valid name!");
+        if (user.getUserName().isEmpty() || user.getUserName().length() > 30) {
+            etName.setError("Please enter a valid name!");
             validUser = false;
         }
-        if (user.getLastName().isEmpty() || user.getLastName().length() > 30) {
-            etLastName.setError("Please enter a valid name!");
+        if (user.getUserEmail().isEmpty() || (user.getUserEmail().contains(logInCondition))== false) {
+
+            etEmail.setError("Please enter the academic email address!");
             validUser = false;
         }
         // return validUser;
@@ -108,7 +111,17 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         startActivity(intent);
     }
 
-
+    public void saveInfo(View view){
+        SharedPreferences sharedPref = getSharedPreferences("userSignUpInfo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("username", userNames );
+        editor.putString("password", Passwords);
+        editor.putString("signUpNname", signUpName);
+        editor.putString("email", Emails);
+        editor.putString("role", chosenRole);
+        editor.apply();
+        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+    }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
