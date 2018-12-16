@@ -241,9 +241,9 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 
 ### Final: (2.5 p)
 1. Utilizarea bazelor de date la distanță (Firebase) (salvare/restaurare); Afișarea informațiilor din Firebase să se realizeze prin intermediul componentelor vizuale (se pot folosi activitățile deja prezentate în fazele anterioare) (0.75 p.)
-- [ ] pending (Erik), done for question and questionnaire, will also be done for user and response
+- [ ] pending (Erik), done for question, questionnaire and response, will also be done for user
 2. Utilizarea de elemente de grafică bidimensională, cu valori preluate din baza de date (locală sau la distanță); (0.5 p.)
-- [ ] pie chart for questionnaires pending (Erik)
+- [ ] pie chart for questionnaires pending (Erik) - [references](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
 3. Prelucrarea elementelor de tip imagine din diferite surse (imagini statice, preluate prin rețea, încărcate din galeria dispozitivului mobil, preluate din baze de date locală sau la distanță); Imaginile trebuie preluate din minim două surse. (0.5 p.)
 - [ ] pending (Gherghe)
 4. Stilizarea aplicației mobile (de exemplu, se creează o temă nouă în fișierul styles.xml sau
@@ -258,6 +258,12 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 - [ ] pending (Erik), mostly done
 2. Game should be actally playable
 - [ ] pending (Erik)
+
+### Functionality tasks
+- Implement response list
+- Implement [Stats pie chart](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
+- Implement dynamic User
+- Do not let user go back to a question and increase their score
 
 ### QA Checklist
 - [ ][15:53, 12/16/2018] Erik: 1. scos stringuri hardcodate
