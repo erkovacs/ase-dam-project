@@ -1,13 +1,18 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,12 +20,40 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        final MainActivity context = this;
         Button btnPlayGame =findViewById(R.id.btnPlay);
         btnPlayGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startQuiz();
+                // Create an alert to allow the user to input the code
+                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                alert.setTitle("Join game room");
+                alert.setMessage("Enter your unique code :");
+
+                // Set an EditText view to get user input
+                final EditText input = new EditText(context);
+                alert.setView(input);
+
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String value = input.getText().toString();
+                        // Validate code
+                        if(!"".equals(value) && value != null){
+                            startQuiz();
+                        } else {
+                            Toast.makeText(context, "You need to provide a code to enter the game.", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                    }
+                });
+
+                alert.setNegativeButton("CANCEL",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            return;
+                        }
+                    });
+                alert.show();
             }
         });
     }

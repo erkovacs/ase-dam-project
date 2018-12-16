@@ -22,9 +22,6 @@ import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.DateTim
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.ProjectIdentifier;
 
 public class QuestionFormProfActivity extends AppCompatActivity {
-
-    public static final String TYPE_TAG = "question";
-
     public String question;
     public String answear1;
     public String answear2;

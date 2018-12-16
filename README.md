@@ -207,7 +207,7 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 - [ ] ProgressBar
 - [ ] SeekBar
 - [x] Switch
-- [ ] RatingBar
+- [ ] RatingBar - pending Raluca
 - [x] ImageView
 - [x] DatePicker sau TimePicker)
 3. Utilizarea a minim un formular de introducere a datelor/membru;
@@ -229,13 +229,13 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 
 ### Faza 3: (2.5 p)
 1. Utilizarea fișierelor de preferințe; (0.5 p.)
-- [ ] on hold
+- [ ] pending (Adela)
 2. Crearea unei baze de date SQLite cu minim două tabele cu legături intre ele (o tabelă/membru). Implementarea operațiilor de tip DDL; (0.5 p.)
-- [ ] pending (Raluca)
+- [x] done by Raluca
 3. Implementarea operațiilor de tip DML. Pentru fiecare tabela sa se implementeze cel puțin o metoda de insert, update, delete si select. Toate metodele trebuie apelate; (0.5 p.)
-- [x] mostly done
+- [x] mostly done, will have to be fully tested in Help and Contact (Raluca)
 4. Definirea a minim două rapoarte pe datele stocate în baza de date. Prin raport, se înțelege afișarea pe ecranul dispozitivului mobil a informațiilor preluate din baza de date. Rapoartele sunt diferite ca si structura. (0.5 p.). Componentele vizuale în care se afișează cele doua rapoarte trebuie sa fie diferite de cele prezentate la faza 1 și 2
-- [ ] pending (Raluca)
+- [x] mostly done, will have to be fully tested in Help (Raluca)
 5. Salvarea rapoartelor în fișiere normale. (txt, csv etc.) (0.5 p.)
 - [ ] pending (Raluca)
 
@@ -243,21 +243,21 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 1. Utilizarea bazelor de date la distanță (Firebase) (salvare/restaurare); Afișarea informațiilor din Firebase să se realizeze prin intermediul componentelor vizuale (se pot folosi activitățile deja prezentate în fazele anterioare) (0.75 p.)
 - [x] pending (Erik), done for question and questionnaire, will also be done for user and response
 2. Utilizarea de elemente de grafică bidimensională, cu valori preluate din baza de date (locală sau la distanță); (0.5 p.)
-- [ ] pending (Erik)
+- [ ] pie chart for questionnaires pending (Erik)
 3. Prelucrarea elementelor de tip imagine din diferite surse (imagini statice, preluate prin rețea, încărcate din galeria dispozitivului mobil, preluate din baze de date locală sau la distanță); Imaginile trebuie preluate din minim două surse. (0.5 p.)
 - [ ] pending (Erik and Gherghe)
 4. Stilizarea aplicației mobile (de exemplu, se creează o temă nouă în fișierul styles.xml sau
 modificați fontul, culorile componentelor vizuale) (0.5 p)
-- [ ] pending (Erik)
+- [ ] pending (Gherghe)
 5. Implementarea unei funcționalități pe bază de Google Maps; (0.25 p.)
-- [ ] on hold
+- [ ] pending (Adela)
 
 ### Misc tasks
 1. Toate șirurile de caractere utilizate la nivelul interfeței trebuie preluate din resurse. Lipsa
 acestora duce la o penalizare de 0.5 din fiecare faza.
 - [ ] pending (Erik), mostly done
 2. Game should be actally playable
-- [ ] on hold
+- [ ] pending (Erik)
 
 ## Authors
 - Frentescu Adela
