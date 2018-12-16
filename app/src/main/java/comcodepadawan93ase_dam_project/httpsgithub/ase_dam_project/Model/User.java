@@ -4,15 +4,15 @@ public class User {
     private  int user_id;
     private String userName;
     private String password;
-    private String firstName;
-    private String lastName;
+    private String userNameSign;
+    private String userEmail;
     private String role;
 
     public User(){
         this.userName = "";
         this.password = "";
-        this.firstName = "";
-        this.lastName = "";
+        this.userNameSign = "";
+        this.userEmail = "";
         this.role = "";
     }
 
@@ -24,8 +24,8 @@ public class User {
         this.user_id = user_id;
         this.userName = userName;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.userNameSign = firstName;
+        this.userEmail = lastName;
         this.role = role;
     }
 
@@ -54,20 +54,20 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return userNameSign;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setUserNameSign(String userNameSign) {
+        this.userNameSign = userNameSign;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getRole() {

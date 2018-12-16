@@ -13,7 +13,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.User;
-import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.R;
 
 public class SignUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button b;
@@ -22,7 +21,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     boolean validUser;
     private String chosenRole;
     Button login;
-
+    String logInCondition = "@stud.ase.ro";
     public static final String TYPE_TAG = "SignUpActivity";
 
     @Override
@@ -55,12 +54,12 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
        EditText etUserName = (EditText)findViewById(R.id.etUserName);
         EditText etPassword =(EditText) findViewById(R.id.etPassword);
-        EditText etFirstName =(EditText) findViewById(R.id.etFirstName);
-        EditText etLastName = (EditText) findViewById(R.id.etLastName);
+        EditText etName =(EditText) findViewById(R.id.etName);
+        EditText etEmail = (EditText) findViewById(R.id.etEmail);
        final String userNames = etUserName.getText().toString();
         final String Passwords = etPassword.getText().toString();
-        final String FirstNames = etFirstName.getText().toString();
-        final String LastNames = etLastName.getText().toString();
+        final String FirstNames = etName.getText().toString();
+        final String LastNames = etEmail.getText().toString();
    login =(Button) findViewById(R.id.button_logIn);
         Button b = (Button) findViewById(R.id.button_CreateUser);
         b.setOnClickListener(new View.OnClickListener(){
@@ -92,12 +91,13 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             validUser = false;
 
         }
-        if (user.getFirstName().isEmpty() || user.getFirstName().length() > 30) {
-            etFirstName.setError("Please enter a valid name!");
+        if (user.getUserName().isEmpty() || user.getUserName().length() > 30) {
+            etName.setError("Please enter a valid name!");
             validUser = false;
         }
-        if (user.getLastName().isEmpty() || user.getLastName().length() > 30) {
-            etLastName.setError("Please enter a valid name!");
+        if (user.getUserEmail().isEmpty() || (user.getUserEmail().contains(logInCondition))== false) {
+
+            etEmail.setError("Please enter the academic email address!");
             validUser = false;
         }
         // return validUser;
