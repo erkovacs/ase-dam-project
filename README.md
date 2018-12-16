@@ -263,7 +263,7 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 - Implement response list
 - Implement [Stats pie chart](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
 - Implement dynamic User
-- Do not let user go back to a question and increase their score
+- Do not let user go back to a question and increase their score ([reference](https://stackoverflow.com/questions/4779954/disable-back-button-in-android))
 
 ### QA Checklist
 - [ ][15:53, 12/16/2018] Erik: 1. scos stringuri hardcodate
