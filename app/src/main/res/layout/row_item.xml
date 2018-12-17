@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:text="Language:"
+        android:text=" "
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/black" />
 
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/row_item_name"
         android:layout_marginTop="5dp"
-        android:text="English"
+        android:text=" "
         android:textColor="@android:color/black" />
 
     <ImageView
@@ -32,6 +32,14 @@
         android:layout_centerVertical="true"
         android:src="@android:drawable/ic_dialog_info" />
 
+    <ImageView
+        android:id="@+id/item_info_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -42,7 +50,7 @@
             android:id="@+id/version_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type: "
+            android:text=" "
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
