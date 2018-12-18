@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.Display;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -24,12 +25,14 @@ import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.Project
 public class StatsActivity extends AppCompatActivity {
     private ArrayList<Float> values;
     private int screenWidth;
-
+    private LinearLayoutCompat linear;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
         Button buttonReturnStats = findViewById(R.id.button_return_stats);
+        linear = findViewById(R.id.pie_chart_container);
+
         values = new ArrayList<Float>();
 
         // Get values
@@ -39,21 +42,21 @@ public class StatsActivity extends AppCompatActivity {
         // TODO:: fix this
         Log.d("VALUES:::", count + " :: " + score);
         // Get ratios
-        if(score > 0) {
-            float good = count / score;
-            float bad = 1 - good;
-            values.add(good);
+        if(count > 0) {
+            float good = (float)score / (float)count;
+            float bad = 100 - good;
+            values.add(good * 100);
             if (bad > 0) {
-                values.add(bad);
+                values.add(bad * 100);
             }
         } else {
-            values.add((float)1);
+            values.add((float)100);
         }
+        Log.d("VALS:: ", values.toString());
         screenWidth = getWindowManager().getDefaultDisplay().getWidth();
 
         // Draw Pie chart
         drawPieChart(screenWidth);
-
         buttonReturnStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +66,6 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     private void drawPieChart(int width){
-        LinearLayoutCompat linear = findViewById(R.id.pie_chart_container);
         values = calculateSlices(values);
         linear.addView(new PieChart(this, values, width));
     }

@@ -191,7 +191,7 @@ public class SingleAnswerActivity extends AppCompatActivity {
         // Uncheck all but the one clicked and set the chosen answer, and update game variables
         int tag = Integer.parseInt(v.getTag().toString());
         chosenAnswers.add(tag);
-        chosenAnswer = tag + 1;
+        chosenAnswer = tag;
         if(thisQuestion.getCorrect_answer() == chosenAnswer) {
             correctAnswers.add(true);
             score++;
