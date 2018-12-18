@@ -9,6 +9,9 @@ import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.Project
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.RandomCodeGenerator;
 
 import android.app.DatePickerDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -31,6 +34,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -57,12 +61,16 @@ public class QuestionnaireActivity extends AppCompatActivity {
 
     private DatePickerDialog.OnDateSetListener dateStartSetListener;
     private DatePickerDialog.OnDateSetListener dateEndSetListener;
+    private ArrayAdapter<String> dropdownAdapter;
 
     private Button submit;
+    private Button showCode;
 
     protected DatabaseReference databaseQuestionnaire;
     protected DatabaseReference databaseQuestion;
     private Questionnaire questionnaire;
+
+    private QuestionnaireActivity context;
 
     // Questions
     private ArrayList<String> questions;
@@ -75,7 +83,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        final QuestionnaireActivity context = this;
+        context = this;
 
         questions = new ArrayList<String>();
         objQuestions = new ArrayList<Question>();
@@ -84,9 +92,9 @@ public class QuestionnaireActivity extends AppCompatActivity {
         // Setup picklist
         String[] questionnaireTypes = { "Multiple Answer", "Single Answer", "Freeform Answer"};
         questionnaireTypePicker =  (Spinner) findViewById(R.id.type);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, questionnaireTypes);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        questionnaireTypePicker.setAdapter(adapter);
+        dropdownAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, questionnaireTypes);
+        dropdownAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        questionnaireTypePicker.setAdapter(dropdownAdapter);
 
         // Set title
         title = (EditText) findViewById(R.id.title);
@@ -150,24 +158,14 @@ public class QuestionnaireActivity extends AppCompatActivity {
             }
         });
 
-        // Handle submission of instance
-        submit = (Button) findViewById(R.id.save_questionnaire);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                submit.setEnabled(false);
-                addQuestionnaire();
-            }
-        });
-
         // Render the list of questions
         questions.add("Add");
-        ArrayAdapter adapter2 = new ArrayAdapter<String>(this,
+        ArrayAdapter questionsAdapter = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, questions);
 
         // Populate list with existing questions
         questionList = (ListView)findViewById(R.id.questionnaire_question_list);
-        questionList.setAdapter(adapter2);
+        questionList.setAdapter(questionsAdapter);
 
         // Allow user to pick questions
         // setup the alert builder
@@ -216,6 +214,30 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 Toast.makeText(context, databaseError.toString(), Toast.LENGTH_LONG).show();
             }
         });
+
+        // Handle submission of instance
+        submit = (Button) findViewById(R.id.save_questionnaire);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(addQuestionnaire()){
+                    submit.setEnabled(false);
+                }
+            }
+        });
+
+        // Handle showing the code
+        showCode = findViewById(R.id.show_questionnaire_code);
+        if(isNew){
+            showCode.setEnabled(false);
+        } else {
+            showCode.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showHashCode();
+                }
+            });
+        }
     }
 
     // Get a code for the Questionnaire
@@ -225,7 +247,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
     }
 
     // Add a new questionnaire or update existing
-    private void addQuestionnaire(){
+    private boolean addQuestionnaire(){
         // Gather all the needed data
         String titleString = title.getText().toString().trim();
         String dateStartString = dateStart.getText().toString().trim();
@@ -242,25 +264,26 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 newQuestionnaire.setQuestionnaire_id(questionnaireId);
                 newQuestionnaire.update(databaseQuestionnaire);
             }
-            Intent intent = new Intent(this, QuestionnaireListActivity.class);
             Toast.makeText(this, "Questionnaire " + (isNew ? "created" : "updated") + " successfully!", Toast.LENGTH_LONG).show();
-            startActivity(intent);
+            return true;
         } catch (InvalidModelExeption ime){
             Toast.makeText(this, ime.getMessage(), Toast.LENGTH_LONG).show();
+            return false;
         }
     }
 
     // Populate the fields of it's an existing Qiuestionnaire
     private void populateQuestionnaire(DataSnapshot dataSnapshot) {
         try {
-            Questionnaire thisQuestionnaire = dataSnapshot.getValue(Questionnaire.class);
-            title.setText(thisQuestionnaire.getTitle());
-            dateStart.setText(DateTimeParser.parseTimestamp(thisQuestionnaire.getDate_start()));
-            dateEnd.setText(DateTimeParser.parseTimestamp(thisQuestionnaire.getDate_end()));
-            // TODO:: fix this spinner also
-            // questionnaireTypePicker
-            isPublicSwitch.setChecked(thisQuestionnaire.isIs_public()); // bad autogenerated getter
-            questionIds = thisQuestionnaire.getQuestions() == null ? questionIds : thisQuestionnaire.getQuestions();
+            Questionnaire questionnaire = dataSnapshot.getValue(Questionnaire.class);
+            title.setText(questionnaire.getTitle());
+            _hashCode = questionnaire.getHash_code();
+            dateStart.setText(DateTimeParser.parseTimestamp(questionnaire.getDate_start()));
+            dateEnd.setText(DateTimeParser.parseTimestamp(questionnaire.getDate_end()));
+            String type = questionnaire.getType();
+            questionnaireTypePicker.setSelection(dropdownAdapter.getPosition(type));
+            isPublicSwitch.setChecked(questionnaire.isIs_public()); // bad autogenerated getter
+            questionIds = questionnaire.getQuestions() == null ? questionIds : questionnaire.getQuestions();
         } catch (Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -274,17 +297,16 @@ public class QuestionnaireActivity extends AppCompatActivity {
             Question question = questionDs.getValue(Question.class);
             question.setQuestion_id(questionDs.getKey());
             objQuestions.add(question);
-            System.out.println("indexOf : " + questionIds.indexOf(question.getQuestion_id()));
             if(questionIds.indexOf(question.getQuestion_id()) > -1){
                 questions.add(question.getText());
             }
         }
 
         if(!questionIds.isEmpty()){
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(QuestionnaireActivity.this,
+            ArrayAdapter<String> questionsAdapter = new ArrayAdapter<String>(QuestionnaireActivity.this,
                     R.layout.activity_listview, questions);
 
-            questionList.setAdapter(adapter2);
+            questionList.setAdapter(questionsAdapter);
         }
 
         // add a checkbox list in a popup
@@ -316,10 +338,10 @@ public class QuestionnaireActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Render out the list
-                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(QuestionnaireActivity.this,
+                ArrayAdapter<String> questionsAdapter = new ArrayAdapter<String>(QuestionnaireActivity.this,
                         R.layout.activity_listview, questions);
 
-                questionList.setAdapter(adapter2);
+                questionList.setAdapter(questionsAdapter);
             }
         });
 
@@ -334,6 +356,31 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+
+    private void showHashCode(){
+        // Create an alert to allow the user to input the code
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Unique Code");
+        alert.setMessage("\n" + _hashCode);
+
+        alert.setPositiveButton("COPY CODE", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // Place the code upon the clipboard
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("hash_code", _hashCode);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(context, "The Code was copied to the clipboard!", Toast.LENGTH_LONG).show();
+                return;
+            }
+        });
+
+        alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+        alert.show();
     }
 }
 

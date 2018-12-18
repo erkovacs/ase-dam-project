@@ -95,6 +95,7 @@ public class Questionnaire {
             } catch (Exception e){
                 throw new InvalidModelExeption("Invalid data was supplied: " + e.getMessage());
             }
+            this.type = type;
             this.hash_code = hashCode;
             this.is_public = isPublic;
             this.questions = questions;

@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -14,6 +16,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Exceptions.InvalidModelExeption;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Question;
@@ -27,6 +32,14 @@ public class QuestionFormProfActivity extends AppCompatActivity {
     public String answear2;
     public String answear3;
     public String answear4;
+
+    public Switch answerCorrect1;
+    public Switch answerCorrect2;
+    public Switch answerCorrect3;
+    public Switch answerCorrect4;
+    private ArrayList<Switch> answerSwitches;
+
+    private int onSwitch;
 
     private boolean isNew;
 
@@ -62,6 +75,13 @@ public class QuestionFormProfActivity extends AppCompatActivity {
         setContentView(R.layout.activity_question_form_prof);
         context = this;
 
+        // Get the correct answer Switches
+        answerCorrect1 = findViewById(R.id.answer_correct_1);
+        answerCorrect2 = findViewById(R.id.answer_correct_2);
+        answerCorrect3 = findViewById(R.id.answer_correct_3);
+        answerCorrect4 = findViewById(R.id.answer_correct_4);
+        answerSwitches = new ArrayList<Switch>(Arrays.asList(answerCorrect1, answerCorrect2, answerCorrect3, answerCorrect4));
+
         // Get Firebase ref
         databaseQuestion = FirebaseDatabase.getInstance().getReference(Question.TYPE_TAG);
 
@@ -93,6 +113,19 @@ public class QuestionFormProfActivity extends AppCompatActivity {
             }
 
         });
+
+        // Apply logic to switches
+        int i = 0;
+        for (Switch answerSwitch : answerSwitches){
+            answerSwitch.setTag(i);
+            answerSwitch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    resetSwitches(v);
+                }
+            });
+            i++;
+        }
     }
 
     public QuestionFormProfActivity(){
@@ -126,15 +159,15 @@ public class QuestionFormProfActivity extends AppCompatActivity {
             secondet.setError("You need to insert at least two answers");
         } else {
             try {
-                Question question = new Question(questionetString, questionetString, "", firstetString, secondetString, thirdetString, fourthetString, 1);
+                Question question = new Question(questionetString, questionetString, "", firstetString, secondetString, thirdetString, fourthetString, onSwitch);
                 if(isNew) {
                     question.save(databaseQuestion);
                 } else {
                     question.setQuestion_id(questionId);
                     question.update(databaseQuestion);
                 }
-                Intent in = new Intent(context, QuestionListActivity.class);
-                startActivity(in);
+                Toast.makeText(this, "Question " + (isNew ? "created" : "updated") + " successfully!", Toast.LENGTH_LONG).show();
+                finish();
             } catch (InvalidModelExeption ime){
                 Toast.makeText(context, ime.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -142,6 +175,7 @@ public class QuestionFormProfActivity extends AppCompatActivity {
     }
 
     private void populateQuestion(DataSnapshot dataSnapshot){
+        // Populate the form with the appropriate data
         try {
             Question thisQuestion = dataSnapshot.getValue(Question.class);
             final EditText questionet = (EditText) findViewById(R.id.questionet);
@@ -156,8 +190,26 @@ public class QuestionFormProfActivity extends AppCompatActivity {
             thirdet.setText(thisQuestion.answear3);
             fourthet.setText(thisQuestion.answear4);
 
+            answerSwitches.get(thisQuestion.getCorrect_answer()).setChecked(true);
+
         } catch (Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void resetSwitches(View v){
+
+        int tag = Integer.parseInt(v.getTag().toString());
+        Log.d("TAG SWITCH", tag + "");
+        onSwitch = tag;
+        int i = 0;
+        for(Switch _switch : answerSwitches){
+            if(i != tag){
+                _switch.setChecked(false);
+            } else {
+                _switch.setChecked(true);
+            }
+            i++;
         }
     }
 }
