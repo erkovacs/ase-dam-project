@@ -39,24 +39,14 @@ public class StatsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int count = intent.getIntExtra(ProjectIdentifier.BUNDLE_PREFIX + ".total_questions", 0);
         int score = intent.getIntExtra(ProjectIdentifier.BUNDLE_PREFIX + ".total_score", 0);
-        // TODO:: fix this
-        Log.d("VALUES:::", count + " :: " + score);
-        // Get ratios
-        if(count > 0) {
-            float good = (float)score / (float)count;
-            float bad = 100 - good;
-            values.add(good * 100);
-            if (bad > 0) {
-                values.add(bad * 100);
-            }
-        } else {
-            values.add((float)100);
-        }
-        Log.d("VALS:: ", values.toString());
+        // Add the proportions
+        values.add((float)score);
+        values.add((float)count);
         screenWidth = getWindowManager().getDefaultDisplay().getWidth();
 
         // Draw Pie chart
         drawPieChart(screenWidth);
+
         buttonReturnStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

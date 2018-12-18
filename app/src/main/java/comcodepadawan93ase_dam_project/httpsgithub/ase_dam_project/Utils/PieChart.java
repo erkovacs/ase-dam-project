@@ -10,8 +10,9 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class PieChart extends View {
-    private final int PADDING = 10;
-    private final int OFFSET = 20;
+    // TODO:: implement showing of legend
+    private final int PADDING = 20;
+    private final int OFFSET = 40;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private float[] valueDegree;
     private int[] COLORS = {Color.BLUE,Color.GREEN,Color.GRAY,Color.CYAN,Color.RED};
