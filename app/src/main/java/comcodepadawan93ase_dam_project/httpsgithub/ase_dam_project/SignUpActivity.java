@@ -60,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         final String Passwords = etPassword.getText().toString();
         final String FirstNames = etName.getText().toString();
         final String LastNames = etEmail.getText().toString();
-   login =(Button) findViewById(R.id.button_logIn);
+        login =(Button) findViewById(R.id.button_logIn);
         Button b = (Button) findViewById(R.id.button_CreateUser);
         b.setOnClickListener(new View.OnClickListener(){
                   @Override
