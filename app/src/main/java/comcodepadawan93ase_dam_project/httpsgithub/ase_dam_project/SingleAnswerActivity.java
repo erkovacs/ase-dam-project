@@ -58,6 +58,8 @@ public class SingleAnswerActivity extends AppCompatActivity {
     private DatabaseReference questionDatabase;
     private DatabaseReference responseDatabase;
 
+    private boolean isInGame;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +68,7 @@ public class SingleAnswerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         currentQuestionIndex = 0;
         score = 0;
+        isInGame = false;
 
         // init arrays
         chosenAnswers = new ArrayList<Integer>();
@@ -125,6 +128,13 @@ public class SingleAnswerActivity extends AppCompatActivity {
         responseDatabase = FirebaseDatabase.getInstance().getReference(Response.TYPE_TAG);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (!isInGame) {
+            super.onBackPressed();
+        }
+    }
+
     // Main game loop. Query current question and populate form
     private void advance(int index){
 
@@ -137,10 +147,16 @@ public class SingleAnswerActivity extends AppCompatActivity {
             response.save(responseDatabase);
 
             Intent intent = new Intent(this, StatsActivity.class);
+            // pass score an no of questio into stats
+            intent.putExtra(ProjectIdentifier.BUNDLE_PREFIX + ".total_questions", questionIds.size());
+            intent.putExtra(ProjectIdentifier.BUNDLE_PREFIX + ".total_score", score);
             startActivity(intent);
+            finish();
             return;
         }
 
+        // Now we are in game!
+        isInGame = true;
         String questionId = questionIds.get(index);
         questionDatabase.child(questionId).addValueEventListener(new ValueEventListener() {
             @Override
@@ -175,7 +191,7 @@ public class SingleAnswerActivity extends AppCompatActivity {
         // Uncheck all but the one clicked and set the chosen answer, and update game variables
         int tag = Integer.parseInt(v.getTag().toString());
         chosenAnswers.add(tag);
-        chosenAnswer = tag + 1;
+        chosenAnswer = tag;
         if(thisQuestion.getCorrect_answer() == chosenAnswer) {
             correctAnswers.add(true);
             score++;

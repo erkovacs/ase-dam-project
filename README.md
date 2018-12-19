@@ -243,7 +243,7 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 1. Utilizarea bazelor de date la distanță (Firebase) (salvare/restaurare); Afișarea informațiilor din Firebase să se realizeze prin intermediul componentelor vizuale (se pot folosi activitățile deja prezentate în fazele anterioare) (0.75 p.)
 - [ ] pending (Erik), done for question, questionnaire and response, will also be done for user
 2. Utilizarea de elemente de grafică bidimensională, cu valori preluate din baza de date (locală sau la distanță); (0.5 p.)
-- [ ] pie chart for questionnaires pending (Erik) - [references](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
+- [x] pie chart for questionnaires, mostly done (Erik) - [references](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
 3. Prelucrarea elementelor de tip imagine din diferite surse (imagini statice, preluate prin rețea, încărcate din galeria dispozitivului mobil, preluate din baze de date locală sau la distanță); Imaginile trebuie preluate din minim două surse. (0.5 p.)
 - [ ] pending (Gherghe)
 4. Stilizarea aplicației mobile (de exemplu, se creează o temă nouă în fișierul styles.xml sau
@@ -257,19 +257,19 @@ modificați fontul, culorile componentelor vizuale) (0.5 p)
 acestora duce la o penalizare de 0.5 din fiecare faza.
 - [ ] pending (Erik), mostly done
 2. Game should be actally playable
-- [ ] pending (Erik)
+- [ ] mostly done (Erik)
 
 ### Functionality tasks
-- Implement response list
-- Implement [Stats pie chart](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
-- Implement dynamic User
-- Do not let user go back to a question and increase their score ([reference](https://stackoverflow.com/questions/4779954/disable-back-button-in-android))
+- [x] Implement response list
+- [x] Implement [Stats pie chart](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
+- [ ] Implement dynamic User
+- [x] Do not let user go back to a question and increase their score ([reference](https://stackoverflow.com/questions/4779954/disable-back-button-in-android))
 
-### QA Checklist
-- [ ][15:53, 12/16/2018] Erik: 1. scos stringuri hardcodate
-- [ ][15:53, 12/16/2018] Erik: 2. fara crashuri
-- [ ][15:53, 12/16/2018] Erik: 3. fara scame, injuraturi etc
-- [ ][15:54, 12/16/2018] Erik: 4. cu date de test in el
+### QA Checklist for 19.12.2018
+- [ ] scos stringuri hardcodate
+- [ ] fara crashuri
+- [ ] fara scame, injuraturi etc
+- [ ] cu date de test in el
 
 ## Authors
 - Frentescu Adela

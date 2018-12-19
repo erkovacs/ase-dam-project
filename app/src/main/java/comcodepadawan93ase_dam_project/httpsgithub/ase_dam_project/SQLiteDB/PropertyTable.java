@@ -9,7 +9,7 @@ public class PropertyTable {
     public static final String COLUMN_VALUE="property_value";
 
 
-    private static final String SQL_CREATE_PROPERTY_TABLE ="CREATE TABLE " +
+    private static final String SQL_CREATE_PROPERTY_TABLE ="CREATE TABLE IF NOT EXISTS " +
             PropertyTable.PROPERTY_TABLE + "(" +
             PropertyTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             PropertyTable.COLUMN_NAME + " VARCHAR(128), " +
@@ -23,7 +23,7 @@ public class PropertyTable {
 
 
     public static void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + PROPERTY_TABLE);
+        // db.execSQL("DROP TABLE IF EXISTS " + PROPERTY_TABLE);
         onCreate(db);
 
     }

@@ -34,8 +34,8 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         etUserName = findViewById(R.id.etUserName);
         etPassword = findViewById(R.id.etPassword);
-         etName = findViewById(R.id.etName);
-         etEmail =  findViewById(R.id.etEmail);
+        etName = findViewById(R.id.etName);
+        etEmail =  findViewById(R.id.etEmail);
 
         setContentView(R.layout.activity_signup);
         final String[] UserRole = new String[] { "Professor", "Student"};
@@ -43,38 +43,38 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, UserRole);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_createUser.setAdapter(adapter);
-         spinner_createUser.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
-             @Override
-             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        spinner_createUser.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                 chosenRole = (String) parent.getItemAtPosition(position);
-                 if(chosenRole.isEmpty()){
-                     b.setError("Please select a role!");
-                 }
+                chosenRole = (String) parent.getItemAtPosition(position);
+                if(chosenRole.isEmpty()){
+                    b.setError("Please select a role!");
+                }
 
-             }
+            }
 
-             @Override
-             public void onNothingSelected(AdapterView<?> parent) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-             }
-         });
+            }
+        });
 
 
 
-   login =(Button) findViewById(R.id.button_logIn);
+        login =(Button) findViewById(R.id.button_logIn);
         Button b = (Button) findViewById(R.id.button_CreateUser);
         b.setOnClickListener(new View.OnClickListener(){
-                  @Override
-                 public void onClick(View v) {
-            //   int user_id = userNames.hashCode();
-              //  if(validUser) {
+            @Override
+            public void onClick(View v) {
+                //   int user_id = userNames.hashCode();
+                //  if(validUser) {
                 //    user = new User(user_id, userNames, Passwords, signUpName, Emails, chosenRole);
                 //}
-                      saveInfo(v);
+                saveInfo(v);
 
 
-               toast.makeText(getApplicationContext(), "Account created!", toast.LENGTH_SHORT).show();
+                toast.makeText(getApplicationContext(), "Account created!", toast.LENGTH_SHORT).show();
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
                 openLogIn();
             }
         });
-         validUser = true;
+        validUser = true;
         if (user.getUserName().isEmpty() || user.getUserName().length() > 30) {
             etUserName = findViewById(R.id.etUserName);
 
