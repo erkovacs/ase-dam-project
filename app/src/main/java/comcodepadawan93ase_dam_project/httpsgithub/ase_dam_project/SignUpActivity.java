@@ -106,7 +106,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             validUser = false;
         }
         if (user.getUserEmail().isEmpty() || (user.getUserEmail().contains(logInCondition))== false) {
-           
+
             etEmail =  findViewById(R.id.etEmail);
 
             etEmail.setError("Please enter the academic email address!");
