@@ -142,7 +142,7 @@ public class SingleAnswerActivity extends AppCompatActivity {
         if(index >= questionIds.size()){
 
             // Send response to Firebase
-            long now = (int)(new Date().getTime())/1000;
+            long now = (new Date().getTime());
             Response response = new Response(questionnaireId, now, questionIds, chosenAnswers, correctAnswers, score, 1);
             response.save(responseDatabase);
 
