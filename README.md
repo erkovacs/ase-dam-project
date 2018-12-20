@@ -266,9 +266,9 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 - [x] Do not let user go back to a question and increase their score ([reference](https://stackoverflow.com/questions/4779954/disable-back-button-in-android))
 
 ### QA Checklist for 19.12.2018
-- [ ] scos stringuri hardcodate
-- [ ] fara crashuri
-- [ ] fara scame, injuraturi etc
+- [x] scos stringuri hardcodate
+- [x] fara crashuri
+- [x] fara scame, injuraturi etc
 - [ ] cu date de test in el
 
 ## Authors

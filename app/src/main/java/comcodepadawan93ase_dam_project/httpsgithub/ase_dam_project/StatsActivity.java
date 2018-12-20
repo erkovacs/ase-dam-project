@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -58,17 +59,16 @@ public class StatsActivity extends AppCompatActivity {
     private void drawPieChart(int width){
         values = calculateSlices(values);
         linear.addView(new PieChart(this, values, width));
+        // TODO:: Create a legend for the pie chart
     }
 
     private ArrayList<Float> calculateSlices( ArrayList<Float> data) {
         float total = 0;
-        for(int i=0;i<data.size();i++)
-        {
+        for(int i = 0; i < data.size(); i++) {
             total += data.get(i);
         }
         ArrayList<Float> data2 = new ArrayList<Float>();
-        for(int i=0;i<data.size();i++)
-        {
+        for(int i=0;i<data.size();i++) {
             data2.add(360*(data.get(i)/total));
         }
         return data2;
