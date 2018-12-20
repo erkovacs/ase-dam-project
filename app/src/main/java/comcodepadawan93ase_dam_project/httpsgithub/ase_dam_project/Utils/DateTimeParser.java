@@ -6,14 +6,14 @@ import java.util.Date;
 
 public class DateTimeParser {
     static public final long parseDate(String date) throws Exception {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d.M.y");
         Date parsedDate = dateFormat.parse(date);
         // Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
         return parsedDate.getTime();
     }
 
     static public final String parseTimestamp(long timestamp) throws Exception {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d.M.y");
         return dateFormat.format(new Date(timestamp));
     }
 }

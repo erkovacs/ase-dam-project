@@ -47,21 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Get Firebase Ref
         databaseQuestionnaire = FirebaseDatabase.getInstance().getReference(Questionnaire.TYPE_TAG);
-
-//        Query queryRef = databaseQuestionnaire.orderByChild("hash_code").equalTo(currentCode);
-//
-//        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                populateQuestionnaire(dataSnapshot);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Toast.makeText(context, databaseError.toString(), Toast.LENGTH_LONG).show();
-//            }
-//        });
-
         Button btnPlayGame = findViewById(R.id.btnPlay);
 
         // Set click on the button
