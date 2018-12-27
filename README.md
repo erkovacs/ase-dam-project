@@ -148,43 +148,43 @@ participa la teste
 3. Aplicația trebuie să permită înregistrarea studenților și a profesorilor cu adresele de
 email/conturile instituționale
 4. Aplicația trebuie să permită înregistrarea unui singur utilizator (aplicația mobilă nu poate fi
-folosită de mai mulți utilizatori în același timp pe același dispozitiv)
+folosită de mai mulți utilizatori în același timp pe același dispozitiv)   AF 
 5. Autentificarea utilizatorilor se va face prin serviciul LDAP al ASE (se va folosit REST API-ul
 dezvoltat)
 6. Platforma mobilă trebuie sa permită crearea de conținut - întrebări de tip grilă cu
-  a. număr limitat de opțiuni
-  b. timp maxim de răspuns
-  c. punctaj
-  d. feedback pentru răspuns greșit
+  a. număr limitat de opțiuni    facut
+  b. timp maxim de răspuns       RG
+  c. punctaj                      facut ?
+  d. feedback pentru răspuns greșit      
   e. imagine sau video atașat (din sursă locală sau URL)
 7. Platforma trebuie să permită evaluarea în timp real a răspunsurilor - cu feedback imediat
-pentru profesor și student participant
+pentru profesor și student participant    RG
  8. Platforma trebuie să permită profesorilor să controleze când testul devine activ/inactiv
-  a. perioada de vizibilitate a testului
-  b. cod de acces la test
+  a. perioada de vizibilitate a testului   EK
+  b. cod de acces la test    facut 
 V1.0/20181007
 9. Platforma trebuie să permită definirea de teste publice (liber accesibile pe platformă) dar și
-private (accesul este controlat de profesor). Alte caracteristici pentru un test
+private (accesul este controlat de profesor). Alte caracteristici pentru un test       AF  
   a. amestecarea întrebărilor și a răspunsurilor
-  b. numărul de încercări de rulare a testului
+  b. numărul de încercări de rulare a testului 
   c. furnizare feedback - răspunsul corect sau un text asociat întrebării
   d. afișarea scorului final
   e. alocare timp per test - suprascrie timpul asociat fiecărei întrebări
   f. alocare punctaj unitar pe fiecare întrebare
   g. posibilitatea de a reveni la întrebări anterioare/posibilitatea de a parcurge testul doar într-un sens
 10. Platforma trebuie să permită studenților să se înscrie/să participe la un test activ - soluție
-recomandată pe baza unui cod dat de profesor
+recomandată pe baza unui cod dat de profesor facut 
 11. Platforma trebuie să permită gestiunea testelor existente
-  a. fiecare profesor are un portofoliu de teste și un portofoliu de întrebări ce pot fi clasificate pe diferite categorii (într-o prima fază se poate merge pe o soluție în care întrebările sunt asociate direct unui test)
-  b. profesorii pot partaja teste între ei cu diferite drepturi (utilizare și/sau editare)
-12. Platforma trebuie să permită gestiunea istoricului unui student: când a dat un test și ce punctaj a obținut
-13. Platforma trebuie să genereze rapoarte pentru profesor
+  a. fiecare profesor are un portofoliu de teste și un portofoliu de întrebări ce pot fi clasificate pe diferite categorii (într-o prima fază se poate merge pe o soluție în care întrebările sunt asociate direct unui test)   facut 
+  b. profesorii pot partaja teste între ei cu diferite drepturi (utilizare și/sau editare)   ?AF
+12. Platforma trebuie să permită gestiunea istoricului unui student: când a dat un test și ce punctaj a obținut    facut ?
+13. Platforma trebuie să genereze rapoarte pentru profesor     AG
   a. lista studenților care au dat un test și punctajul acestora
-  b. lista răspunsurilor date de un student pentru un test
+  b. lista răspunsurilor date de un student pentru un test 
 14. Platforma trebuie să permită interacțiunea între studenți, acești putând fi incluși în echipe
 (generate aleatoriu sau după alte criterii)
 15. Platforma trebuie să permită crearea de întrebări diferite (de tip grilă cu răspuns unic sau
-multiplu - obligatoriu, cu răspuns deschis)
+multiplu - obligatoriu, cu răspuns deschis)   facut 
 
 ### Depunctări
 - 2 puncte - nerespectarea cerințelor de predare a proiectului (mod de trimitere a fișierelor,
