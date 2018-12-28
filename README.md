@@ -255,9 +255,9 @@ modificați fontul, culorile componentelor vizuale) (0.5 p)
 ### Misc tasks
 1. Toate șirurile de caractere utilizate la nivelul interfeței trebuie preluate din resurse. Lipsa
 acestora duce la o penalizare de 0.5 din fiecare faza.
-- [ ] pending (Erik), mostly done
+- [x] pending (Erik), mostly done
 2. Game should be actally playable
-- [ ] mostly done (Erik)
+- [x] mostly done (Team - refer to "Specificatii Functionale")
 
 ### Functionality tasks
 - [x] Implement response list
@@ -269,7 +269,32 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 - [x] scos stringuri hardcodate
 - [x] fara crashuri
 - [x] fara scame, injuraturi etc
-- [ ] cu date de test in el
+- [x] cu date de test in el
+
+### Update 28.12.2018
+- Eu [Adela] o sa vad cum se face aia cu inregistragea unui singur utilizator, 
+- sa vad cum faci daca testul e public sau privat adica stiu ca atunci cand il creezi e switch ul ala acolo, dar nu stiu daca e functional inca [EK] - este functional, se salveaza in Firebase. Daca ai nevoie o sa iti dau acces si tie insa ar fi destul de dificil pentru ca e pe contul meu de google personal. Cand se construieste un obiect de tip Questionnaire poti apela metoda isIs_Public() (e denumita ampulea pt ca e autogenerata... in fine) si obtii un boolean (public - da/nu)
+- si o sa mai incerc sa vad ce imi iese de la pct 9 la cerinte functionale ca e prea mult se scris acum. [EK] Platforma trebuie să permită definirea de teste publice (liber accesibile pe platformă) dar și private (accesul este controlat de profesor). Asta e ok, mai trebuie facuta logica ca testele publice sa apara undeva, iar cele provate sa poata fi abordate doar in urma inserarii codului generat. 
+- Si sa vad si cum se face partajarea de teste intre profesori - [EK] deocamdata nu exista diferentiere intre useri, deoarece conceptul de user nu exista inca la nivel de aplicatie. Trebuie intai facuta salvarea in firebase a unui user si de abia dupa aia poate fi facuta partea asta
+- Raluca o sa se ocupe in continuare de punctaj timp etc sa vada daca sunt functionale [EK] Punctajul este functional si se salveaza fiecare chestionar completat in baza de date. Se pot accesa la History
+- si alex a ramas ca vede cum e cu gestiunea rapoartelor pt profesori care e cerinta 13 [EK] nu exista Useri in platforma inca. Trebuie facuta integrarea cu Firebase la User
+- Acuma am vazut ca a mai ramas punctele: 
+    - 6 - [EK] realistic vorbind si dat fiind viteza de dezvoltare pe care am avut-o pana acum, vor exista doar cele cu raspuns singular. Ar trebui sa refacem foarte mult pentru a permite si altceva. Ar fi nevoie de o regandire a logicii din jocul propriu-zis si de noi view-uri, etc, etc, pt care nu avem timp. Singurul punct de aici pe care are sens sa il implementam este feedbackul instant (sa aratam userului ca a gresit/a nimerit) 
+    - 8 - [EK] se poate face rapid, se face o verificare a timpului curent vs intervalul in care chestionarul e activ si se baga userul in chestionar respectiv se afiseaza un toast cu mesajul "This questionnaire is avaliable only between X and Y", 
+    - 10 - [EK] done, 
+    - 11 - [EK] se poate teoretic umbla la logica de query dar introducem complexitate inutila. E mai simplu cu "toata lumea vede tot". 
+    - 12 - [EK] Nu exista Useri si in concluzie nu exista nici Studenti
+    - si 15 [EK] Se pot face cu 4 intrebari si un sg raspuns. Am putea face relativ simplu sa putem adauga cu raspuns multiplu, dar vrem asta? complica lucrurile, stiu ca zice omul ca e obligatoriu, insa chiar mi se pare ca da chestiile un pic peste cap
+    
+#### Din ideile astea am observat ca lucrurile stau cam asa: 
+1. Trebuie de urgenta sa avem o entititae de tip User in program ca de aia depinde tot restul
+2. am simplificat unele functionalitati cerute pentru a avea timp sa le implementam. Nu avem cum, realistic, sa implementam TOT
+3. exista o serie de cerinte care se pot implementa relativ usor. Eu sugerez ca astea sa faca obiectul urmatorului sprint
+
+#### Low-Hanging fruit:
+- Raluca o sa se ocupe in continuare de punctaj timp etc sa vada daca sunt functionale [EK] Se poate implementa contorul, deocamdata se poate hardcoda o valoare. Mai tarziu pot eu adapta forma de Question si modelul ca sa poti adauga un timp. Timpul default va fi de 30sec (cel hardcodat) - pending (Raluca?)
+- feedbackul instant [EK] sa aratam userului ca a gresit/a nimerit - se inverzeste raspunsul bun si se inroseste raspunsul prost daca a fost ales - pending (Erik)
+- Platforma trebuie să permită profesorilor să controleze când testul devine activ/inactiv a. perioada de vizibilitate a testului [EK] se poate face rapid, se face o verificare a timpului curent vs intervalul in care chestionarul e activ si se baga userul in chestionar respectiv se afiseaza un toast cu mesajul "This questionnaire is avaliable only between X and Y" daca timpul curent nu e intre valorile specificate in Firebase. Atentie: in firebase am memorat timpul ca timestamp Unix (nr de secunde de la 1 ian 1970) si asa se va face comparatia, timpul curent se va converti la acelasi format - pending (Adela)
 
 ## Authors
 - Frentescu Adela
