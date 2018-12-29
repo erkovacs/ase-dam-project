@@ -1,6 +1,8 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -104,9 +106,21 @@ public class SingleAnswerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentQuestionIndex++;
-                advance(currentQuestionIndex);
-                // Reset answers
-                resetChoice();
+                provideFeedback();
+                btnConfirm.setEnabled(false);
+                new CountDownTimer(3000, 1000) {
+                    public void onFinish() {
+                        // Advance question Index
+                        advance(currentQuestionIndex);
+                        // Reset answers
+                        resetChoice();
+                        // Enable button again
+                        btnConfirm.setEnabled(true);
+                    }
+
+                    public void onTick(long millisUntilFinished) {
+                    }
+                }.start();
             }
         });
 
@@ -188,11 +202,15 @@ public class SingleAnswerActivity extends AppCompatActivity {
     }
 
     private void handleChoice(View v){
+        RadioButton clickedButton = (RadioButton)v;
+        int correctAnswer = thisQuestion.getCorrect_answer();
         // Uncheck all but the one clicked and set the chosen answer, and update game variables
         int tag = Integer.parseInt(v.getTag().toString());
         chosenAnswers.add(tag);
         chosenAnswer = tag;
-        if(thisQuestion.getCorrect_answer() == chosenAnswer) {
+
+        // Also provide feedback
+        if(correctAnswer == chosenAnswer) {
             correctAnswers.add(true);
             score++;
         } else {
@@ -208,9 +226,23 @@ public class SingleAnswerActivity extends AppCompatActivity {
     }
 
     private void resetChoice(){
-        // Uncheck all
+        // Uncheck all and reset feedback
         for(RadioButton answer : answers){
+            answer.setTextColor(Color.BLACK);
             answer.setChecked(false);
+        }
+    }
+
+    private void provideFeedback(){
+        int correctAnswer = thisQuestion.getCorrect_answer();
+        int i = 0;
+        for (RadioButton answer : answers) {
+            if (i == correctAnswer) {
+                answer.setTextColor(Color.GREEN);
+            } else if (i != correctAnswer && answer.isChecked()) {
+                answer.setTextColor(Color.RED);
+            }
+            i++;
         }
     }
 }
