@@ -297,10 +297,20 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 - [ ] Platforma trebuie să permită profesorilor să controleze când testul devine activ/inactiv a. perioada de vizibilitate a testului [EK] se poate face rapid, se face o verificare a timpului curent vs intervalul in care chestionarul e activ si se baga userul in chestionar respectiv se afiseaza un toast cu mesajul "This questionnaire is avaliable only between X and Y" daca timpul curent nu e intre valorile specificate in Firebase. Atentie: in firebase am memorat timpul ca timestamp Unix (nr de secunde de la 1 ian 1970) si asa se va face comparatia, timpul curent se va converti la acelasi format - pending (Adela)
 
 #### Implementation of User:
-- Model
-- Firebase integration - Erik
-- Info pulled from Firebase and stored Locally - Adela
-- Integration with the rest of app - Erik + Adela (See Update 28.12.2018)
+SignUpActivity.java ->
+saveInfo()
+Save to Firebase
+
+1. Sign In or Sign Up
+2. Sign In if you have username/pass in Firebase -> save in shared preferences
+3. Sign Up if you don't and want to create -> save in shared preferences and save in Firebase
+4. If present in shared preferences, when entering the app the user will be authenticated from Firebase data in shared preferences will be updated. No further requests to Firebase will be made until app exit.
+5. In main activity a Log In button will be present if no user exists in shared prefs
+6. In main activity a Log Out button will take its place if present
+
+#### Tasks:
+1. Save in Firebase - [Erik]
+2. The buttons - [Adela]
 
 ## Authors
 - Frentescu Adela
