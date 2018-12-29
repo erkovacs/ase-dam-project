@@ -146,12 +146,27 @@ public class QuestionFormProfActivity extends AppCompatActivity {
         final EditText secondet = (EditText) findViewById(R.id.secondet);
         final EditText thirdet = (EditText) findViewById(R.id.thirdet);
         final EditText fourthet = (EditText) findViewById(R.id.fourthet);
+        final EditText timeet = (EditText) findViewById(R.id.question_time);
 
         final String questionetString = questionet.getText().toString();
         final String firstetString = firstet.getText().toString();
         final String secondetString = secondet.getText().toString();
         final String thirdetString = thirdet.getText().toString();
         final String fourthetString = fourthet.getText().toString();
+        final String timeString = timeet.getText().toString();
+        int timeInt = 0;
+        if(!"".equals(timeString)){
+            try{
+                timeInt = Integer.parseInt(timeString);
+                timeInt = Math.abs(timeInt);
+            }catch (Exception e){
+                timeet.setError(e.getMessage());
+            }
+        }
+        // Get time in millis
+        if(timeInt != 0){
+            timeInt *= 1000;
+        }
 
         if (questionetString.isEmpty() || questionetString == null) {
             questionet.setError("You need to insert a question!");
@@ -159,7 +174,7 @@ public class QuestionFormProfActivity extends AppCompatActivity {
             secondet.setError("You need to insert at least two answers");
         } else {
             try {
-                Question question = new Question(questionetString, questionetString, "", firstetString, secondetString, thirdetString, fourthetString, onSwitch);
+                Question question = new Question(questionetString, questionetString, "", firstetString, secondetString, thirdetString, fourthetString, onSwitch, timeInt);
                 if(isNew) {
                     question.save(databaseQuestion);
                 } else {
@@ -183,12 +198,17 @@ public class QuestionFormProfActivity extends AppCompatActivity {
             final EditText secondet = (EditText) findViewById(R.id.secondet);
             final EditText thirdet = (EditText) findViewById(R.id.thirdet);
             final EditText fourthet = (EditText) findViewById(R.id.fourthet);
+            final EditText timeet = (EditText) findViewById(R.id.question_time);
 
             questionet.setText(thisQuestion.getTitle());
             firstet.setText(thisQuestion.answear1);
             secondet.setText(thisQuestion.answear2);
             thirdet.setText(thisQuestion.answear3);
             fourthet.setText(thisQuestion.answear4);
+            int timeInMillis = thisQuestion.time;
+            if(timeInMillis != 0){
+                timeet.setText(String.format("%d", (timeInMillis / 1000)));
+            }
 
             answerSwitches.get(thisQuestion.getCorrect_answer()).setChecked(true);
 

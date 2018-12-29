@@ -3,9 +3,10 @@ package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.SQLiteDB.Property;
@@ -18,12 +19,6 @@ public class HelpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
-
-        /*String[] help = {"Rule Book", "Learn how to play", "Support", "Terms of Use", "Privacy Policy"};
-        ListAdapter helpAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, help);
-        ListView listviewHelp = (ListView) findViewById(R.id.listviewHelp);
-        listviewHelp.setAdapter(helpAdapter);*/
-        
         datasource= new PropertyDataSource(this);
         
         fillData(); 
@@ -31,15 +26,23 @@ public class HelpActivity extends AppCompatActivity {
 
     private void fillData() {
         datasource.open();
+        // Property newProperty = datasource.addProperty(new Property("Lala", "Haha"));
         List<Property> values = datasource.getallProperty();
         datasource.close();
 
+        //Log.d("datasource", newProperty.toString());
+        //Log.d("datasource: ",values.toString());
+        ArrayList<String> adaptedValues = new ArrayList<String>();
         if(values!=null){
-            ArrayAdapter<Property> adapter = new ArrayAdapter<Property>(this,R.layout.activity_help, R.id.label,values);
-            String[] help = {"Rule Book", "Learn how to play", "Support", "Terms of Use", "Privacy Policy"};
-            ListAdapter helpAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,help);
+            for(Property prop : values){
+                adaptedValues.add(String.format("%d. %s : %s", prop.getProperty_id(), prop.getProperty_name(), prop.getProperty_value()));
+            }
             ListView listviewHelp = (ListView) findViewById(R.id.listviewHelp);
-            listviewHelp.setAdapter(helpAdapter);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.activity_listview, adaptedValues);
+            listviewHelp.setAdapter(adapter);
+        } else {
+            Toast.makeText(this, "No settings yet, please return when we're out of alpha ;).", Toast.LENGTH_LONG).show();
+            finish();
         }
     }
 

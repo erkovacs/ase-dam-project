@@ -1,11 +1,10 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.SQLiteDB;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.content.Context;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,15 +28,16 @@ public class PropertyDataSource {
 
     //Create a new property record - insert
 
-    private Property addProperty(Property property){
+    public Property addProperty(Property property){
         ContentValues cv = new ContentValues();
 
-        cv.put(PropertyTable.COLUMN_NAME,PropertyTable.COLUMN_NAME);
-        cv.put(PropertyTable.COLUMN_VALUE,PropertyTable.COLUMN_VALUE);
-        long id =db.insert(PropertyTable.PROPERTY_TABLE,null, cv);
+        cv.put(PropertyTable.COLUMN_NAME,property.getProperty_name());
+        cv.put(PropertyTable.COLUMN_VALUE,property.getProperty_value());
+        long id = db.insert(PropertyTable.PROPERTY_TABLE,null, cv);
         Cursor cursor = db.query(PropertyTable.PROPERTY_TABLE, allColumns, PropertyTable.COLUMN_ID + "=" + id, null,null,null,null);
         cursor.moveToFirst();
-        Property newProperty = cursorToNote(cursor);
+        Property newProperty = cursorToProperty(cursor);
+
         cursor.close();
         return newProperty;
 
@@ -52,11 +52,12 @@ public class PropertyDataSource {
     }
 
 
-   private Property cursorToNote(Cursor cursor){
+   private Property cursorToProperty(Cursor cursor){
         Property property = new Property();
         property.setProperty_id(cursor.getInt(0));
         property.setProperty_name(cursor.getString(1));
         property.setProperty_value(cursor.getString(2));
+
         return property;
     }
 
@@ -64,13 +65,14 @@ public class PropertyDataSource {
     public List<Property> getallProperty(){
         List<Property> properties =new ArrayList<Property>();
 
-        Cursor cursor = db.query(PropertyTable.PROPERTY_TABLE,allColumns,null,null,null,
+        Cursor cursor = db.query(PropertyTable.PROPERTY_TABLE, allColumns,null,null,null,
                 null,null);
 
         if(cursor!=null && cursor.getCount() > 0){
             cursor.moveToFirst();
             while(!cursor.isAfterLast()){
-                Property newproperty = cursorToNote(cursor);
+                Property newproperty = cursorToProperty(cursor);
+                properties.add(newproperty);
                 cursor.moveToNext();
             }
             cursor.close();

@@ -58,7 +58,7 @@
             android:id="@+id/version_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="@string/text_settings"
             android:textAppearance="?android:attr/textAppearanceButton"
             android:textColor="@android:color/black"
             android:textStyle="bold" />

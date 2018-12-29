@@ -48,5 +48,24 @@
     <string name="about_copyright_notice">2018 DAMProject Co - All rights reserved</string>
     <string name="show_code_text">Show Code</string>
     <string name="text_is_correct">Correct</string>
-
+    <string name="return_text">Return</string>
+    <string name="copyright_notice">2018 DAMProject Co - All rights reserved</string>
+    <string name="text_phone">Phone: </string>
+    <string name="text_contact_history">Contact history</string>
+    <string name="text_send">Send</string>
+    <string name="text_username">Username: </string>
+    <string name="text_password">Password: </string>
+    <string name="text_sign_in">SIGN IN</string>
+    <string name="text_user_name">User Name: </string>
+    <string name="text_name">Name: </string>
+    <string name="text_email">Email: </string>
+    <string name="text_role">Role: </string>
+    <string name="text_create">CREATE</string>
+    <string name="text_log_in">LOG IN</string>
+    <string name="text_signup_title">Create Account</string>
+    <string name="text_default_question_score">Score: 0</string>
+    <string name="text_default_question_n_outof_m">Question: 0/0</string>
+    <string name="text_default_question_duration">00:00</string>
+    <string name="text_settings">Settings</string>
+    <string name="question_time_placeholder">Time to answer (seconds)</string>
 </resources>

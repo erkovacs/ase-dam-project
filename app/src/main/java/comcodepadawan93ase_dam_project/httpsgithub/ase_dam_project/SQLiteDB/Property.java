@@ -10,6 +10,12 @@ public class Property {
         this.property_name = property_name;
         this.property_value = property_value;
     }
+
+    public Property(String property_name, String property_value) {
+        this.property_name = property_name;
+        this.property_value = property_value;
+    }
+
     public Property(){
 
     }

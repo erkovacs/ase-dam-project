@@ -148,43 +148,43 @@ participa la teste
 3. Aplicația trebuie să permită înregistrarea studenților și a profesorilor cu adresele de
 email/conturile instituționale
 4. Aplicația trebuie să permită înregistrarea unui singur utilizator (aplicația mobilă nu poate fi
-folosită de mai mulți utilizatori în același timp pe același dispozitiv)
+folosită de mai mulți utilizatori în același timp pe același dispozitiv)   AF 
 5. Autentificarea utilizatorilor se va face prin serviciul LDAP al ASE (se va folosit REST API-ul
 dezvoltat)
 6. Platforma mobilă trebuie sa permită crearea de conținut - întrebări de tip grilă cu
-  a. număr limitat de opțiuni
-  b. timp maxim de răspuns
-  c. punctaj
-  d. feedback pentru răspuns greșit
+  a. număr limitat de opțiuni    facut
+  b. timp maxim de răspuns       RG
+  c. punctaj                      facut ?
+  d. feedback pentru răspuns greșit      
   e. imagine sau video atașat (din sursă locală sau URL)
 7. Platforma trebuie să permită evaluarea în timp real a răspunsurilor - cu feedback imediat
-pentru profesor și student participant
+pentru profesor și student participant    RG
  8. Platforma trebuie să permită profesorilor să controleze când testul devine activ/inactiv
-  a. perioada de vizibilitate a testului
-  b. cod de acces la test
+  a. perioada de vizibilitate a testului   EK
+  b. cod de acces la test    facut 
 V1.0/20181007
 9. Platforma trebuie să permită definirea de teste publice (liber accesibile pe platformă) dar și
-private (accesul este controlat de profesor). Alte caracteristici pentru un test
+private (accesul este controlat de profesor). Alte caracteristici pentru un test       AF  
   a. amestecarea întrebărilor și a răspunsurilor
-  b. numărul de încercări de rulare a testului
+  b. numărul de încercări de rulare a testului 
   c. furnizare feedback - răspunsul corect sau un text asociat întrebării
   d. afișarea scorului final
   e. alocare timp per test - suprascrie timpul asociat fiecărei întrebări
   f. alocare punctaj unitar pe fiecare întrebare
   g. posibilitatea de a reveni la întrebări anterioare/posibilitatea de a parcurge testul doar într-un sens
 10. Platforma trebuie să permită studenților să se înscrie/să participe la un test activ - soluție
-recomandată pe baza unui cod dat de profesor
+recomandată pe baza unui cod dat de profesor facut 
 11. Platforma trebuie să permită gestiunea testelor existente
-  a. fiecare profesor are un portofoliu de teste și un portofoliu de întrebări ce pot fi clasificate pe diferite categorii (într-o prima fază se poate merge pe o soluție în care întrebările sunt asociate direct unui test)
-  b. profesorii pot partaja teste între ei cu diferite drepturi (utilizare și/sau editare)
-12. Platforma trebuie să permită gestiunea istoricului unui student: când a dat un test și ce punctaj a obținut
-13. Platforma trebuie să genereze rapoarte pentru profesor
+  a. fiecare profesor are un portofoliu de teste și un portofoliu de întrebări ce pot fi clasificate pe diferite categorii (într-o prima fază se poate merge pe o soluție în care întrebările sunt asociate direct unui test)   facut 
+  b. profesorii pot partaja teste între ei cu diferite drepturi (utilizare și/sau editare)   ?AF
+12. Platforma trebuie să permită gestiunea istoricului unui student: când a dat un test și ce punctaj a obținut    facut ?
+13. Platforma trebuie să genereze rapoarte pentru profesor     AG
   a. lista studenților care au dat un test și punctajul acestora
-  b. lista răspunsurilor date de un student pentru un test
+  b. lista răspunsurilor date de un student pentru un test 
 14. Platforma trebuie să permită interacțiunea între studenți, acești putând fi incluși în echipe
 (generate aleatoriu sau după alte criterii)
 15. Platforma trebuie să permită crearea de întrebări diferite (de tip grilă cu răspuns unic sau
-multiplu - obligatoriu, cu răspuns deschis)
+multiplu - obligatoriu, cu răspuns deschis)   facut 
 
 ### Depunctări
 - 2 puncte - nerespectarea cerințelor de predare a proiectului (mod de trimitere a fișierelor,
@@ -204,10 +204,10 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 - [x] EditView
 - [x] CheckBox
 - [x] Spinner
-- [ ] ProgressBar
+- [X] ProgressBar
 - [ ] SeekBar
 - [x] Switch
-- [ ] RatingBar - pending Raluca
+- [ ] RatingBar - pending Raluca, maybe in Stats View? "Rate this Questionnaire" or something
 - [x] ImageView
 - [x] DatePicker sau TimePicker)
 3. Utilizarea a minim un formular de introducere a datelor/membru;
@@ -243,7 +243,7 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 1. Utilizarea bazelor de date la distanță (Firebase) (salvare/restaurare); Afișarea informațiilor din Firebase să se realizeze prin intermediul componentelor vizuale (se pot folosi activitățile deja prezentate în fazele anterioare) (0.75 p.)
 - [ ] pending (Erik), done for question, questionnaire and response, will also be done for user
 2. Utilizarea de elemente de grafică bidimensională, cu valori preluate din baza de date (locală sau la distanță); (0.5 p.)
-- [ ] pie chart for questionnaires pending (Erik) - [references](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
+- [x] pie chart for questionnaires, mostly done (Erik) - [references](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
 3. Prelucrarea elementelor de tip imagine din diferite surse (imagini statice, preluate prin rețea, încărcate din galeria dispozitivului mobil, preluate din baze de date locală sau la distanță); Imaginile trebuie preluate din minim două surse. (0.5 p.)
 - [ ] pending (Gherghe)
 4. Stilizarea aplicației mobile (de exemplu, se creează o temă nouă în fișierul styles.xml sau
@@ -255,21 +255,52 @@ modificați fontul, culorile componentelor vizuale) (0.5 p)
 ### Misc tasks
 1. Toate șirurile de caractere utilizate la nivelul interfeței trebuie preluate din resurse. Lipsa
 acestora duce la o penalizare de 0.5 din fiecare faza.
-- [ ] pending (Erik), mostly done
+- [x] pending (Erik), mostly done
 2. Game should be actally playable
-- [ ] pending (Erik)
+- [x] mostly done (Team - refer to "Specificatii Functionale")
 
 ### Functionality tasks
-- Implement response list
-- Implement [Stats pie chart](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
-- Implement dynamic User
-- Do not let user go back to a question and increase their score ([reference](https://stackoverflow.com/questions/4779954/disable-back-button-in-android))
+- [x] Implement response list
+- [x] Implement [Stats pie chart](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
+- [ ] Implement dynamic User
+- [x] Do not let user go back to a question and increase their score ([reference](https://stackoverflow.com/questions/4779954/disable-back-button-in-android))
 
-### QA Checklist
-- [ ][15:53, 12/16/2018] Erik: 1. scos stringuri hardcodate
-- [ ][15:53, 12/16/2018] Erik: 2. fara crashuri
-- [ ][15:53, 12/16/2018] Erik: 3. fara scame, injuraturi etc
-- [ ][15:54, 12/16/2018] Erik: 4. cu date de test in el
+### QA Checklist for 19.12.2018
+- [x] scos stringuri hardcodate
+- [x] fara crashuri
+- [x] fara scame, injuraturi etc
+- [x] cu date de test in el
+
+### Update 28.12.2018
+- Eu [Adela] o sa vad cum se face aia cu inregistragea unui singur utilizator, 
+- sa vad cum faci daca testul e public sau privat adica stiu ca atunci cand il creezi e switch ul ala acolo, dar nu stiu daca e functional inca [EK] - este functional, se salveaza in Firebase. Daca ai nevoie o sa iti dau acces si tie insa ar fi destul de dificil pentru ca e pe contul meu de google personal. Cand se construieste un obiect de tip Questionnaire poti apela metoda isIs_Public() (e denumita ampulea pt ca e autogenerata... in fine) si obtii un boolean (public - da/nu)
+- si o sa mai incerc sa vad ce imi iese de la pct 9 la cerinte functionale ca e prea mult se scris acum. [EK] Platforma trebuie să permită definirea de teste publice (liber accesibile pe platformă) dar și private (accesul este controlat de profesor). Asta e ok, mai trebuie facuta logica ca testele publice sa apara undeva, iar cele provate sa poata fi abordate doar in urma inserarii codului generat. 
+- Si sa vad si cum se face partajarea de teste intre profesori - [EK] deocamdata nu exista diferentiere intre useri, deoarece conceptul de user nu exista inca la nivel de aplicatie. Trebuie intai facuta salvarea in firebase a unui user si de abia dupa aia poate fi facuta partea asta
+- Raluca o sa se ocupe in continuare de punctaj timp etc sa vada daca sunt functionale [EK] Punctajul este functional si se salveaza fiecare chestionar completat in baza de date. Se pot accesa la History
+- si alex a ramas ca vede cum e cu gestiunea rapoartelor pt profesori care e cerinta 13 [EK] nu exista Useri in platforma inca. Trebuie facuta integrarea cu Firebase la User
+- Acuma am vazut ca a mai ramas punctele: 
+    - 6 - [EK] realistic vorbind si dat fiind viteza de dezvoltare pe care am avut-o pana acum, vor exista doar cele cu raspuns singular. Ar trebui sa refacem foarte mult pentru a permite si altceva. Ar fi nevoie de o regandire a logicii din jocul propriu-zis si de noi view-uri, etc, etc, pt care nu avem timp. Singurul punct de aici pe care are sens sa il implementam este feedbackul instant (sa aratam userului ca a gresit/a nimerit) 
+    - 8 - [EK] se poate face rapid, se face o verificare a timpului curent vs intervalul in care chestionarul e activ si se baga userul in chestionar respectiv se afiseaza un toast cu mesajul "This questionnaire is avaliable only between X and Y", 
+    - 10 - [EK] done, 
+    - 11 - [EK] se poate teoretic umbla la logica de query dar introducem complexitate inutila. E mai simplu cu "toata lumea vede tot". 
+    - 12 - [EK] Nu exista Useri si in concluzie nu exista nici Studenti
+    - si 15 [EK] Se pot face cu 4 intrebari si un sg raspuns. Am putea face relativ simplu sa putem adauga cu raspuns multiplu, dar vrem asta? complica lucrurile, stiu ca zice omul ca e obligatoriu, insa chiar mi se pare ca da chestiile un pic peste cap
+    
+#### Din ideile astea am observat ca lucrurile stau cam asa: 
+1. Trebuie de urgenta sa avem o entitite de tip User in program ca de aia depinde tot restul
+2. am simplificat unele functionalitati cerute pentru a avea timp sa le implementam. Nu avem cum, realistic, sa implementam TOT
+3. exista o serie de cerinte care se pot implementa relativ usor. Eu sugerez ca astea sa faca obiectul urmatorului sprint (vezi [Low-Hanging Fruit](https://github.com/codepadawan93/ase-dam-project#update-28122018))
+
+#### Low-Hanging fruit:
+- [x] Raluca o sa se ocupe in continuare de punctaj timp etc sa vada daca sunt functionale [EK] Se poate implementa contorul, deocamdata se poate hardcoda o valoare. Mai tarziu pot eu adapta forma de Question si modelul ca sa poti adauga un timp. Timpul default va fi de 30sec (cel hardcodat) - done (Erik)
+- [x] feedbackul instant [EK] sa aratam userului ca a gresit/a nimerit - se inverzeste raspunsul bun si se inroseste raspunsul prost daca a fost ales - done (Erik)
+- [ ] Platforma trebuie să permită profesorilor să controleze când testul devine activ/inactiv a. perioada de vizibilitate a testului [EK] se poate face rapid, se face o verificare a timpului curent vs intervalul in care chestionarul e activ si se baga userul in chestionar respectiv se afiseaza un toast cu mesajul "This questionnaire is avaliable only between X and Y" daca timpul curent nu e intre valorile specificate in Firebase. Atentie: in firebase am memorat timpul ca timestamp Unix (nr de secunde de la 1 ian 1970) si asa se va face comparatia, timpul curent se va converti la acelasi format - pending (Adela)
+
+#### Implementation of User:
+- Model
+- Firebase integration - Erik
+- Info pulled from Firebase and stored Locally - Adela
+- Integration with the rest of app - Erik + Adela (See Update 28.12.2018)
 
 ## Authors
 - Frentescu Adela
