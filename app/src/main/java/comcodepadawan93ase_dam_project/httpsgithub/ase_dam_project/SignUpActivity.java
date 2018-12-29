@@ -74,7 +74,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
                 saveInfo(v);
 
 
-                toast.makeText(getApplicationContext(), "Account created!", toast.LENGTH_SHORT).show();
+               // toast.makeText(getApplicationContext(), "Account created!", toast.LENGTH_SHORT).show();
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +128,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         editor.putString("email", Emails);
         editor.putString("role", chosenRole);
         editor.apply();
-       // Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
     }
     public void openLogIn(){
         Intent intent = new Intent(this, SignIn.class);

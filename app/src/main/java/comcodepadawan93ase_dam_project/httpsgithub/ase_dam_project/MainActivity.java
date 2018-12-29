@@ -2,6 +2,7 @@ package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -23,6 +24,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Questionnaire;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Response;
@@ -36,13 +39,12 @@ public class MainActivity extends AppCompatActivity {
     private Questionnaire currentQuestionnaire;
     private ArrayList<String> questionIds;
 
-
+   Button btnLogIn, btnLogOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final MainActivity context = this;
-
         questionIds = new ArrayList<String>();
 
         // Get Firebase Ref
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         btnPlayGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // Create an alert to allow the user to input the code
                 AlertDialog.Builder alert = new AlertDialog.Builder(context);
                 alert.setTitle("Join game room");
@@ -100,6 +103,56 @@ public class MainActivity extends AppCompatActivity {
                 alert.show();
             }
         });
+        btnLogIn = findViewById(R.id.btnLogIn);
+        btnLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSignIn();
+            }
+        });
+        btnLogOut = findViewById(R.id.btnLogOut);
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteInfo();
+            }
+        });
+    }
+    private void openSignIn(){
+        Intent intent = new Intent(this, SignIn.class);
+        startActivity(intent);
+
+    }
+    private void deleteInfo(){
+        SharedPreferences preferences = getSharedPreferences("userSignUpInfo", 0);
+          if( preferences.contains("username") && preferences.contains("password")){
+            preferences.edit().remove("username");
+            preferences.edit().remove("password");
+       }else{
+              Toast.makeText(this, "you are already logged out!", Toast.LENGTH_LONG).show();
+          }
+    }
+  private boolean checkQuestionnaireTime() {
+        boolean validTime = false;
+        long startingTime = currentQuestionnaire.getDate_start();
+        long endingTime = currentQuestionnaire.getDate_end();
+        long currentTime = System.currentTimeMillis();
+
+        if (startingTime <= currentTime && currentTime <= endingTime) {
+            validTime = true;
+        } else {
+            String text = null;
+            try {
+                text = "This questionnaire is only available between " +
+                        DateTimeParser.parseTimestamp(startingTime) +
+                        " and " +
+                        DateTimeParser.parseTimestamp(endingTime);
+            } catch (Exception e ){
+                text = e.getMessage();
+            }
+            Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+        }
+        return validTime;
     }
 
     private void startQuiz(){
@@ -175,12 +228,19 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(currentQuestionnaire != null && currentQuestionnaire.getHash_code().equals(currentCode)){
-                startQuiz();
+                // Check time too
+                if(checkQuestionnaireTime()){
+                    startQuiz();
+                } else {
+                    return;
+                }
             } else {
-                Toast.makeText(this, currentCode, Toast.LENGTH_LONG).show();
+               Toast.makeText(this, currentCode, Toast.LENGTH_LONG).show();
             }
         } catch (Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+
+
 }

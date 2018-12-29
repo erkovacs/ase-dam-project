@@ -27,7 +27,9 @@
         android:layout_height="25dp"
         android:text="@string/text_default_question_score"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp"
+
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tvCountdown"
