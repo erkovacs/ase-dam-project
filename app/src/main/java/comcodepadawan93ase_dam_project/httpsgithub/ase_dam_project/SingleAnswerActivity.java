@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,12 +28,17 @@ import java.util.Date;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Exceptions.InvalidModelExeption;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Question;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Response;
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.DateTimeParser;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.ProjectIdentifier;
 
 public class SingleAnswerActivity extends AppCompatActivity {
 
+    private final int FEEDBACK_DELAY_MILLIS = 3000;
+    private final int DEFAULT_QUESTION_TIMEOUT_MILLIS = 30000;
     private int score;
     private int chosenAnswer;
+
+    private CountDownTimer timer;
 
     private SingleAnswerActivity context;
 
@@ -51,6 +57,7 @@ public class SingleAnswerActivity extends AppCompatActivity {
     private RadioButton thirdAnswer;
     private RadioButton fourthAnswer;
     private Button btnConfirm;
+    private ProgressBar answerTimerProgressBar;
 
     private ArrayList<RadioButton> answers;
 
@@ -86,6 +93,7 @@ public class SingleAnswerActivity extends AppCompatActivity {
         thirdAnswer = findViewById(R.id.question_answer_3);
         fourthAnswer = findViewById(R.id.question_answer_4);
         btnConfirm = findViewById(R.id.btnConfirm);
+        answerTimerProgressBar = findViewById(R.id.answer_timer_progress);
 
         // Get the data that was passed in
         Intent intent = getIntent();
@@ -105,22 +113,7 @@ public class SingleAnswerActivity extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentQuestionIndex++;
-                provideFeedback();
-                btnConfirm.setEnabled(false);
-                new CountDownTimer(3000, 1000) {
-                    public void onFinish() {
-                        // Advance question Index
-                        advance(currentQuestionIndex);
-                        // Reset answers
-                        resetChoice();
-                        // Enable button again
-                        btnConfirm.setEnabled(true);
-                    }
-
-                    public void onTick(long millisUntilFinished) {
-                    }
-                }.start();
+                handleConfirm();
             }
         });
 
@@ -176,6 +169,12 @@ public class SingleAnswerActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 populateQuestionForm(dataSnapshot);
+                int timeToAnswer = thisQuestion.getTime();
+                if(timeToAnswer > 0){
+                    startTimer(timeToAnswer);
+                } else {
+                    startTimer(DEFAULT_QUESTION_TIMEOUT_MILLIS);
+                }
             }
 
             @Override
@@ -233,6 +232,26 @@ public class SingleAnswerActivity extends AppCompatActivity {
         }
     }
 
+    private void handleConfirm(){
+        currentQuestionIndex++;
+        provideFeedback();
+        btnConfirm.setEnabled(false);
+        new CountDownTimer(FEEDBACK_DELAY_MILLIS, 1000) {
+            public void onFinish() {
+                // Advance question Index
+                advance(currentQuestionIndex);
+                // Reset answers
+                resetChoice();
+                // Enable button again
+                btnConfirm.setEnabled(true);
+                // Stop existing timer
+                timer.cancel();
+            }
+
+            public void onTick(long millisUntilFinished) {
+            }
+        }.start();
+    }
     private void provideFeedback(){
         int correctAnswer = thisQuestion.getCorrect_answer();
         int i = 0;
@@ -244,5 +263,23 @@ public class SingleAnswerActivity extends AppCompatActivity {
             }
             i++;
         }
+    }
+
+    private void startTimer(final int timeToAnswerMillis){
+        timer = new CountDownTimer(timeToAnswerMillis, 100) {
+            public void onFinish() {
+                // Confirm submission on timer expiry
+                handleConfirm();
+            }
+
+            public void onTick(long millisUntilFinished) {
+                // Decrease the progress bar and display time left to user
+                int percentSpent = (int) ((float)millisUntilFinished / (float)timeToAnswerMillis * 100);
+                answerTimerProgressBar.setProgress(percentSpent);
+                tvCountdown.setText(DateTimeParser.parseMillisToMinsAndSecs(millisUntilFinished));
+            }
+        };
+
+        timer.start();
     }
 }

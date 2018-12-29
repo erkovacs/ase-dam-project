@@ -204,10 +204,10 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 - [x] EditView
 - [x] CheckBox
 - [x] Spinner
-- [ ] ProgressBar
+- [X] ProgressBar
 - [ ] SeekBar
 - [x] Switch
-- [ ] RatingBar - pending Raluca
+- [ ] RatingBar - pending Raluca, maybe in Stats View? "Rate this Questionnaire" or something
 - [x] ImageView
 - [x] DatePicker sau TimePicker)
 3. Utilizarea a minim un formular de introducere a datelor/membru;
@@ -287,14 +287,20 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
     - si 15 [EK] Se pot face cu 4 intrebari si un sg raspuns. Am putea face relativ simplu sa putem adauga cu raspuns multiplu, dar vrem asta? complica lucrurile, stiu ca zice omul ca e obligatoriu, insa chiar mi se pare ca da chestiile un pic peste cap
     
 #### Din ideile astea am observat ca lucrurile stau cam asa: 
-1. Trebuie de urgenta sa avem o entititae de tip User in program ca de aia depinde tot restul
+1. Trebuie de urgenta sa avem o entitite de tip User in program ca de aia depinde tot restul
 2. am simplificat unele functionalitati cerute pentru a avea timp sa le implementam. Nu avem cum, realistic, sa implementam TOT
-3. exista o serie de cerinte care se pot implementa relativ usor. Eu sugerez ca astea sa faca obiectul urmatorului sprint
+3. exista o serie de cerinte care se pot implementa relativ usor. Eu sugerez ca astea sa faca obiectul urmatorului sprint (vezi [Low-Hanging Fruit](https://github.com/codepadawan93/ase-dam-project#update-28122018))
 
 #### Low-Hanging fruit:
-- Raluca o sa se ocupe in continuare de punctaj timp etc sa vada daca sunt functionale [EK] Se poate implementa contorul, deocamdata se poate hardcoda o valoare. Mai tarziu pot eu adapta forma de Question si modelul ca sa poti adauga un timp. Timpul default va fi de 30sec (cel hardcodat) - pending (Raluca?)
-- feedbackul instant [EK] sa aratam userului ca a gresit/a nimerit - se inverzeste raspunsul bun si se inroseste raspunsul prost daca a fost ales - pending (Erik)
-- Platforma trebuie să permită profesorilor să controleze când testul devine activ/inactiv a. perioada de vizibilitate a testului [EK] se poate face rapid, se face o verificare a timpului curent vs intervalul in care chestionarul e activ si se baga userul in chestionar respectiv se afiseaza un toast cu mesajul "This questionnaire is avaliable only between X and Y" daca timpul curent nu e intre valorile specificate in Firebase. Atentie: in firebase am memorat timpul ca timestamp Unix (nr de secunde de la 1 ian 1970) si asa se va face comparatia, timpul curent se va converti la acelasi format - pending (Adela)
+- [x] Raluca o sa se ocupe in continuare de punctaj timp etc sa vada daca sunt functionale [EK] Se poate implementa contorul, deocamdata se poate hardcoda o valoare. Mai tarziu pot eu adapta forma de Question si modelul ca sa poti adauga un timp. Timpul default va fi de 30sec (cel hardcodat) - done (Erik)
+- [x] feedbackul instant [EK] sa aratam userului ca a gresit/a nimerit - se inverzeste raspunsul bun si se inroseste raspunsul prost daca a fost ales - done (Erik)
+- [ ] Platforma trebuie să permită profesorilor să controleze când testul devine activ/inactiv a. perioada de vizibilitate a testului [EK] se poate face rapid, se face o verificare a timpului curent vs intervalul in care chestionarul e activ si se baga userul in chestionar respectiv se afiseaza un toast cu mesajul "This questionnaire is avaliable only between X and Y" daca timpul curent nu e intre valorile specificate in Firebase. Atentie: in firebase am memorat timpul ca timestamp Unix (nr de secunde de la 1 ian 1970) si asa se va face comparatia, timpul curent se va converti la acelasi format - pending (Adela)
+
+#### Implementation of User:
+- Model
+- Firebase integration - Erik
+- Info pulled from Firebase and stored Locally - Adela
+- Integration with the rest of app - Erik + Adela (See Update 28.12.2018)
 
 ## Authors
 - Frentescu Adela
