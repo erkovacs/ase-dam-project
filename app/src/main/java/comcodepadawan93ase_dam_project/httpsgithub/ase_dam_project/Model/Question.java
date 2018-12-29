@@ -23,6 +23,7 @@ public class Question {
     public String answear3;
     public String answear4;
     public int correct_answer;
+    public int time;
 
     public String getQuestion_id() {
         return question_id;
@@ -64,6 +65,14 @@ public class Question {
         this.correct_answer = correct_answer;
     }
 
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
     public Question(){
         this.title = "";
         this.text = "";
@@ -78,7 +87,7 @@ public class Question {
         this.type = "";
     }
 
-    public Question(String title, String text, String type, String answear1, String answear2, String answear3, String answear4, int correct_answer) throws InvalidModelExeption {
+    public Question(String title, String text, String type, String answear1, String answear2, String answear3, String answear4, int correct_answer, int time) throws InvalidModelExeption {
         this.title = title;
         this.text = text;
         this.type = type;
@@ -86,6 +95,7 @@ public class Question {
         this.answear2 = answear2;
         this.answear3 = answear3;
         this.answear4 = answear4;
+        this.time = time;
         if(correct_answer > -1 && correct_answer < 4) {
             this.correct_answer = correct_answer;
         } else {
