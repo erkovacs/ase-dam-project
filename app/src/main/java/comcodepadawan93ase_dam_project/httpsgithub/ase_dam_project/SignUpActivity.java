@@ -14,7 +14,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.sql.DatabaseMetaData;
+
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.User;
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.ProjectIdentifier;
 
 public class SignUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button b;
@@ -26,8 +36,12 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     String logInCondition = "@stud.ase.ro";
     public static final String TYPE_TAG = "SignUpActivity";
     EditText etUserName, etPassword, etName, etEmail ;
-
-
+    DatabaseReference userDatabase;
+    private boolean isNewUser;
+    private SignUpActivity context;
+    private String userId;
+    private Spinner spinner_createUser;
+    private ArrayAdapter<String> roleSpinnerAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,13 +50,37 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         etPassword = findViewById(R.id.etPassword);
         etName = findViewById(R.id.etName);
         etEmail =  findViewById(R.id.etEmail);
-
+        context = this;
         setContentView(R.layout.activity_signup);
+
+        // Get User Database reference
+        userDatabase = FirebaseDatabase.getInstance().getReference(User.TYPE_TAG);
+
+        // Retrieve user Id
+        Intent intent = getIntent();
+        userId = intent.getStringExtra(ProjectIdentifier.BUNDLE_PREFIX + ".user_id");
+        isNewUser = userId == null;
+
+        if(!isNewUser){
+            // Get the current Qurestionnaire
+            userDatabase.child(userId).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    populateUser(dataSnapshot);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
         final String[] UserRole = new String[] { "Professor", "Student"};
-        final Spinner spinner_createUser =  (Spinner) findViewById(R.id.spinner_createUser);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, UserRole);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_createUser.setAdapter(adapter);
+        spinner_createUser =  (Spinner) findViewById(R.id.spinner_createUser);
+        roleSpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, UserRole);
+        roleSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_createUser.setAdapter(roleSpinnerAdapter);
         spinner_createUser.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -67,14 +105,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         b.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //   int user_id = userNames.hashCode();
-                //  if(validUser) {
-                //    user = new User(user_id, userNames, Passwords, signUpName, Emails, chosenRole);
-                //}
                 saveInfo(v);
-
-
-               // toast.makeText(getApplicationContext(), "Account created!", toast.LENGTH_SHORT).show();
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
@@ -121,14 +152,34 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         final String signUpName = etName.getText().toString();
         final String Emails = etEmail.getText().toString();
         SharedPreferences sharedPref = getSharedPreferences("userSignUpInfo", Context.MODE_PRIVATE);
+        // Save to shared preferences
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("username", userNames );
         editor.putString("password", Passwords);
-        editor.putString("signUpNname", signUpName);
+        editor.putString("signUpName", signUpName);
         editor.putString("email", Emails);
         editor.putString("role", chosenRole);
         editor.apply();
-        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+        // Save to firebase too
+        //String[] names = signUpName.split("\\s");
+        //String fname = "";
+        //String lname = "";
+        //if(names.length >= 2){
+        //  lname += names[0];
+        //  for(int i= 1; i < names.length; i++){
+        //      fname += names[i] + " ";
+        //  }
+        //} else if(names.length == 1) {
+        //  fname += names[0];
+        //}
+        User user = new User(userNames, Passwords, signUpName, Emails, chosenRole);
+        if(isNewUser) {
+            user.save(userDatabase);
+        } else {
+            user.setUser_id(userId);
+            user.update(userDatabase);
+        }
+        Toast.makeText(this, "User saved!", Toast.LENGTH_LONG).show();
     }
     public void openLogIn(){
         Intent intent = new Intent(this, SignIn.class);
@@ -138,11 +189,23 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+    }
 
+    private void populateUser(DataSnapshot dataSnapshot){
+        try {
+            User user = dataSnapshot.getValue(User.class);
+            etUserName.setText(user.getUserName());
+            etPassword.setText(user.getPassword());
+            etName.setText(user.getUserNameSign());
+            etEmail.setText(user.getUserEmail());
+            String role = user.getRole();
+            spinner_createUser.setSelection(roleSpinnerAdapter.getPosition(role));
+        } catch (Exception e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 }
