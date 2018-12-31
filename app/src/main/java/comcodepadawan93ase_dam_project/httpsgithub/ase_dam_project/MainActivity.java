@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private String currentCode;
     private Questionnaire currentQuestionnaire;
     private ArrayList<String> questionIds;
-
+    SharedPreferences sPreferences;
    Button btnLogIn, btnLogOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final MainActivity context = this;
         questionIds = new ArrayList<String>();
+
+        // First check if user is logged in...
+        sPreferences = getSharedPreferences("userSignUpInfo", 0);
+        if(sPreferences != null && sPreferences.contains("username")){
+            // TODO:: finish this
+        }
 
         // Get Firebase Ref
         databaseQuestionnaire = FirebaseDatabase.getInstance().getReference(Questionnaire.TYPE_TAG);
@@ -128,8 +134,8 @@ public class MainActivity extends AppCompatActivity {
           if( preferences.contains("username") && preferences.contains("password")){
             preferences.edit().remove("username");
             preferences.edit().remove("password");
-       }else{
-              Toast.makeText(this, "you are already logged out!", Toast.LENGTH_LONG).show();
+          }else{
+              Toast.makeText(this, "You are already logged out!", Toast.LENGTH_LONG).show();
           }
     }
   private boolean checkQuestionnaireTime() {

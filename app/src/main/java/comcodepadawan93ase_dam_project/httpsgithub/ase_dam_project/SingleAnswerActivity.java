@@ -238,6 +238,8 @@ public class SingleAnswerActivity extends AppCompatActivity {
         btnConfirm.setEnabled(false);
         new CountDownTimer(FEEDBACK_DELAY_MILLIS, 1000) {
             public void onFinish() {
+                // Don't count down anymore while showing feedback
+                timer.cancel();
                 // Advance question Index
                 advance(currentQuestionIndex);
                 // Reset answers
