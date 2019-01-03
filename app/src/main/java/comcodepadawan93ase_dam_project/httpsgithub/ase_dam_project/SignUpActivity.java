@@ -151,12 +151,12 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         final String Passwords = etPassword.getText().toString();
         final String signUpName = etName.getText().toString();
         final String Emails = etEmail.getText().toString();
-        SharedPreferences sharedPref = getSharedPreferences("userSignUpInfo", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("user_info", Context.MODE_PRIVATE);
         // Save to shared preferences
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("username", userNames );
         editor.putString("password", Passwords);
-        editor.putString("signUpName", signUpName);
+        editor.putString("sign_up_name", signUpName);
         editor.putString("email", Emails);
         editor.putString("role", chosenRole);
         editor.apply();

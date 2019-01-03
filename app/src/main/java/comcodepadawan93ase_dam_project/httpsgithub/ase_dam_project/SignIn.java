@@ -72,11 +72,11 @@ public class SignIn extends AppCompatActivity {
         User currentUser = dataSnapshot.getValue(User.class);
         if(currentUser != null){
             // Save to shared preferences the current user
-            SharedPreferences sharedPref = getSharedPreferences("userSignUpInfo", Context.MODE_PRIVATE);
+            SharedPreferences sharedPref = getSharedPreferences("user_info", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("username", currentUser.getUserName());
             editor.putString("password", currentUser.getPassword());
-            editor.putString("signUpName", currentUser.getUserNameSign());
+            editor.putString("sign_up_name", currentUser.getUserNameSign());
             editor.putString("email", currentUser.getUserEmail());
             editor.putString("role", currentUser.getRole());
             editor.apply();

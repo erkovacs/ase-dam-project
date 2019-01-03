@@ -1,8 +1,10 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -47,10 +49,21 @@ public class MainActivity extends AppCompatActivity {
         final MainActivity context = this;
         questionIds = new ArrayList<String>();
 
+        btnLogIn = findViewById(R.id.btnLogIn);
+        btnLogOut = findViewById(R.id.btnLogOut);
+
         // First check if user is logged in...
-        sPreferences = getSharedPreferences("userSignUpInfo", 0);
+        sPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE);
         if(sPreferences != null && sPreferences.contains("username")){
-            // TODO:: finish this
+            btnLogIn.setVisibility(View.GONE);
+            btnLogOut.setVisibility(View.VISIBLE);
+            btnLogIn.setEnabled(false);
+            btnLogOut.setEnabled(true);
+        } else {
+            btnLogIn.setVisibility(View.VISIBLE);
+            btnLogOut.setVisibility(View.GONE);
+            btnLogIn.setEnabled(true);
+            btnLogOut.setEnabled(false);
         }
 
         // Get Firebase Ref
@@ -109,14 +122,12 @@ public class MainActivity extends AppCompatActivity {
                 alert.show();
             }
         });
-        btnLogIn = findViewById(R.id.btnLogIn);
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openSignIn();
             }
         });
-        btnLogOut = findViewById(R.id.btnLogOut);
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,13 +141,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void deleteInfo(){
-        SharedPreferences preferences = getSharedPreferences("userSignUpInfo", 0);
-          if( preferences.contains("username") && preferences.contains("password")){
-            preferences.edit().remove("username");
-            preferences.edit().remove("password");
-          }else{
+
+        if( sPreferences.contains("username") && sPreferences.contains("password")){
+            sPreferences.edit().remove("username").apply();
+            sPreferences.edit().remove("password").apply();
+            sPreferences.edit().remove("sign_up_name").apply();
+            sPreferences.edit().remove("email").apply();
+            sPreferences.edit().remove("role").apply();
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }else{
               Toast.makeText(this, "You are already logged out!", Toast.LENGTH_LONG).show();
-          }
+        }
     }
   private boolean checkQuestionnaireTime() {
         boolean validTime = false;
@@ -172,6 +189,25 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
+
+        // Then if he's a student, dont't allow access to admin stuff
+        if(sPreferences != null || sPreferences.contains("role")){
+            String role = sPreferences.getString("role", "Student");
+            if("Student".equals(role)){
+                // Hide users, questionnaires, questions, and history
+                for (int i = 0; i < menu.size(); i++) {
+                    MenuItem item = menu.getItem(i);
+                    switch(item.getItemId()){
+                        case R.id.users_menu_item:
+                        case R.id.questionnaires_menu_item:
+                        case R.id.questions_menu_item:
+                        case R.id.history_menu_item:
+                            item.setVisible(false);
+                            break;
+                    }
+                }
+            }
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
