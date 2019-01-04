@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundcolor"
     tools:context=".ContactActivity">
 
     <EditText
+        android:textColor="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         android:id="@+id/name_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,6 +26,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:textColor="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         android:id="@+id/email_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,6 +44,8 @@
         app:layout_constraintTop_toBottomOf="@+id/name_id" />
 
     <EditText
+        android:textColor="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         android:id="@+id/Phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,6 +64,8 @@
         app:layout_constraintTop_toBottomOf="@+id/email_id" />
 
     <EditText
+        android:textColor="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         android:id="@+id/subject_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,6 +84,8 @@
         app:layout_constraintTop_toBottomOf="@+id/Phone" />
 
     <EditText
+        android:textColor="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         android:id="@+id/id_question"
         android:layout_width="wrap_content"
         android:layout_height="43dp"
@@ -91,6 +102,8 @@
         app:layout_constraintTop_toBottomOf="@+id/subject_id" />
 
     <Button
+        android:textColor="?attr/backgroundcolor"
+        android:background="?attr/buttoncolor"
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -117,9 +130,52 @@
         android:layout_marginBottom="8dp"
         android:layout_toStartOf="@+id/btnSend"
         android:layout_toLeftOf="@+id/btnSend"
+        android:background="?attr/buttoncolor"
         android:text="@string/text_contact_history"
+        android:textColor="?attr/backgroundcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSend" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSend"
+        app:layout_constraintVertical_bias="0.309" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:text="Enable Dark Theme"
+        android:textColor="?attr/textcolor"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSend"
+        app:layout_constraintVertical_bias="0.694" />
+
+    <Switch
+        android:id="@+id/myswitch"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Night Mode"
+        android:textColor="?attr/textcolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSend"
+        app:layout_constraintVertical_bias="0.877" />
+
 </android.support.constraint.ConstraintLayout>
