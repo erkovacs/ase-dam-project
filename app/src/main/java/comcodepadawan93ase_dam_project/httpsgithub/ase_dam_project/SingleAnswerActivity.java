@@ -28,6 +28,7 @@ import java.util.Date;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Exceptions.InvalidModelExeption;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Question;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.Response;
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.User;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.DateTimeParser;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.ProjectIdentifier;
 
@@ -74,7 +75,8 @@ public class SingleAnswerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_answer);
         context = this;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // Do not show a back button here
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         currentQuestionIndex = 0;
         score = 0;
         isInGame = false;
@@ -150,7 +152,9 @@ public class SingleAnswerActivity extends AppCompatActivity {
 
             // Send response to Firebase
             long now = (new Date().getTime());
-            Response response = new Response(questionnaireId, now, questionIds, chosenAnswers, correctAnswers, score, 1);
+            User currentUser = User.getCurrentUser(this);
+
+            Response response = new Response(questionnaireId, now, questionIds, chosenAnswers, correctAnswers, score, currentUser.getUser_id(), currentUser.getUserName());
             response.save(responseDatabase);
 
             Intent intent = new Intent(this, StatsActivity.class);
@@ -235,11 +239,11 @@ public class SingleAnswerActivity extends AppCompatActivity {
     private void handleConfirm(){
         currentQuestionIndex++;
         provideFeedback();
+        // Don't count down anymore while showing feedback
+        timer.cancel();
         btnConfirm.setEnabled(false);
         new CountDownTimer(FEEDBACK_DELAY_MILLIS, 1000) {
             public void onFinish() {
-                // Don't count down anymore while showing feedback
-                timer.cancel();
                 // Advance question Index
                 advance(currentQuestionIndex);
                 // Reset answers

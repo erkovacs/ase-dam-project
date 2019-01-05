@@ -25,6 +25,7 @@ import java.sql.DatabaseMetaData;
 
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.User;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.ProjectIdentifier;
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.RandomCodeGenerator;
 
 public class SignUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button b;
@@ -149,32 +150,23 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     public void saveInfo(View view){
         final String userNames = etUserName.getText().toString();
         final String Passwords = etPassword.getText().toString();
+        final String passwordHash = RandomCodeGenerator.getPasswordHash(Passwords);
         final String signUpName = etName.getText().toString();
         final String Emails = etEmail.getText().toString();
         SharedPreferences sharedPref = getSharedPreferences("user_info", Context.MODE_PRIVATE);
         // Save to shared preferences
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("username", userNames );
-        editor.putString("password", Passwords);
+        editor.putString("password", passwordHash);
         editor.putString("sign_up_name", signUpName);
         editor.putString("email", Emails);
         editor.putString("role", chosenRole);
         editor.apply();
         // Save to firebase too
-        //String[] names = signUpName.split("\\s");
-        //String fname = "";
-        //String lname = "";
-        //if(names.length >= 2){
-        //  lname += names[0];
-        //  for(int i= 1; i < names.length; i++){
-        //      fname += names[i] + " ";
-        //  }
-        //} else if(names.length == 1) {
-        //  fname += names[0];
-        //}
-        User user = new User(userNames, Passwords, signUpName, Emails, chosenRole);
+        User user = new User(userNames, passwordHash, signUpName, Emails, chosenRole);
         if(isNewUser) {
-            user.save(userDatabase);
+            String userId = user.save(userDatabase);
+            editor.putString("user_id", userId);
         } else {
             user.setUser_id(userId);
             user.update(userDatabase);

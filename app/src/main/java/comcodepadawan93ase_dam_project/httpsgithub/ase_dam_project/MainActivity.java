@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
     private void deleteInfo(){
 
         if( sPreferences.contains("username") && sPreferences.contains("password")){
+            sPreferences.edit().remove("user_id").apply();
             sPreferences.edit().remove("username").apply();
             sPreferences.edit().remove("password").apply();
             sPreferences.edit().remove("sign_up_name").apply();

@@ -23,7 +23,8 @@ public class Response {
     private ArrayList<Integer> answers;
     private ArrayList<Boolean> correctAnswers;
     private int score;
-    private int user_id;
+    private String user_id;
+    private String user_name;
 
     public String getResponse_id() {
         return response_id;
@@ -73,11 +74,11 @@ public class Response {
         this.score = score;
     }
 
-    public int getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 
@@ -88,7 +89,15 @@ public class Response {
         response_id = id;
     }
 
-    public Response(String questionnaireId, long completedOn, ArrayList<String> questions, ArrayList<Integer> answers, ArrayList<Boolean> correctAnswers, int score, int userId){
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public Response(String questionnaireId, long completedOn, ArrayList<String> questions, ArrayList<Integer> answers, ArrayList<Boolean> correctAnswers, int score, String userId, String user_name){
          this.questionnaire_id = questionnaireId;
          this.completed_on = completedOn;
          this.questions = questions;
@@ -96,6 +105,8 @@ public class Response {
          this.correctAnswers = correctAnswers;
          this.score = score;
          this.user_id = userId;
+         this.user_name = user_name;
+
     }
 
     // Save a new instance to firebase

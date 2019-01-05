@@ -1,5 +1,9 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
@@ -37,8 +41,7 @@ public class User {
         return user_id;
     }
 
-    public void setUser_id(String user_id)
-    {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 
@@ -58,6 +61,10 @@ public class User {
         this.password = password;
     }
 
+    public String getUserNameSign() {
+        return userNameSign;
+    }
+
     public void setUserNameSign(String userNameSign) {
         this.userNameSign = userNameSign;
     }
@@ -68,10 +75,6 @@ public class User {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
-    }
-
-    public String getUserNameSign() {
-        return userNameSign;
     }
 
     public String getRole() {
@@ -92,6 +95,19 @@ public class User {
     public String update(DatabaseReference db){
         db.child(this.user_id).setValue(this);
         return this.user_id;
+    }
+
+    public static User getCurrentUser(AppCompatActivity context){
+        SharedPreferences sharedPref = context.getSharedPreferences("user_info", Context.MODE_PRIVATE);
+        String id = sharedPref.getString("user_id", "");
+        String username = sharedPref.getString("username", "");
+        String password = sharedPref.getString("password", "");
+        String signUpName = sharedPref.getString("sign_up_name", "");
+        String email = sharedPref.getString("email", "");
+        String role = sharedPref.getString("role", "Student");
+        User user = new User(username, password, signUpName, email, role);
+        user.setUser_id(id);
+        return user;
     }
 
 }

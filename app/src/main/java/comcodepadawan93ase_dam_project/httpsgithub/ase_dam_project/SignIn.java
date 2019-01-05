@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.User;
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.RandomCodeGenerator;
 
 public class SignIn extends AppCompatActivity {
     EditText etSIUserName;
@@ -69,19 +71,34 @@ public class SignIn extends AppCompatActivity {
     }
 
     private void signInUser(DataSnapshot dataSnapshot){
-        User currentUser = dataSnapshot.getValue(User.class);
+        User currentUser = null;
+        String userId = "";
+        for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+            currentUser = userSnapshot.getValue(User.class);
+            userId = userSnapshot.getKey();
+        }
+
         if(currentUser != null){
-            // Save to shared preferences the current user
-            SharedPreferences sharedPref = getSharedPreferences("user_info", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString("username", currentUser.getUserName());
-            editor.putString("password", currentUser.getPassword());
-            editor.putString("sign_up_name", currentUser.getUserNameSign());
-            editor.putString("email", currentUser.getUserEmail());
-            editor.putString("role", currentUser.getRole());
-            editor.apply();
-            //On success open main activity
-            openMainActivity();
+            // get md5 of password
+            final String passwordHash = RandomCodeGenerator.getPasswordHash(etSIPassword.getText().toString());
+
+            if(passwordHash.equals(currentUser.getPassword())) {
+                // Save to shared preferences the current user
+                SharedPreferences sharedPref = getSharedPreferences("user_info", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("user_id", userId);
+                editor.putString("username", currentUser.getUserName());
+                editor.putString("password", currentUser.getPassword());
+                editor.putString("sign_up_name", currentUser.getUserNameSign());
+                editor.putString("email", currentUser.getUserEmail());
+                editor.putString("role", currentUser.getRole());
+                editor.apply();
+
+                //On success open main activity
+                openMainActivity();
+            } else {
+                Toast.makeText(context, "Incorrect username or password, please try again!", Toast.LENGTH_LONG).show();
+            }
         } else {
             Toast.makeText(context, "This user does not exist! Sign up to play the game!", Toast.LENGTH_LONG).show();
         }
