@@ -59,11 +59,11 @@ public class SignIn extends AppCompatActivity {
     private boolean isLoginValid(String SIusername, String SIpassword){
         boolean isValid = true;
         if(SIusername.isEmpty() || SIusername == null){
-            etSIUserName.setError("Please enter the username!");
+            etSIUserName.setError(getString(R.string.sign_in_enter_username));
             isValid = false;
         }
         if(SIpassword.isEmpty() || SIpassword == null){
-            etSIPassword.setError("Please enter the correct password!");
+            etSIPassword.setError(getString(R.string.sign_in_enter_password));
             isValid=false;
         }
 
@@ -97,10 +97,10 @@ public class SignIn extends AppCompatActivity {
                 //On success open main activity
                 openMainActivity();
             } else {
-                Toast.makeText(context, "Incorrect username or password, please try again!", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, getString(R.string.sign_in_bad_username_password), Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(context, "This user does not exist! Sign up to play the game!", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, getString(R.string.sign_in_bad_user), Toast.LENGTH_LONG).show();
         }
     }
 

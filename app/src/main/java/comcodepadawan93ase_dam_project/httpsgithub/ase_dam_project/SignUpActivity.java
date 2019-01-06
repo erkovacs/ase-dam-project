@@ -88,7 +88,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
                 chosenRole = (String) parent.getItemAtPosition(position);
                 if(chosenRole.isEmpty()){
-                    b.setError("Please select a role!");
+                    b.setError(getString(R.string.sign_up_bad_role));
                 }
 
             }
@@ -119,14 +119,14 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         if (user.getUserName().isEmpty() || user.getUserName().length() > 30) {
             etUserName = findViewById(R.id.etUserName);
 
-            etUserName.setError("Please enter a valid user name!");
+            etUserName.setError(getString(R.string.sign_up_bad_user_name));
             validUser = false;
         }
         if (user.getPassword().length() < 6 || user.getPassword().isEmpty()) {
             etPassword = findViewById(R.id.etPassword);
 
 
-            etPassword.setError("Please enter a valid password!");
+            etPassword.setError(getString(R.string.sign_up_bad_password));
             validUser = false;
 
         }
@@ -134,14 +134,14 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
             etName = findViewById(R.id.etName);
 
-            etName.setError("Please enter a valid name!");
+            etName.setError(getString(R.string.sign_up_bad_name));
             validUser = false;
         }
         if (user.getUserEmail().isEmpty() || (user.getUserEmail().contains(logInCondition))== false) {
 
             etEmail =  findViewById(R.id.etEmail);
 
-            etEmail.setError("Please enter the academic email address!");
+            etEmail.setError(getString(R.string.sign_up_bad_email));
             validUser = false;
         }
         // return validUser;
@@ -171,7 +171,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             user.setUser_id(userId);
             user.update(userDatabase);
         }
-        Toast.makeText(this, "User saved!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.sign_up_user_saved), Toast.LENGTH_LONG).show();
     }
     public void openLogIn(){
         Intent intent = new Intent(this, SignIn.class);

@@ -80,14 +80,14 @@ public class MainActivity extends AppCompatActivity {
 
                 // Create an alert to allow the user to input the code
                 AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                alert.setTitle("Join game room");
-                alert.setMessage("Enter your unique code :");
+                alert.setTitle(getString(R.string.main_join_game));
+                alert.setMessage(getString(R.string.main_enter_code));
 
                 // Set an EditText view to get user input
                 final EditText input = new EditText(context);
                 alert.setView(input);
 
-                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton(getString(R.string.main_ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value = input.getText().toString();
                         // Validate code
@@ -110,13 +110,13 @@ public class MainActivity extends AppCompatActivity {
                             });
                             return;
                         } else {
-                            Toast.makeText(context, "You need to provide a code to enter the game.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, getString(R.string.main_error_no_code), Toast.LENGTH_LONG).show();
                             return;
                         }
                     }
                 });
 
-                alert.setNegativeButton("CANCEL",
+                alert.setNegativeButton(getString(R.string.main_cancel),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             return;
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             startActivity(intent);
         }else{
-              Toast.makeText(this, "You are already logged out!", Toast.LENGTH_LONG).show();
+              Toast.makeText(this, getString(R.string.main_already_logged_out), Toast.LENGTH_LONG).show();
         }
     }
   private boolean checkQuestionnaireTime() {
@@ -170,10 +170,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             String text = null;
             try {
-                text = "This questionnaire is only available between " +
-                        DateTimeParser.parseTimestamp(startingTime) +
-                        " and " +
-                        DateTimeParser.parseTimestamp(endingTime);
+                text = String.format(getString(R.string.main_questionnaire_not_available), DateTimeParser.parseTimestamp(startingTime), DateTimeParser.parseTimestamp(endingTime));
             } catch (Exception e ){
                 text = e.getMessage();
             }
@@ -186,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         if(isUserLoggedIn || currentQuestionnaire.isIs_public()){
             return true;
         } else {
-            Toast.makeText(this, "You have to log in to access this questionnaire!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.main_not_logged_in), Toast.LENGTH_LONG).show();
             return false;
         }
     }

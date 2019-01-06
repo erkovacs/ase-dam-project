@@ -42,8 +42,8 @@ public class ContactActivity extends AppCompatActivity {
 
 
         if(questionid.isEmpty() || questionid == null){
-            ETquestion.setError("You need to insert a question");
-            ETnameId.setError("You need to insert your name");
+            ETquestion.setError(getString(R.string.contact_insert_question));
+            ETnameId.setError(getString(R.string.contact_insert_name));
         }
         else{
            // TODO:: use insert method here to add a new feedback message. Beforehand, redo associated view.

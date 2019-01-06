@@ -159,7 +159,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
         });
 
         // Render the list of questions
-        questions.add("Add");
+        questions.add(getString(R.string.questionnaire_form_add));
         ArrayAdapter questionsAdapter = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, questions);
 
@@ -264,7 +264,11 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 newQuestionnaire.setQuestionnaire_id(questionnaireId);
                 newQuestionnaire.update(databaseQuestionnaire);
             }
-            Toast.makeText(this, "Questionnaire " + (isNew ? "created" : "updated") + " successfully!", Toast.LENGTH_LONG).show();
+            Toast.makeText(
+                    this,
+                    String.format(getString(R.string.questionnaire_form_success_questionnaire), getString((isNew ? R.string.text_created : R.string.text_updated))),
+                    Toast.LENGTH_LONG)
+                    .show();
             return true;
         } catch (InvalidModelExeption ime){
             Toast.makeText(this, ime.getMessage(), Toast.LENGTH_LONG).show();
@@ -291,7 +295,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
 
     private void populateQuestions(DataSnapshot dataSnapshot){
         questions.clear();
-        questions.add("Add");
+        questions.add(getString(R.string.questionnaire_form_add));
 
         for (DataSnapshot questionDs : dataSnapshot.getChildren()){
             Question question = questionDs.getValue(Question.class);
@@ -334,7 +338,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
 
 
         // add OK and Cancel buttons
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.questionnaire_form_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Render out the list
@@ -345,7 +349,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton(getString(R.string.questionnaire_form_cancel), null);
 
         // Take user to form on clikc
         questionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -361,21 +365,21 @@ public class QuestionnaireActivity extends AppCompatActivity {
     private void showHashCode(){
         // Create an alert to allow the user to input the code
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Unique Code");
+        alert.setTitle(getString(R.string.questionnaire_form_unique_code));
         alert.setMessage("\n" + _hashCode);
 
-        alert.setPositiveButton("COPY CODE", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(getString(R.string.questionnaire_form_copy_code), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // Place the code upon the clipboard
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("hash_code", _hashCode);
                 clipboard.setPrimaryClip(clip);
-                Toast.makeText(context, "The Code was copied to the clipboard!", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, getString(R.string.questionnaire_form_copy_success), Toast.LENGTH_LONG).show();
                 return;
             }
         });
 
-        alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(getString(R.string.questionnaire_form_ok), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 return;
             }

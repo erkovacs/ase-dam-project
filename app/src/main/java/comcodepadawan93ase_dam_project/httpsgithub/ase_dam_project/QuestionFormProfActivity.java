@@ -169,9 +169,9 @@ public class QuestionFormProfActivity extends AppCompatActivity {
         }
 
         if (questionetString.isEmpty() || questionetString == null) {
-            questionet.setError("You need to insert a question!");
-            firstet.setError("You need to insert at least an answer");
-            secondet.setError("You need to insert at least two answers");
+            questionet.setError(getString(R.string.question_form_error_insert_question));
+            firstet.setError(getString(R.string.question_form_error_insert_answer));
+            secondet.setError(getString(R.string.question_form_error_insert_answers));
         } else {
             try {
                 Question question = new Question(questionetString, questionetString, "", firstetString, secondetString, thirdetString, fourthetString, onSwitch, timeInt);
@@ -181,7 +181,11 @@ public class QuestionFormProfActivity extends AppCompatActivity {
                     question.setQuestion_id(questionId);
                     question.update(databaseQuestion);
                 }
-                Toast.makeText(this, "Question " + (isNew ? "created" : "updated") + " successfully!", Toast.LENGTH_LONG).show();
+                Toast.makeText(
+                        this,
+                        String.format(getString(R.string.question_form_success_question), getString((isNew ? R.string.text_created : R.string.text_updated))),
+                        Toast.LENGTH_LONG)
+                        .show();
                 finish();
             } catch (InvalidModelExeption ime){
                 Toast.makeText(context, ime.getMessage(), Toast.LENGTH_LONG).show();
@@ -220,7 +224,7 @@ public class QuestionFormProfActivity extends AppCompatActivity {
     private void resetSwitches(View v){
 
         int tag = Integer.parseInt(v.getTag().toString());
-        Log.d("TAG SWITCH", tag + "");
+
         onSwitch = tag;
         int i = 0;
         for(Switch _switch : answerSwitches){

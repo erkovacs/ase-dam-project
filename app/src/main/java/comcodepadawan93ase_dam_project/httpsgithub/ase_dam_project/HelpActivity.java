@@ -41,7 +41,7 @@ public class HelpActivity extends AppCompatActivity {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.activity_listview, adaptedValues);
             listviewHelp.setAdapter(adapter);
         } else {
-            Toast.makeText(this, "No settings yet, please return when we're out of alpha ;).", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.help_no_settings), Toast.LENGTH_LONG).show();
             finish();
         }
     }
