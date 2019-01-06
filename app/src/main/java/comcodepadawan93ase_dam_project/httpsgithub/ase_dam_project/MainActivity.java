@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private Questionnaire currentQuestionnaire;
     private ArrayList<String> questionIds;
     SharedPreferences sPreferences;
-   Button btnLogIn, btnLogOut;
+    Button btnLogIn, btnLogOut;
+    private boolean isUserLoggedIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +54,14 @@ public class MainActivity extends AppCompatActivity {
         btnLogOut = findViewById(R.id.btnLogOut);
 
         // First check if user is logged in...
+        isUserLoggedIn = false;
         sPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE);
         if(sPreferences != null && sPreferences.contains("username")){
             btnLogIn.setVisibility(View.GONE);
             btnLogOut.setVisibility(View.VISIBLE);
             btnLogIn.setEnabled(false);
             btnLogOut.setEnabled(true);
+            isUserLoggedIn = true;
         } else {
             btnLogIn.setVisibility(View.VISIBLE);
             btnLogOut.setVisibility(View.GONE);
@@ -179,6 +182,15 @@ public class MainActivity extends AppCompatActivity {
         return validTime;
     }
 
+    private boolean checkAvailability(){
+        if(isUserLoggedIn || currentQuestionnaire.isIs_public()){
+            return true;
+        } else {
+            Toast.makeText(this, "You have to log in to access this questionnaire!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
+
     private void startQuiz(){
         Intent intent = new Intent(MainActivity.this, SingleAnswerActivity.class);
         intent.putStringArrayListExtra(ProjectIdentifier.BUNDLE_PREFIX + ".question_ids", questionIds);
@@ -271,8 +283,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(currentQuestionnaire != null && currentQuestionnaire.getHash_code().equals(currentCode)){
-                // Check time too
-                if(checkQuestionnaireTime()){
+                // Check time and availabiliy too
+                if(checkQuestionnaireTime() && checkAvailability()){
                     startQuiz();
                 } else {
                     return;
