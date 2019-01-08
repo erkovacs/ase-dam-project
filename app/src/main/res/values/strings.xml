@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
-    <string name="app_name">DAM Project</string>
+    <string name="app_name">QuizGame</string>
     <string name="title_input_placeholder">Title</string>
     <string name="date_start_input_placeholder">Starting date</string>
     <string name="date_end_input_placeholder">End date</string>
@@ -69,4 +69,44 @@
     <string name="text_settings">Settings</string>
     <string name="title_activity_google_maps">Map</string>
     <string name="question_time_placeholder">Time to answer (seconds)</string>
+
+    <string name="contact_insert_question">You need to insert a question</string>
+    <string name="contact_insert_name">You need to insert your name</string>
+    <string name="custom_adapter_release_date">Release date </string>
+    <string name="custom_adapter_no_action">No action</string>
+    <string name="help_no_settings">No settings yet, please return when we\'re out of alpha ;).</string>
+    <string name="json_contact_not_over">Not over yet...</string>
+    <string name="main_join_game">Join game room</string>
+    <string name="main_enter_code">Enter your unique code :</string>
+    <string name="main_ok">OK</string>
+    <string name="main_cancel">CANCEL</string>
+    <string name="main_error_no_code">You need to provide a code to enter the game.</string>
+    <string name="main_already_logged_out">You are already logged out!</string>
+    <string name="main_questionnaire_not_available">This questionnaire is only available between %s and %s.</string>
+    <string name="main_not_logged_in">You have to log in to access this questionnaire!</string>
+    <string name="question_form_error_insert_question">You need to insert a question!</string>
+    <string name="question_form_error_insert_answer">You need to insert at least an answer!</string>
+    <string name="question_form_error_insert_answers">You need to insert at least two answers!</string>
+    <string name="question_form_success_question">Question %s successfully!</string>
+    <string name="text_created">created</string>
+    <string name="text_updated">updated</string>
+    <string name="questionnaire_form_success_questionnaire">Questionnaire %s successfully!</string>
+    <string name="questionnaire_form_add">Add</string>
+    <string name="questionnaire_form_cancel">Cancel</string>
+    <string name="questionnaire_form_unique_code">Unique Code</string>
+    <string name="questionnaire_form_copy_code">COPY CODE</string>
+    <string name="questionnaire_form_copy_success">The Code was copied to the clipboard!</string>
+    <string name="questionnaire_form_ok">OK</string>
+    <string name="response_activity_template">For questionnaire \'%s\' taken on %s by user \'%s\', the score was : %d</string>
+    <string name="sign_in_enter_username">Please enter the username!</string>
+    <string name="sign_in_enter_password">Please enter the correct password!</string>
+    <string name="sign_in_bad_username_password">Incorrect username or password, please try again!</string>
+    <string name="sign_in_bad_user">This user does not exist! Sign up to play the game!</string>
+    <string name="sign_up_bad_user_name">Please enter a valid user name!</string>
+    <string name="sign_up_bad_role">Please select a role!</string>
+    <string name="sign_up_bad_password">Please enter a valid password!</string>
+    <string name="sign_up_bad_name">Please enter a valid name!</string>
+    <string name="sign_up_bad_email">Please enter the academic email address!</string>
+    <string name="sign_up_user_saved">User saved!</string>
+    <string name="game_no_questions">This questionnaire has no questions.</string>
 </resources>

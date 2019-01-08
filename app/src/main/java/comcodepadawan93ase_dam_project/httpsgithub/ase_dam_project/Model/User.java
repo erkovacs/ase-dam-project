@@ -1,7 +1,16 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.ArrayList;
+
 public class User {
-    private  int user_id;
+    public static final String TYPE_TAG = "user";
+    private String user_id;
     private String userName;
     private String password;
     private String userNameSign;
@@ -16,26 +25,24 @@ public class User {
         this.role = "";
     }
 
-    public User(int id){
+    public User(String id){
         this.user_id = id;
     }
 
-    public User(int user_id, String userName, String password, String firstName, String lastName, String role) {
-        this.user_id = user_id;
+    public User(String userName, String password, String firstName, String email, String role) {
         this.userName = userName;
         this.password = password;
         this.userNameSign = firstName;
-        this.userEmail = lastName;
+        this.userEmail = email;
         this.role = role;
     }
 
-    public int getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id)
-    {
-        userName.hashCode();
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getUserName() {
@@ -54,7 +61,7 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
+    public String getUserNameSign() {
         return userNameSign;
     }
 
@@ -78,5 +85,29 @@ public class User {
         this.role = role;
     }
 
+    public String save(DatabaseReference db){
+        String id = db.push().getKey();
+        db.child(id).setValue(this);
+        return id;
+    }
+
+    // Update an existing instance in firebase
+    public String update(DatabaseReference db){
+        db.child(this.user_id).setValue(this);
+        return this.user_id;
+    }
+
+    public static User getCurrentUser(AppCompatActivity context){
+        SharedPreferences sharedPref = context.getSharedPreferences("user_info", Context.MODE_PRIVATE);
+        String id = sharedPref.getString("user_id", "");
+        String username = sharedPref.getString("username", "");
+        String password = sharedPref.getString("password", "");
+        String signUpName = sharedPref.getString("sign_up_name", "");
+        String email = sharedPref.getString("email", "");
+        String role = sharedPref.getString("role", "Student");
+        User user = new User(username, password, signUpName, email, role);
+        user.setUser_id(id);
+        return user;
+    }
 
 }

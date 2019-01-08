@@ -41,8 +41,8 @@ public class CustomAdapter extends ArrayAdapter<DataModelSettings> implements Vi
         switch (v.getId())
         {
             case R.id.item_info:
-                Snackbar.make(v, "Release date " +dataModel.getFeature(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
+                Snackbar.make(v, mContext.getString(R.string.custom_adapter_release_date) +dataModel.getFeature(), Snackbar.LENGTH_LONG)
+                        .setAction(mContext.getString(R.string.custom_adapter_no_action), null).show();
                 break;
         }
     }

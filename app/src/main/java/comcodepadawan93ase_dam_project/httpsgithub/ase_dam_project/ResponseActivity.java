@@ -74,9 +74,15 @@ public class ResponseActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
                     Questionnaire questionnaire = dataSnapshot.getValue(Questionnaire.class);
-                    reponseStrings.add("For questionnaire " + questionnaire.getTitle() + " taken on " +
-                            DateTimeParser.parseTimestamp(theResponse.getCompleted_on()) +
-                            ", the score was : " + theResponse.getScore());
+                    reponseStrings.add(
+                            String.format(
+                                    getString(R.string.response_activity_template),
+                                    questionnaire.getTitle(),
+                                    DateTimeParser.parseTimestamp(theResponse.getCompleted_on()),
+                                    theResponse.getUser_name(),
+                                    theResponse.getScore()
+                            )
+                    );
 
                 } catch (Exception e){
                     Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();

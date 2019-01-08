@@ -1,6 +1,5 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
-import android.app.ActivityManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -124,16 +123,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    //functie unde verific data datele de log in sunt in shared pref si apoi daca sunt le sterg
-    // nu sunt sigura ca asa accesez fisierul de shared pref.. o sa ma mai uit
     private void deleteInfo(){
         SharedPreferences preferences = getSharedPreferences("userSignUpInfo", 0);
           if( preferences.contains("username") && preferences.contains("password")){
             preferences.edit().remove("username");
             preferences.edit().remove("password");
-            Toast.makeText(this, "'You are logged out!", Toast.LENGTH_LONG).show();
        }else{
-              Toast.makeText(this, "You are already logged out!", Toast.LENGTH_LONG).show();
+              Toast.makeText(this, "you are already logged out!", Toast.LENGTH_LONG).show();
           }
     }
   private boolean checkQuestionnaireTime() {

@@ -50,7 +50,7 @@ public class JSONContactHistoryActivity extends ListActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             dialog = new ProgressDialog(JSONContactHistoryActivity.this);
-            dialog.setMessage("Not over yet..");
+            dialog.setMessage(getString(R.string.json_contact_not_over));
             dialog.setCancelable(false);
             dialog.show();
 
