@@ -207,7 +207,7 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 - [X] ProgressBar
 - [ ] SeekBar
 - [x] Switch
-- [ ] RatingBar - pending Raluca, maybe in Stats View? "Rate this Questionnaire" or something
+- [ ] RatingBar
 - [x] ImageView
 - [x] DatePicker sau TimePicker)
 3. Utilizarea a minim un formular de introducere a datelor/membru;
@@ -219,7 +219,7 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 
 ### Faza 2: (2.5 p)
 1. Implementarea unui adaptor personalizat (cel puțin trei controale vizuale);
-- [x] pending (Gherghe)
+- [x] done (Gherghe)
 2. Implementarea și utilizarea unor operații asincrone; (1 p.)
 - [x] done by Adela
 3. Utilizarea claselor pentru accesul la resurse externe (din rețea); (0.5 p.)
@@ -229,28 +229,28 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 
 ### Faza 3: (2.5 p)
 1. Utilizarea fișierelor de preferințe; (0.5 p.)
-- [x] pending (Adela)
+- [x] done (Adela & Erik)
 2. Crearea unei baze de date SQLite cu minim două tabele cu legături intre ele (o tabelă/membru). Implementarea operațiilor de tip DDL; (0.5 p.)
 - [x] done by Raluca
 3. Implementarea operațiilor de tip DML. Pentru fiecare tabela sa se implementeze cel puțin o metoda de insert, update, delete si select. Toate metodele trebuie apelate; (0.5 p.)
 - [x] mostly done, will have to be fully tested in Help and Contact (Raluca)
 4. Definirea a minim două rapoarte pe datele stocate în baza de date. Prin raport, se înțelege afișarea pe ecranul dispozitivului mobil a informațiilor preluate din baza de date. Rapoartele sunt diferite ca si structura. (0.5 p.). Componentele vizuale în care se afișează cele doua rapoarte trebuie sa fie diferite de cele prezentate la faza 1 și 2
-- [x] mostly done, will have to be fully tested in Help (Raluca)
+- [x] mostly done, will have to be fully tested in Help (Raluca) - will be serialized and saved in db
 5. Salvarea rapoartelor în fișiere normale. (txt, csv etc.) (0.5 p.)
-- [ ] pending (Raluca)
+- [ ] pending (Raluca) - parse and create text
 
 ### Final: (2.5 p)
 1. Utilizarea bazelor de date la distanță (Firebase) (salvare/restaurare); Afișarea informațiilor din Firebase să se realizeze prin intermediul componentelor vizuale (se pot folosi activitățile deja prezentate în fazele anterioare) (0.75 p.)
-- [ ] pending (Erik), done for question, questionnaire and response, will also be done for user
+- [x] done (Erik) for question, questionnaire, user and response
 2. Utilizarea de elemente de grafică bidimensională, cu valori preluate din baza de date (locală sau la distanță); (0.5 p.)
 - [x] pie chart for questionnaires, mostly done (Erik) - [references](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
 3. Prelucrarea elementelor de tip imagine din diferite surse (imagini statice, preluate prin rețea, încărcate din galeria dispozitivului mobil, preluate din baze de date locală sau la distanță); Imaginile trebuie preluate din minim două surse. (0.5 p.)
-- [ ] pending (Gherghe)
+- [x] done (Gherghe)
 4. Stilizarea aplicației mobile (de exemplu, se creează o temă nouă în fișierul styles.xml sau
 modificați fontul, culorile componentelor vizuale) (0.5 p)
-- [ ] pending (Gherghe)
+- [x] done (Gherghe)
 5. Implementarea unei funcționalități pe bază de Google Maps; (0.25 p.)
-- [ ] pending (Adela)
+- [ ] pending (Adela) - status on this?
 
 ### Misc tasks
 1. Toate șirurile de caractere utilizate la nivelul interfeței trebuie preluate din resurse. Lipsa
@@ -262,7 +262,7 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 ### Functionality tasks
 - [x] Implement response list
 - [x] Implement [Stats pie chart](https://stackoverflow.com/questions/20835628/how-to-draw-a-pie-chart-in-android)
-- [ ] Implement dynamic User
+- [x] Implement dynamic User
 - [x] Do not let user go back to a question and increase their score ([reference](https://stackoverflow.com/questions/4779954/disable-back-button-in-android))
 
 ### QA Checklist for 19.12.2018
@@ -294,7 +294,7 @@ acestora duce la o penalizare de 0.5 din fiecare faza.
 #### Low-Hanging fruit:
 - [x] Raluca o sa se ocupe in continuare de punctaj timp etc sa vada daca sunt functionale [EK] Se poate implementa contorul, deocamdata se poate hardcoda o valoare. Mai tarziu pot eu adapta forma de Question si modelul ca sa poti adauga un timp. Timpul default va fi de 30sec (cel hardcodat) - done (Erik)
 - [x] feedbackul instant [EK] sa aratam userului ca a gresit/a nimerit - se inverzeste raspunsul bun si se inroseste raspunsul prost daca a fost ales - done (Erik)
-- [ ] Platforma trebuie să permită profesorilor să controleze când testul devine activ/inactiv a. perioada de vizibilitate a testului [EK] se poate face rapid, se face o verificare a timpului curent vs intervalul in care chestionarul e activ si se baga userul in chestionar respectiv se afiseaza un toast cu mesajul "This questionnaire is avaliable only between X and Y" daca timpul curent nu e intre valorile specificate in Firebase. Atentie: in firebase am memorat timpul ca timestamp Unix (nr de secunde de la 1 ian 1970) si asa se va face comparatia, timpul curent se va converti la acelasi format - pending (Adela)
+- [x] Platforma trebuie să permită profesorilor să controleze când testul devine activ/inactiv a. perioada de vizibilitate a testului [EK] se poate face rapid, se face o verificare a timpului curent vs intervalul in care chestionarul e activ si se baga userul in chestionar respectiv se afiseaza un toast cu mesajul "This questionnaire is avaliable only between X and Y" daca timpul curent nu e intre valorile specificate in Firebase. Atentie: in firebase am memorat timpul ca timestamp Unix (nr de secunde de la 1 ian 1970) si asa se va face comparatia, timpul curent se va converti la acelasi format - pending (Adela)
 
 #### Implementation of User:
 SignUpActivity.java ->
