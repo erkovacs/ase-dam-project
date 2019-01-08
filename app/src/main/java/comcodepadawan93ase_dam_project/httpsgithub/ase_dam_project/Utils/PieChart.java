@@ -10,7 +10,6 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class PieChart extends View {
-    // TODO:: implement showing of legend
     private final int PADDING = 20;
     private final int OFFSET = 40;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);

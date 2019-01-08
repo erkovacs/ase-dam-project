@@ -109,4 +109,6 @@
     <string name="sign_up_bad_email">Please enter the academic email address!</string>
     <string name="sign_up_user_saved">User saved!</string>
     <string name="game_no_questions">This questionnaire has no questions.</string>
+    <string name="template_help_question">%d. %s : %s from %s has asked: %s</string>
+    <string name="no_help_questions">No help questions yet.</string>
 </resources>
