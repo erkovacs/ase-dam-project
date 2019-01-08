@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -46,7 +47,7 @@ public class ContactActivity extends AppCompatActivity {
             ETnameId.setError(getString(R.string.contact_insert_name));
         }
         else{
-           // TODO:: use insert method here to add a new feedback message. Beforehand, redo associated view.
+            Log.d("PROPERTY CALLED", questionid);
            dataSource = new PropertyDataSource(this);
            dataSource.open();
            dataSource.addProperty(new Property("Lala", "Haha"));

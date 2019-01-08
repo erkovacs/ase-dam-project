@@ -59,7 +59,6 @@ public class StatsActivity extends AppCompatActivity {
     private void drawPieChart(int width){
         values = calculateSlices(values);
         linear.addView(new PieChart(this, values, width));
-        // TODO:: Create a legend for the pie chart
     }
 
     private ArrayList<Float> calculateSlices( ArrayList<Float> data) {

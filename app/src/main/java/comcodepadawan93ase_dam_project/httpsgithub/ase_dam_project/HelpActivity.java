@@ -2,6 +2,7 @@ package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -31,7 +32,7 @@ public class HelpActivity extends AppCompatActivity {
         datasource.close();
 
         //Log.d("datasource", newProperty.toString());
-        //Log.d("datasource: ",values.toString());
+        Log.d("datasource: ",values.toString());
         ArrayList<String> adaptedValues = new ArrayList<String>();
         if(values!=null){
             for(Property prop : values){
