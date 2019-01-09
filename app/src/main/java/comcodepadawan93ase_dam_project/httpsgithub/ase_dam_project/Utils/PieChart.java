@@ -14,7 +14,7 @@ public class PieChart extends View {
     private final int OFFSET = 40;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private float[] valueDegree;
-    private int[] COLORS = {Color.BLUE,Color.GREEN,Color.GRAY,Color.CYAN,Color.RED};
+    private int[] COLORS = {Color.GREEN,Color.RED,Color.BLUE,Color.YELLOW,Color.CYAN};
     private RectF rectf;
     int temp = 0;
 
