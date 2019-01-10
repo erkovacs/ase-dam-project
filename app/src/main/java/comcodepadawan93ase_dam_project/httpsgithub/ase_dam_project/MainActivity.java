@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         final MainActivity context = this;
         questionIds = new ArrayList<String>();
 
+        // check if the  user is logged in
         // Get Firebase Ref
         databaseQuestionnaire = FirebaseDatabase.getInstance().getReference(Questionnaire.TYPE_TAG);
         Button btnPlayGame = findViewById(R.id.btnPlay);
