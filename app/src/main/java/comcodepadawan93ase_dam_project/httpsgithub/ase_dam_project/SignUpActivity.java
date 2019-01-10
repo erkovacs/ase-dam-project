@@ -31,7 +31,6 @@ import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Utils.RandomC
 public class SignUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button b;
     Toast toast;
-    User user = new User();
     boolean validUser;
     private String chosenRole;
     Button login;
@@ -56,6 +55,12 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         etEmail =  findViewById(R.id.etEmail);
         context = this;
         setContentView(R.layout.activity_signup);
+
+        // Set views
+        etUserName = findViewById(R.id.etUserName);
+        etPassword = findViewById(R.id.etPassword);
+        etName = findViewById(R.id.etName);
+        etEmail =  findViewById(R.id.etEmail);
 
         // Get User Database reference
         userDatabase = FirebaseDatabase.getInstance().getReference(User.TYPE_TAG);
@@ -109,8 +114,9 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         b.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-               if(validUser == true)
+               if(isUserValid()) {
                    saveInfo(v);
+               }
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
@@ -119,38 +125,35 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
                 openLogIn();
             }
         });
-        validUser = true;
-        if (user.getUserName().isEmpty() || user.getUserName().length() > 30|| user.getUserName().length() <6) {
-            etUserName = findViewById(R.id.etUserName);
-
-            etUserName.setError(getString(R.string.sign_up_bad_user_name));
-            validUser = false;
-        }
-        if (user.getPassword().length() < 6 || user.getPassword().isEmpty()) {
-            etPassword = findViewById(R.id.etPassword);
-
-
-            etPassword.setError(getString(R.string.sign_up_bad_password));
-            validUser = false;
-
-        }
-        if (user.getUserName().isEmpty() || user.getUserName().length() > 30) {
-
-            etName = findViewById(R.id.etName);
-
-            etName.setError(getString(R.string.sign_up_bad_name));
-            validUser = false;
-        }
-        if (user.getUserEmail().isEmpty() || (user.getUserEmail().contains(logInCondition))== false) {
-
-            etEmail =  findViewById(R.id.etEmail);
-
-            etEmail.setError(getString(R.string.sign_up_bad_email));
-            validUser = false;
-        }
-        // return validUser;
-
     }
+
+    private boolean isUserValid(){
+        boolean valid = true;
+        final String userName = etUserName.getText().toString();
+        final String password = etPassword.getText().toString();
+        final String signUpName = etName.getText().toString();
+        final String email = etEmail.getText().toString();
+
+        if (userName.isEmpty() || userName.length() > 30|| userName.length() <6) {
+            etUserName.setError(getString(R.string.sign_up_bad_user_name));
+            valid = false;
+        }
+        if (password.length() < 6 || password.isEmpty()) {
+            etPassword.setError(getString(R.string.sign_up_bad_password));
+            valid = false;
+
+        }
+        if (signUpName.isEmpty() || signUpName.length() > 30) {
+            etName.setError(getString(R.string.sign_up_bad_name));
+            valid = false;
+        }
+        if (email.isEmpty() || (email.contains(logInCondition)== false)){
+            etEmail.setError(getString(R.string.sign_up_bad_email));
+            valid = false;
+        }
+        return valid;
+    }
+
     public void saveInfo(View view){
         final String userNames = etUserName.getText().toString();
         final String Passwords = etPassword.getText().toString();
@@ -187,6 +190,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         }
         Toast.makeText(this, getString(R.string.sign_up_user_saved), Toast.LENGTH_LONG).show();
     }
+
     public void openLogIn(){
         Intent intent = new Intent(this, SignIn.class);
         startActivity(intent);
