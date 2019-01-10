@@ -109,7 +109,8 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         b.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                saveInfo(v);
+               if(validUser == true)
+                   saveInfo(v);
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +120,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
         validUser = true;
-        if (user.getUserName().isEmpty() || user.getUserName().length() > 30) {
+        if (user.getUserName().isEmpty() || user.getUserName().length() > 30|| user.getUserName().length() <6) {
             etUserName = findViewById(R.id.etUserName);
 
             etUserName.setError(getString(R.string.sign_up_bad_user_name));

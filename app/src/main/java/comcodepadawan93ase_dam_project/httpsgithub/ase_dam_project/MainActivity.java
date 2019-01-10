@@ -1,10 +1,8 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -40,9 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private String currentCode;
     private Questionnaire currentQuestionnaire;
     private ArrayList<String> questionIds;
-    SharedPreferences sPreferences;
-    Button btnLogIn, btnLogOut;
-    private boolean isUserLoggedIn;
+
+   Button btnLogIn, btnLogOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,25 +47,7 @@ public class MainActivity extends AppCompatActivity {
         final MainActivity context = this;
         questionIds = new ArrayList<String>();
 
-        btnLogIn = findViewById(R.id.btnLogIn);
-        btnLogOut = findViewById(R.id.btnLogOut);
-
-        // First check if user is logged in...
-        isUserLoggedIn = false;
-        sPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE);
-        if(sPreferences != null && sPreferences.contains("username")){
-            btnLogIn.setVisibility(View.GONE);
-            btnLogOut.setVisibility(View.VISIBLE);
-            btnLogIn.setEnabled(false);
-            btnLogOut.setEnabled(true);
-            isUserLoggedIn = true;
-        } else {
-            btnLogIn.setVisibility(View.VISIBLE);
-            btnLogOut.setVisibility(View.GONE);
-            btnLogIn.setEnabled(true);
-            btnLogOut.setEnabled(false);
-        }
-
+        // check if the  user is logged in
         // Get Firebase Ref
         databaseQuestionnaire = FirebaseDatabase.getInstance().getReference(Questionnaire.TYPE_TAG);
         Button btnPlayGame = findViewById(R.id.btnPlay);
@@ -80,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
 
                 // Create an alert to allow the user to input the code
                 AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                alert.setTitle(getString(R.string.main_join_game));
-                alert.setMessage(getString(R.string.main_enter_code));
+                alert.setTitle("Join game room");
+                alert.setMessage("Enter your unique code :");
 
                 // Set an EditText view to get user input
                 final EditText input = new EditText(context);
                 alert.setView(input);
 
-                alert.setPositiveButton(getString(R.string.main_ok), new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value = input.getText().toString();
                         // Validate code
@@ -110,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
                             });
                             return;
                         } else {
-                            Toast.makeText(context, getString(R.string.main_error_no_code), Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "You need to provide a code to enter the game.", Toast.LENGTH_LONG).show();
                             return;
                         }
                     }
                 });
 
-                alert.setNegativeButton(getString(R.string.main_cancel),
+                alert.setNegativeButton("CANCEL",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             return;
@@ -125,12 +104,14 @@ public class MainActivity extends AppCompatActivity {
                 alert.show();
             }
         });
+        btnLogIn = findViewById(R.id.btnLogIn);
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openSignIn();
             }
         });
+        btnLogOut = findViewById(R.id.btnLogOut);
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,20 +125,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void deleteInfo(){
-
-        if( sPreferences.contains("username") && sPreferences.contains("password")){
-            sPreferences.edit().remove("user_id").apply();
-            sPreferences.edit().remove("username").apply();
-            sPreferences.edit().remove("password").apply();
-            sPreferences.edit().remove("sign_up_name").apply();
-            sPreferences.edit().remove("email").apply();
-            sPreferences.edit().remove("role").apply();
-            Intent intent = getIntent();
-            finish();
-            startActivity(intent);
-        }else{
-              Toast.makeText(this, getString(R.string.main_already_logged_out), Toast.LENGTH_LONG).show();
-        }
+        SharedPreferences preferences = getSharedPreferences("userSignUpInfo", 0);
+          if( preferences.contains("username") && preferences.contains("password")){
+            preferences.edit().remove("username");
+            preferences.edit().remove("password");
+       }else{
+              Toast.makeText(this, "you are already logged out!", Toast.LENGTH_LONG).show();
+          }
     }
   private boolean checkQuestionnaireTime() {
         boolean validTime = false;
@@ -170,22 +144,16 @@ public class MainActivity extends AppCompatActivity {
         } else {
             String text = null;
             try {
-                text = String.format(getString(R.string.main_questionnaire_not_available), DateTimeParser.parseTimestamp(startingTime), DateTimeParser.parseTimestamp(endingTime));
+                text = "This questionnaire is only available between " +
+                        DateTimeParser.parseTimestamp(startingTime) +
+                        " and " +
+                        DateTimeParser.parseTimestamp(endingTime);
             } catch (Exception e ){
                 text = e.getMessage();
             }
             Toast.makeText(this, text, Toast.LENGTH_LONG).show();
         }
         return validTime;
-    }
-
-    private boolean checkAvailability(){
-        if(isUserLoggedIn || currentQuestionnaire.isIs_public()){
-            return true;
-        } else {
-            Toast.makeText(this, getString(R.string.main_not_logged_in), Toast.LENGTH_LONG).show();
-            return false;
-        }
     }
 
     private void startQuiz(){
@@ -199,25 +167,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
-
-        // Then if he's a student, dont't allow access to admin stuff
-        if(sPreferences != null || sPreferences.contains("role")){
-            String role = sPreferences.getString("role", "Student");
-            if("Student".equals(role)){
-                // Hide users, questionnaires, questions, and history
-                for (int i = 0; i < menu.size(); i++) {
-                    MenuItem item = menu.getItem(i);
-                    switch(item.getItemId()){
-                        case R.id.users_menu_item:
-                        case R.id.questionnaires_menu_item:
-                        case R.id.questions_menu_item:
-                        case R.id.history_menu_item:
-                            item.setVisible(false);
-                            break;
-                    }
-                }
-            }
-        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -280,8 +229,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(currentQuestionnaire != null && currentQuestionnaire.getHash_code().equals(currentCode)){
-                // Check time and availabiliy too
-                if(checkQuestionnaireTime() && checkAvailability()){
+                // Check time too
+                if(checkQuestionnaireTime()){
                     startQuiz();
                 } else {
                     return;
