@@ -30,10 +30,9 @@ public class SettingsActivity extends AppCompatActivity {
         dataModels = new ArrayList<>();
 
         dataModels.add(new DataModelSettings("Sound Effects:", "Surround", "Can't change Sound Effects"));
-        dataModels.add(new DataModelSettings("In-Game Music:", "ON", "Default music"));
+        dataModels.add(new DataModelSettings("In-Game Music:", "ON", "Default mode"));
         dataModels.add(new DataModelSettings("Profile:", "Student", "This is your student profile"));
         dataModels.add(new DataModelSettings("Privacy:","Terms&Conditions","September 15, 2009"));
-        dataModels.add(new DataModelSettings("Log Out:", "SignOut", "Can't log out, you are forever stuck in this game"));
 
         adapter = new CustomAdapter(dataModels, getApplicationContext());
         listView.setAdapter(adapter);

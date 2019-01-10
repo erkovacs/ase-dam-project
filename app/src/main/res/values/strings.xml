@@ -69,6 +69,8 @@
     <string name="text_settings">Settings</string>
     <string name="title_activity_google_maps">Map</string>
     <string name="question_time_placeholder">Time to answer (seconds)</string>
+    <string name="text_correct">Correct</string>
+    <string name="text_incorrect">Incorrect</string>
 
     <string name="contact_insert_question">You need to insert a question</string>
     <string name="contact_insert_name">You need to insert your name</string>
@@ -109,4 +111,6 @@
     <string name="sign_up_bad_email">Please enter the academic email address!</string>
     <string name="sign_up_user_saved">User saved!</string>
     <string name="game_no_questions">This questionnaire has no questions.</string>
+    <string name="template_help_question">%d. %s : %s from %s has asked: %s</string>
+    <string name="no_help_questions">No help questions yet.</string>
 </resources>
