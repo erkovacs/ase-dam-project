@@ -3,6 +3,7 @@ package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
 
@@ -110,4 +111,20 @@ public class User {
         return user;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        boolean retval = false;
+        if(obj instanceof User){
+            User user = (User)obj;
+            if(
+                user.userName.equals(this.userName) &&
+                user.userNameSign.equals(this.userNameSign) &&
+                user.userEmail.equals(this.userEmail) &&
+                user.role.equals(this.role)
+                    ){
+                retval = true;
+            }
+        }
+        return retval;
+    }
 }

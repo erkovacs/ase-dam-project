@@ -13,15 +13,14 @@
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="11dp"
         android:text="@string/text_signup_title"
         android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="8dp"
-        tools:textColor="@android:color/black" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvUserName"
@@ -34,12 +33,12 @@
         android:layout_marginRight="8dp"
         android:text="@string/text_user_name"
         android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCreateAcc"
-        tools:textColor="@android:color/black" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCreateAcc" />
 
     <TextView
         android:id="@+id/tvPassword"
@@ -49,7 +48,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="24dp"
         android:text="@string/text_password"
-        android:textColor="@android:color/black"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
@@ -64,7 +63,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/text_role"
-        android:textColor="@android:color/black"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.085"
@@ -79,7 +78,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="36dp"
         android:text="@string/text_name"
-        android:textColor="@android:color/black"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
@@ -92,7 +91,7 @@
         android:layout_marginLeft="36dp"
         android:layout_marginTop="28dp"
         android:text="@string/text_email"
-        android:textColor="@android:color/black"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
@@ -131,9 +130,16 @@
         android:id="@+id/etPassword"
         android:layout_width="350px"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="115dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintStart_toEndOf="@+id/tvPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etUserName" />
 
     <EditText
         android:id="@+id/etName"

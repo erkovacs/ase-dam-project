@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,6 +44,8 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     private String userId;
     private Spinner spinner_createUser;
     private ArrayAdapter<String> roleSpinnerAdapter;
+
+    User userBeforeUpdate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -153,22 +156,32 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         final String passwordHash = RandomCodeGenerator.getPasswordHash(Passwords);
         final String signUpName = etName.getText().toString();
         final String Emails = etEmail.getText().toString();
+
+        // Save to shared preferences if it's a new user - i.e log them in
         SharedPreferences sharedPref = getSharedPreferences("user_info", Context.MODE_PRIVATE);
-        // Save to shared preferences
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("username", userNames );
-        editor.putString("password", passwordHash);
-        editor.putString("sign_up_name", signUpName);
-        editor.putString("email", Emails);
-        editor.putString("role", chosenRole);
-        editor.apply();
+        if(isNewUser) {
+            editor.putString("username", userNames);
+            editor.putString("password", passwordHash);
+            editor.putString("sign_up_name", signUpName);
+            editor.putString("email", Emails);
+            editor.putString("role", chosenRole);
+            editor.apply();
+        }
         // Save to firebase too
         User user = new User(userNames, passwordHash, signUpName, Emails, chosenRole);
         if(isNewUser) {
             String userId = user.save(userDatabase);
             editor.putString("user_id", userId);
         } else {
+            // if the string value of the password field coincides with whatever came from the db,
+            // then we do not want to update the hash as we would upodate it with a hash of a hash
+            String oldPasswordHash = userBeforeUpdate.getPassword();
+            String currentPassword = Passwords;
             user.setUser_id(userId);
+            if(currentPassword.equals(oldPasswordHash)){
+                user.setPassword(oldPasswordHash);
+            }
             user.update(userDatabase);
         }
         Toast.makeText(this, getString(R.string.sign_up_user_saved), Toast.LENGTH_LONG).show();
@@ -189,12 +202,12 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
     private void populateUser(DataSnapshot dataSnapshot){
         try {
-            User user = dataSnapshot.getValue(User.class);
-            etUserName.setText(user.getUserName());
-            etPassword.setText(user.getPassword());
-            etName.setText(user.getUserNameSign());
-            etEmail.setText(user.getUserEmail());
-            String role = user.getRole();
+            userBeforeUpdate = dataSnapshot.getValue(User.class);
+            etUserName.setText(userBeforeUpdate.getUserName());
+            etPassword.setText(userBeforeUpdate.getPassword());
+            etName.setText(userBeforeUpdate.getUserNameSign());
+            etEmail.setText(userBeforeUpdate.getUserEmail());
+            String role = userBeforeUpdate.getRole();
             spinner_createUser.setSelection(roleSpinnerAdapter.getPosition(role));
         } catch (Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
