@@ -9,10 +9,42 @@
     <android.support.v7.widget.LinearLayoutCompat
         android:id="@+id/pie_chart_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="507dp"
+        tools:layout_editor_absoluteY="4dp">
 
     </android.support.v7.widget.LinearLayoutCompat>
 
+    <TextView
+        android:id="@+id/labelCorrect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="416dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/text_correct"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toEndOf="@+id/button_return_stats"
+        app:layout_constraintTop_toTopOf="@+id/pie_chart_container" />
+
+    <TextView
+        android:id="@+id/labelIncorrect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="416dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/text_incorrect"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/button_return_stats"
+        app:layout_constraintHorizontal_bias="0.622"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pie_chart_container" />
     <Button
         android:id="@+id/button_return_stats"
         android:layout_width="wrap_content"

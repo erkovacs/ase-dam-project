@@ -57,8 +57,16 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     private void drawPieChart(int width){
+        int noAnswersCorrect = Math.round(values.get(0));
+        int noAnswersIncorrect = Math.round(values.get(1) - values.get(0));
         values = calculateSlices(values);
         linear.addView(new PieChart(this, values, width));
+        TextView correct = findViewById(R.id.labelCorrect);
+        TextView incorrect = findViewById(R.id.labelIncorrect);
+        correct.setText(String.format("%s : %d", correct.getText(), noAnswersCorrect));
+        correct.setTextColor(Color.GREEN);
+        incorrect.setText(String.format("%s : %d", incorrect.getText(), noAnswersIncorrect));
+        incorrect.setTextColor(Color.RED);
     }
 
     private ArrayList<Float> calculateSlices( ArrayList<Float> data) {

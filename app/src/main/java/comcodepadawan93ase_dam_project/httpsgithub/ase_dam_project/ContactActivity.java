@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.ContactQuestion;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.SQLiteDB.Property;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.SQLiteDB.PropertyDB;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.SQLiteDB.PropertyDataSource;
@@ -27,7 +28,7 @@ public class ContactActivity extends AppCompatActivity {
     private PropertyDB dbHelper;
     private PropertyDataSource dataSource;
 
-    public void ContactAddQuestions(){
+    public boolean contactAddQuestions(){
         final EditText ETnameId = (EditText)findViewById(R.id.name_id);
         final EditText ETemailId=(EditText)findViewById(R.id.email_id);
         final EditText ETsubjectId=(EditText)findViewById(R.id.subject_id);
@@ -38,23 +39,18 @@ public class ContactActivity extends AppCompatActivity {
         final String subjectid=ETsubjectId.getText().toString();
         final String questionid=ETquestion.getText().toString();
 
-
-
-
-
         if(questionid.isEmpty() || questionid == null){
             ETquestion.setError(getString(R.string.contact_insert_question));
             ETnameId.setError(getString(R.string.contact_insert_name));
-        }
-        else{
-            Log.d("PROPERTY CALLED", questionid);
+            return false;
+        } else {
+            ContactQuestion question = new ContactQuestion(nameid, emailid, questionid);
            dataSource = new PropertyDataSource(this);
            dataSource.open();
-           dataSource.addProperty(new Property("Lala", "Haha"));
+           dataSource.addProperty(new Property("Question:", question.toJson()));
            dataSource.close();
-
+           return true;
         }
-
     }
 
     @Override
@@ -62,8 +58,9 @@ public class ContactActivity extends AppCompatActivity {
         //switch button methods for DarkMode
         if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.darktheme);
+        } else {
+            setTheme(R.style.AppTheme);
         }
-        else setTheme(R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
@@ -82,8 +79,10 @@ public class ContactActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ContactActivity.this, HelpActivity.class);
-                startActivity(intent);
+                if(contactAddQuestions()) {
+                    Intent intent = new Intent(ContactActivity.this, HelpActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
