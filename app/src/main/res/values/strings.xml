@@ -76,7 +76,7 @@
     <string name="contact_insert_name">You need to insert your name</string>
     <string name="custom_adapter_release_date">Release date </string>
     <string name="custom_adapter_no_action">No action</string>
-    <string name="help_no_settings">No settings yet, please return when we\'re out of alpha ;).</string>
+    <string name="help_no_settings">No FAQ\'s yet, please return when we\'re out of alpha ;).</string>
     <string name="json_contact_not_over">Not over yet...</string>
     <string name="main_join_game">Join game room</string>
     <string name="main_enter_code">Enter your unique code :</string>
@@ -114,4 +114,6 @@
     <string name="game_no_questions">This questionnaire has no questions.</string>
     <string name="template_help_question">%d. %s : %s from %s has asked: %s</string>
     <string name="no_help_questions">No help questions yet.</string>
+    <string name="text_faqs">FAQ\'s read from file report:</string>
+    <string name="successfully_saved_file">File successfully saved as %s</string>
 </resources>

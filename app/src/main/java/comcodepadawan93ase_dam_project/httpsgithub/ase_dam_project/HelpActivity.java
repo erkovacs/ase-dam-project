@@ -1,8 +1,11 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +16,15 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sql.StatementEvent;
 
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.Model.ContactQuestion;
 import comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project.SQLiteDB.Property;
@@ -26,7 +35,7 @@ public class HelpActivity extends AppCompatActivity {
     List<Property> values;
     ArrayList<String> parsedValues;
     private FloatingActionButton fab;
-
+    private static String OUTPUT_FILE = "outfile.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +61,6 @@ public class HelpActivity extends AppCompatActivity {
         values = datasource.getallProperty();
         datasource.close();
 
-        ArrayList<String> adaptedValues = new ArrayList<String>();
         if(values!=null){
             String name = "";
             String email = "";
@@ -65,14 +73,13 @@ public class HelpActivity extends AppCompatActivity {
                     email = jsonObject.getString(ContactQuestion.EMAIL_TAG);
                     question = jsonObject.getString(ContactQuestion.QUESTION_TAG);
                 } catch (JSONException jse){
-                    Log.e("JSON PARSE EXCEPTION:", jse.getStackTrace().toString());
+                    Log.e("JSON PARSE EXCEPTION:", jse.getMessage());
                 }
                 String parsedValue = String.format(getString(R.string.template_help_question), prop.getProperty_id(), prop.getProperty_name(), name, email, question);
                 parsedValues.add(parsedValue);
-                adaptedValues.add(parsedValue);
             }
             ListView listviewHelp = (ListView) findViewById(R.id.listviewHelp);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.activity_listview, adaptedValues);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.activity_listview, parsedValues);
             listviewHelp.setAdapter(adapter);
         } else {
             Toast.makeText(this, getString(R.string.help_no_settings), Toast.LENGTH_LONG).show();
@@ -81,7 +88,6 @@ public class HelpActivity extends AppCompatActivity {
     }
 
     protected void onResume(){
-        fillData();
         super.onResume();
     }
 
@@ -90,26 +96,11 @@ public class HelpActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    /*private void saveAsTextFile(){
-        File exportDir = new File(Environment.getExternalStorageDirectory(),"");
-        if(!exportDir.exists()){
-            exportDir.mkdir();
-
-        }
-        File file = new File(exportDir," csvname.csv");
+    private void writeToFile(String data, String filename, Context context) {
+        File sdcard = getFilesDir();
+        File file = new File(sdcard, filename);
         try {
-            file.createNewFile();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }*/
-
-    private void writeToFile(String data,String filename, Context context) {
-
-        try {
-            FileOutputStream outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            FileOutputStream outputStream = new FileOutputStream(file);
             outputStream.write(data.getBytes());
             outputStream.close();
         } catch (Exception e) {
@@ -117,21 +108,57 @@ public class HelpActivity extends AppCompatActivity {
         }
     }
 
-
-
     private void handleFabClick(View v){
-
         if(parsedValues != null && parsedValues.size() > 0){
-            //TODO:: implement the saving of the data read from the SQLite db into a text file
             StringBuilder report = new StringBuilder();
             String separator =  System.getProperty("line.separator");
             for(String string : parsedValues){
                 report.append(string);
                 report.append(separator);
             }
-            writeToFile(report.toString(),"values.txt",this);
+            writeToFile(report.toString(), OUTPUT_FILE,this);
+            Toast.makeText(this, String.format(getString(R.string.successfully_saved_file), OUTPUT_FILE), Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, getString(R.string.no_help_questions), Toast.LENGTH_LONG).show();
         }
+        showReportFromFile(OUTPUT_FILE);
+    }
+
+    private void showReportFromFile(String filename){
+        File sdcard = getFilesDir();
+        File file = new File(sdcard, filename);
+
+        //Read text from file
+        StringBuilder text = new StringBuilder();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String separator =  System.getProperty("line.separator");
+            String line;
+            while ((line = br.readLine()) != null) {
+                text.append(line);
+                text.append(separator);
+            }
+            br.close();
+        } catch (IOException e) {
+           Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(getString(R.string.text_faqs));
+        alert.setMessage(text.toString());
+
+        alert.setPositiveButton(getString(R.string.main_ok), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                return;
+            }
+        });
+
+        alert.setNegativeButton(getString(R.string.main_cancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+
+        alert.show();
     }
 }
