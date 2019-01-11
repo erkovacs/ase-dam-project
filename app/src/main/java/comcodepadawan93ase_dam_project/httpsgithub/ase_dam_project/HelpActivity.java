@@ -1,5 +1,6 @@
 package comcodepadawan93ase_dam_project.httpsgithub.ase_dam_project;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class HelpActivity extends AppCompatActivity {
     List<Property> values;
     ArrayList<String> parsedValues;
     private FloatingActionButton fab;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,12 +90,46 @@ public class HelpActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    private void handleFabClick(View v){
-        if(values != null && values.size() > 0){
-            //TODO:: implement the saving of the data read from the SQLite db into a text file
-            for(String string : parsedValues){
+    /*private void saveAsTextFile(){
+        File exportDir = new File(Environment.getExternalStorageDirectory(),"");
+        if(!exportDir.exists()){
+            exportDir.mkdir();
 
+        }
+        File file = new File(exportDir," csvname.csv");
+        try {
+            file.createNewFile();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }*/
+
+    private void writeToFile(String data,String filename, Context context) {
+
+        try {
+            FileOutputStream outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            outputStream.write(data.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    private void handleFabClick(View v){
+
+        if(parsedValues != null && parsedValues.size() > 0){
+            //TODO:: implement the saving of the data read from the SQLite db into a text file
+            StringBuilder report = new StringBuilder();
+            String separator =  System.getProperty("line.separator");
+            for(String string : parsedValues){
+                report.append(string);
+                report.append(separator);
             }
+            writeToFile(report.toString(),"values.txt",this);
         } else {
             Toast.makeText(this, getString(R.string.no_help_questions), Toast.LENGTH_LONG).show();
         }
