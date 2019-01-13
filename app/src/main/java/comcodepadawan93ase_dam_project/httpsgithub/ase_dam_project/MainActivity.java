@@ -261,6 +261,10 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, HelpActivity.class);
                 retval = true;
                 break;
+            case R.id.location_menu_item:
+                intent = new Intent(this, GoogleMapsActivity.class);
+                retval = true;
+                break;
             default:
                 retval = super.onOptionsItemSelected(item);
         }

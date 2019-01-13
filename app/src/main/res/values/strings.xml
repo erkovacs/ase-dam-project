@@ -116,4 +116,6 @@
     <string name="no_help_questions">No help questions yet.</string>
     <string name="text_faqs">FAQ\'s read from file report:</string>
     <string name="successfully_saved_file">File successfully saved as %s</string>
+    <string name="location_menu_item">Support centres</string>
+    <string name="support_center">Support center, Sydney</string>
 </resources>

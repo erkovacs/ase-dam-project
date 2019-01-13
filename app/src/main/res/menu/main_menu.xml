@@ -33,4 +33,8 @@
         android:id="@+id/help_menu_item"
         android:title="@string/help_menu_item"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/location_menu_item"
+        android:title="@string/location_menu_item"
+        app:showAsAction="never"/>
 </menu>
